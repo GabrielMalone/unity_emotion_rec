@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: 9948b7971e81d244e8dcf75bcd8083fe
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8400209472644833896
+    second: mazee_0
+  - first:
+      213: -4470649305476298950
+    second: mazee_1
+  - first:
+      213: -2298223766067220866
+    second: mazee_2
+  - first:
+      213: -595562017447447809
+    second: mazee_3
+  - first:
+      213: -7101318411885021615
+    second: mazee_4
+  - first:
+      213: -361316689087187215
+    second: mazee_5
+  - first:
+      213: 5002986383301342642
+    second: mazee_6
+  - first:
+      213: 403641349179731833
+    second: mazee_7
+  - first:
+      213: 7112162212519585825
+    second: mazee_8
+  - first:
+      213: 4180807990910912144
+    second: mazee_9
+  - first:
+      213: 7172456093930223249
+    second: mazee_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mazee_0
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 1011
+        width: 1437
+        height: 976
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89d1228adf57c6b80800000000000000
+      internalID: -8400209472644833896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mazee_1
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 1141
+        width: 1142
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a370db7a42015f1c0800000000000000
+      internalID: -4470649305476298950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mazee_2
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 1734
+        width: 847
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7ee33949a11b10e0800000000000000
+      internalID: -2298223766067220866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mazee_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 104
+        width: 419
+        height: 1268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff2745420832cb7f0800000000000000
+      internalID: -595562017447447809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mazee_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 704
+        width: 512
+        height: 630
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 156f6ae578c037d90800000000000000
+      internalID: -7101318411885021615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mazee_5
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 409
+        width: 1172
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f6b987b2685cfaf0800000000000000
+      internalID: -361316689087187215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mazee_6
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 758
+        width: 280
+        height: 696
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b5fac0db9d2e6540800000000000000
+      internalID: 5002986383301342642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mazee_7
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 709
+        width: 615
+        height: 736
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97f64822ba50a9500800000000000000
+      internalID: 403641349179731833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mazee_8
+      rect:
+        serializedVersion: 2
+        x: 1609
+        y: 1039
+        width: 236
+        height: 691
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 128af26b9d973b260800000000000000
+      internalID: 7112162212519585825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mazee_9
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 154
+        width: 681
+        height: 653
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0960c5487b6350a30800000000000000
+      internalID: 4180807990910912144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mazee_10
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 22
+        width: 907
+        height: 429
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 196fbcde0dea98360800000000000000
+      internalID: 7172456093930223249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      mazee_0: -8400209472644833896
+      mazee_1: -4470649305476298950
+      mazee_10: 7172456093930223249
+      mazee_2: -2298223766067220866
+      mazee_3: -595562017447447809
+      mazee_4: -7101318411885021615
+      mazee_5: -361316689087187215
+      mazee_6: 5002986383301342642
+      mazee_7: 403641349179731833
+      mazee_8: 7112162212519585825
+      mazee_9: 4180807990910912144
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
