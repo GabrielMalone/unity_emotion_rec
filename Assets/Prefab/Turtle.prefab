@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d37355fb5784736998e65534786671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FollowPlayer
+  target: {fileID: 0}
 --- !u!195 &-6484984936207961416
 NavMeshAgent:
   m_ObjectHideFlags: 0
