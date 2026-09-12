@@ -10,13 +10,17 @@ public class PlayerController : MonoBehaviour
     public float jumpforce = 10f; // how much in the up direction
     public float boostMultiplier = 2f; // speed boost on jump
     public float boostDuration = 0.5f;
-    private bool isBoosting = false; // so we dont double up a bunch of jumps
-
-    Rigidbody2D rb;
+    public Transform playerSprite;
+    private SpriteRenderer spriteRenderer;
+    public Rigidbody2D rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rb.freezeRotation = true;
+        transform.rotation = Quaternion.identity;
     }
 
     // Update is called once per frame
@@ -33,22 +37,30 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        // moving
+        // Forward
         if (Keyboard.current.wKey.isPressed)
         {
             rb.AddForce(transform.up * thrustForce);
         }
+
+        // Strafe left
         if (Keyboard.current.aKey.isPressed)
         {
-            rb.AddTorque(torque); // changes direction
+            rb.AddForce(-transform.right * thrustForce);
+            spriteRenderer.flipX = false;
         }
+
+        // Backward
         if (Keyboard.current.sKey.isPressed)
         {
             rb.AddForce(-transform.up * thrustForce);
         }
+
+        // Strafe right
         if (Keyboard.current.dKey.isPressed)
         {
-            rb.AddTorque(-torque); // changes direction
+            rb.AddForce(transform.right * thrustForce);
+            spriteRenderer.flipX = true;
         }
 
         SpeedCheck(rb);
