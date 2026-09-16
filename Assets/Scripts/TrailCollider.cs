@@ -11,6 +11,10 @@ public class TrailCollider : MonoBehaviour
     [Header("Physics")]
     public PhysicsMaterial2D trailPhysicsMaterial;
 
+    [Header("Slime Audio")]
+    public AudioSource slimeAudioSource;
+    public AudioClip slimeSFX;
+
     [Header("Slime Visuals")]
     public Material slimeMaterial;
     public float slimeWidth = 0.5f;
@@ -25,7 +29,7 @@ public class TrailCollider : MonoBehaviour
     void Start()
     {
         edgeCollider = GetComponent<EdgeCollider2D>();
-   
+        slimeAudioSource.Stop();
         edgeCollider.sharedMaterial = trailPhysicsMaterial;
 
         lineRenderer.material = slimeMaterial;
@@ -34,24 +38,39 @@ public class TrailCollider : MonoBehaviour
         lineRenderer.useWorldSpace = false;
         lineRenderer.sortingOrder = -1;
 
+        slimeAudioSource.clip = slimeSFX;
+        slimeAudioSource.loop = false;
 
         AddPoint();
     }
 
     void Update()
     {
+        if (!slimeTrailEnabled)
+        {
+            if (slimeAudioSource.isPlaying)
+            {
+                slimeAudioSource.Stop();
+            }
+        }
         Vector2 playerLocalPosition = transform.InverseTransformPoint(player.position);
 
         if (points.Count == 0 ||
             Vector2.Distance(points[points.Count - 1], playerLocalPosition) >= pointSpacing)
         {
-            AddPoint();
+            AddPoint(); 
+
+            if (!slimeAudioSource.isPlaying)
+            {
+                slimeAudioSource.Play();
+            }
+
         }
     }
 
     void AddPoint()
     {
-        
+
         if (!slimeTrailEnabled) return;
 
         Vector2 localPoint = transform.InverseTransformPoint(player.position);
