@@ -57,9 +57,9 @@
     <Compile Include="Assets/Scripts/Turtle.cs" />
     <Compile Include="Assets/Scripts/SlimeSlow.cs" />
     <Compile Include="Assets/Scripts/TopDown2DJump.cs" />
+    <Compile Include="Assets/Scripts/EnemyFollow.cs" />
     <Compile Include="Assets/Scripts/DisgustedInteract.cs" />
     <Compile Include="Assets/Scripts/TrailCollider.cs" />
-    <Compile Include="Assets/Scripts/FollowPlayer.cs" />
     <Compile Include="Assets/Scripts/MazeNavBlockerGenerator.cs" />
     <Compile Include="Assets/Scripts/CameraFollow.cs" />
   </ItemGroup>

@@ -6,6 +6,8 @@ public class TrailCollider : MonoBehaviour
     public Transform player;
     public float pointSpacing = 0.25f;
 
+    public static bool slimeTrailEnabled = false;
+
     [Header("Physics")]
     public PhysicsMaterial2D trailPhysicsMaterial;
 
@@ -49,6 +51,9 @@ public class TrailCollider : MonoBehaviour
 
     void AddPoint()
     {
+        
+        if (!slimeTrailEnabled) return;
+
         Vector2 localPoint = transform.InverseTransformPoint(player.position);
 
         points.Add(localPoint);

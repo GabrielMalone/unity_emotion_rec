@@ -261,7 +261,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: 0
+  m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -481,7 +481,7 @@ MonoBehaviour:
   slowMultiplier: 0.1
   enemyTag: Enemies
   spinForce: 0
-  brakingForce: 100
+  brakingForce: 0
 --- !u!114 &319340937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -702,75 +702,6 @@ MonoBehaviour:
   m_MinRegionArea: 0
   m_HideEditorLogs: 0
   m_NavMeshData: {fileID: 23800000, guid: 6d14e767cf9b443129031aac90de1f8f, type: 2}
---- !u!1001 &512656501
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1406446791687087108, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1572544064}
-    - target: {fileID: 2608089662416475250, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7233630745859838066, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
-      propertyPath: m_Name
-      value: Turtle
-      objectReference: {fileID: 0}
-    - target: {fileID: 7233630745859838066, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
-      propertyPath: m_TagString
-      value: Enemies
-      objectReference: {fileID: 0}
-    - target: {fileID: 8612233764628850554, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.9583655
-      objectReference: {fileID: 0}
-    - target: {fileID: 8612233764628850554, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.945864
-      objectReference: {fileID: 0}
-    - target: {fileID: 8612233764628850554, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8612233764628850554, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8612233764628850554, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8612233764628850554, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8612233764628850554, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8612233764628850554, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8612233764628850554, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8612233764628850554, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
 --- !u!1 &811883551
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,8 +736,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.3, y: 15.3}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 97.4724, y: -0.3048}
+  m_SizeDelta: {x: 304.3446, y: 61.2097}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &811883553
 MonoBehaviour:
@@ -839,9 +770,10 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Hey Buddy!
+  m_Text: Hey Buddy, I'm disgusted. Check out your new slime trail power. And watch
+    out for that turtle!
 --- !u!222 &811883554
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1646,6 +1578,37 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.09, y: 0}
   m_Radius: 0.09
+--- !u!1 &1270399675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1270399676}
+  m_Layer: 0
+  m_Name: EnemySpawnPoint_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1270399676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270399675}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.44042, y: 1.29496, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1534416551}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1425578414
 GameObject:
   m_ObjectHideFlags: 0
@@ -3764,6 +3727,7 @@ Transform:
   - {fileID: 1773340365}
   - {fileID: 973241372}
   - {fileID: 477380762}
+  - {fileID: 1270399676}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1572544063
@@ -4596,6 +4560,55 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.09, y: 0}
   m_Radius: 0.09
+--- !u!1 &1954326183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1954326185}
+  - component: {fileID: 1954326184}
+  m_Layer: 0
+  m_Name: Global Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1954326184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954326183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 3eb314a5697494c8abbb90bc25c9e295, type: 2}
+--- !u!4 &1954326185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954326183}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.8228945, y: 9.340941, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1989146169
 GameObject:
   m_ObjectHideFlags: 0
@@ -4751,10 +4764,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DisgustedInteract
   player: {fileID: 1572544063}
   dialogueText: {fileID: 811883553}
-  message: im disgusted
+  message: Hey Buddy, I'm disgusted. Check out your new slime trail power. And watch
+    out for that turtle!
   interactionRadius: 3
   charactersPerSecond: 30
   textWorldOffset: {x: 0, y: 1.5, z: 0}
+  turtlePrefab: {fileID: 7233630745859838066, guid: 60e782cd2cab9433db5803b2889a460f, type: 3}
+  enemySpawnPoint: {fileID: 1270399676}
 --- !u!61 &1989146174
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4813,4 +4829,4 @@ SceneRoots:
   - {fileID: 354785737}
   - {fileID: 426612768}
   - {fileID: 1754530107}
-  - {fileID: 512656501}
+  - {fileID: 1954326185}

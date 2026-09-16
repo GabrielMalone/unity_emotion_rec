@@ -6,6 +6,7 @@ public class DisgustedInteract : MonoBehaviour
 {
     public GameObject player;
     private bool playerInRange = false;
+    private bool enemySpawnedForDemo = false;
  
     [Header("Disgusted Intro Speech")]
     public Text dialogueText;
@@ -22,6 +23,10 @@ public class DisgustedInteract : MonoBehaviour
     public Vector3 textWorldOffset = new Vector3(0f, 1.5f, 0f);
     private Coroutine typewriterRoutine;
     private bool hasTalked = false;
+
+    [Header("Turtle Spawn")]
+    public GameObject turtlePrefab;
+    public Transform enemySpawnPoint;
  
     void Start()
     {
@@ -99,6 +104,12 @@ public class DisgustedInteract : MonoBehaviour
             dialogueText.text += fullText[i];
             yield return new WaitForSeconds(delay);
         }
+        // give player their slime power
+        TrailCollider.slimeTrailEnabled = true;
+        // spawn an enemy for demo
+        if (!enemySpawnedForDemo)
+            Instantiate(turtlePrefab, enemySpawnPoint.position, enemySpawnPoint.rotation);
+        enemySpawnedForDemo = true;
     }
  
     // Optional: visualize the radius in the editor
