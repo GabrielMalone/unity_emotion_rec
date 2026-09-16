@@ -46,13 +46,8 @@ public class TrailCollider : MonoBehaviour
 
     void Update()
     {
-        if (!slimeTrailEnabled)
-        {
-            if (slimeAudioSource.isPlaying)
-            {
-                slimeAudioSource.Stop();
-            }
-        }
+        if (!slimeTrailEnabled) return;
+
         Vector2 playerLocalPosition = transform.InverseTransformPoint(player.position);
 
         if (points.Count == 0 ||

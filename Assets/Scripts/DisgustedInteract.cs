@@ -22,7 +22,6 @@ public class DisgustedInteract : MonoBehaviour
     [Header("Text Position")]
     public Vector3 textWorldOffset = new Vector3(0f, 1.5f, 0f);
     private Coroutine typewriterRoutine;
-    private bool hasTalked = false;
 
     [Header("Turtle Spawn")]
     public GameObject turtlePrefab;

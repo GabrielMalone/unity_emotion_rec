@@ -28,12 +28,12 @@ public class PlayerController : MonoBehaviour
     {
         if (Mouse.current.leftButton.isPressed)
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
-            Debug.Log("Mouse Pos: " + mousePos);
-            // mouse position - player object position
-            Vector2 direction = mousePos - transform.position;
-            // set the player game object facing that direction
-            transform.up = direction.normalized;
+            // Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+            // Debug.Log("Mouse Pos: " + mousePos);
+            // // mouse position - player object position
+            // Vector2 direction = mousePos - transform.position;
+            // // set the player game object facing that direction
+            // transform.up = direction.normalized;
         }
 
 

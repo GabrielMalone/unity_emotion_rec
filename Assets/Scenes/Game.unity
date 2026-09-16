@@ -498,10 +498,10 @@ MonoBehaviour:
   pointSpacing: 0.1
   trailPhysicsMaterial: {fileID: 0}
   slimeAudioSource: {fileID: 2048319500}
-  slimeSFX: {fileID: 8300000, guid: e67afdc97eb1842c78a97ec2f0ab665c, type: 3}
+  slimeSFX: {fileID: 8300000, guid: decf3fe8678e449ccae045ea3d387f62, type: 3}
   slimeMaterial: {fileID: 2100000, guid: 5502fae47e57b42739f36f1d10568333, type: 2}
   slimeWidth: 0.7
-  maxPoints: 50
+  maxPoints: 125
   lineRenderer: {fileID: 319340935}
 --- !u!68 &319340938
 EdgeCollider2D:
@@ -3789,7 +3789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   thrustForce: 20
   torque: 10
-  maxPlayerSpeed: 5
+  maxPlayerSpeed: 25
   jumpforce: 100
   boostMultiplier: 2
   boostDuration: 0.5
@@ -3895,7 +3895,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 10
   m_AngularDamping: 5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 79e741799caf54e85bd3dfa84eef965f, type: 2}
@@ -3907,8 +3907,8 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!1 &1643348013
 GameObject:
   m_ObjectHideFlags: 0
