@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DisgustedStatue
   - DisgustedStatueTrigger
+  - Enemies
   layers:
   - Default
   - TransparentFX
