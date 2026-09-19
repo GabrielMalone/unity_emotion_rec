@@ -36,7 +36,7 @@ public class TrailCollider : MonoBehaviour
         lineRenderer.startWidth = slimeWidth;
         lineRenderer.endWidth = slimeWidth;
         lineRenderer.useWorldSpace = false;
-        lineRenderer.sortingOrder = -1;
+        lineRenderer.sortingOrder = 1;
 
         slimeAudioSource.clip = slimeSFX;
         slimeAudioSource.loop = false;
@@ -53,7 +53,7 @@ public class TrailCollider : MonoBehaviour
         if (points.Count == 0 ||
             Vector2.Distance(points[points.Count - 1], playerLocalPosition) >= pointSpacing)
         {
-            AddPoint(); 
+            AddPoint();
 
             if (!slimeAudioSource.isPlaying)
             {
