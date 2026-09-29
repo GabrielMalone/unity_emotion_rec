@@ -1,7 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
- 
+using UnityEngine.InputSystem;
+
 public class DisgustedInteract : MonoBehaviour
 {
     public GameObject player;
@@ -26,6 +27,9 @@ public class DisgustedInteract : MonoBehaviour
     [Header("Turtle Spawn")]
     public GameObject turtlePrefab;
     public Transform enemySpawnPoint;
+
+    public DialougeHandler dialougeHandler;
+    public DialougeObject TheConversation;
  
     void Start()
     {
@@ -52,6 +56,8 @@ public class DisgustedInteract : MonoBehaviour
         float distance = Vector2.Distance(transform.position, player.transform.position);
         bool inRangeNow = distance <= interactionRadius;
  
+        
+
         if (inRangeNow && !playerInRange)
         {
             // just entered range
@@ -64,8 +70,14 @@ public class DisgustedInteract : MonoBehaviour
             playerInRange = false;
             StopTalking();
         }
+
+        if (playerInRange && Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            dialougeHandler.StartUpDialouge(TheConversation);
+        }
+
     }
- 
+
     public void TalkToPlayer()
     {
         if (dialogueText == null) return;

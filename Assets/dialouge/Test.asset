@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1923bc87e22e94a9c2d36c1fe889b1, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: Assembly-CSharp::DialougeObject
+  Dialouge:
+  - expression: {fileID: -1360465217409437449, guid: 14063583ee6804009a6dc8a107158034, type: 3}
+    text: HELLO IM A SNAIL
+    isQuestion: 0
+    Answers: []
+    wrongText: 
+  - expression: {fileID: 0}
+    text: 'NOW I WILL TURN INTO A <color=yellow>bush</color> '
+    isQuestion: 0
+    Answers: []
+    wrongText: 
+  - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
+    text: I AM NOW A BUSH
+    isQuestion: 0
+    Answers: []
+    wrongText: 
+  - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
+    text: hurray hurray hurray hurray hurray hurray hurray hurray hurray hurray hurray
+      hurray hurray hurray hurray hurray hurray hurray
+    isQuestion: 0
+    Answers: []
+    wrongText: 
+  - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
+    text: NOW
+    isQuestion: 0
+    Answers: []
+    wrongText: NOW
+  - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
+    text: I HAVE A QUESTION
+    isQuestion: 0
+    Answers: []
+    wrongText: NOW
+  - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
+    text: WHAT IS 2 + 2
+    isQuestion: 1
+    Answers:
+    - 4
+    - 6
+    - 8
+    - france
+    wrongText: NO NO NO NO NO <color=red>WRONG</color>
+  - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
+    text: YOU DID IT
+    isQuestion: 0
+    Answers:
+    - 4
+    - 6
+    - 8
+    - france
+    wrongText: NO NO NO NO NO <color=red>WRONG</color>
+  - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
+    text: YAY
+    isQuestion: 0
+    Answers:
+    - 4
+    - 6
+    - 8
+    - france
+    wrongText: NO NO NO NO NO <color=red>WRONG</color>

@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\zacha\\Documents\\projects\\slugmaze\\unity_emotion_rec\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\zacha\\documents\\projects\\slugmaze\\unity_emotion_rec\\assets\\scripts\\dialougehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dialougehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\zacha\\documents\\projects\\slugmaze\\unity_emotion_rec\\assets\\scripts\\disgustedinteract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\disgustedinteract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\zacha\\documents\\projects\\slugmaze\\unity_emotion_rec\\assets\\dialouge\\dialougeobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\dialouge\\dialougeobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\zacha\\documents\\projects\\slugmaze\\unity_emotion_rec\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\zacha\\documents\\projects\\slugmaze\\unity_emotion_rec\\assets\\scripts\\randomizespriteshape.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\randomizespriteshape.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DialougeHandler.cs",
+              "DocumentMoniker": "C:\\Users\\zacha\\Documents\\projects\\slugmaze\\unity_emotion_rec\\Assets\\Scripts\\DialougeHandler.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\DialougeHandler.cs",
+              "ToolTip": "C:\\Users\\zacha\\Documents\\projects\\slugmaze\\unity_emotion_rec\\Assets\\Scripts\\DialougeHandler.cs",
+              "RelativeToolTip": "Assets\\Scripts\\DialougeHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-29T22:30:42.777Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DisgustedInteract.cs",
+              "DocumentMoniker": "C:\\Users\\zacha\\Documents\\projects\\slugmaze\\unity_emotion_rec\\Assets\\Scripts\\DisgustedInteract.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\DisgustedInteract.cs",
+              "ToolTip": "C:\\Users\\zacha\\Documents\\projects\\slugmaze\\unity_emotion_rec\\Assets\\Scripts\\DisgustedInteract.cs*",
+              "RelativeToolTip": "Assets\\Scripts\\DisgustedInteract.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-29T22:31:41.248Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PlayerController.cs",
+              "DocumentMoniker": "C:\\Users\\zacha\\Documents\\projects\\slugmaze\\unity_emotion_rec\\Assets\\Scripts\\PlayerController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
+              "ToolTip": "C:\\Users\\zacha\\Documents\\projects\\slugmaze\\unity_emotion_rec\\Assets\\Scripts\\PlayerController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-25T19:37:49.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DialougeObject.cs",
+              "DocumentMoniker": "C:\\Users\\zacha\\Documents\\projects\\slugmaze\\unity_emotion_rec\\Assets\\dialouge\\DialougeObject.cs",
+              "RelativeDocumentMoniker": "Assets\\dialouge\\DialougeObject.cs",
+              "ToolTip": "C:\\Users\\zacha\\Documents\\projects\\slugmaze\\unity_emotion_rec\\Assets\\dialouge\\DialougeObject.cs",
+              "RelativeToolTip": "Assets\\dialouge\\DialougeObject.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-25T18:43:40.884Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RandomizeSpriteShape.cs",
+              "DocumentMoniker": "C:\\Users\\zacha\\Documents\\projects\\slugmaze\\unity_emotion_rec\\Assets\\Scripts\\RandomizeSpriteShape.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\RandomizeSpriteShape.cs",
+              "ToolTip": "C:\\Users\\zacha\\Documents\\projects\\slugmaze\\unity_emotion_rec\\Assets\\Scripts\\RandomizeSpriteShape.cs",
+              "RelativeToolTip": "Assets\\Scripts\\RandomizeSpriteShape.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-25T18:41:36.991Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
