@@ -116,11 +116,11 @@ public class DisgustedInteract : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
         // give player their slime power
-        TrailCollider.slimeTrailEnabled = true;
-        // spawn an enemy for demo
-        if (!enemySpawnedForDemo)
-            Instantiate(turtlePrefab, enemySpawnPoint.position, enemySpawnPoint.rotation);
-        enemySpawnedForDemo = true;
+        // TrailCollider.slimeTrailEnabled = true;
+        // // spawn an enemy for demo
+        // if (!enemySpawnedForDemo)
+        //     Instantiate(turtlePrefab, enemySpawnPoint.position, enemySpawnPoint.rotation);
+        // enemySpawnedForDemo = true;
     }
  
     // Optional: visualize the radius in the editor
