@@ -61,6 +61,11 @@ public class FireflyBehavior : MonoBehaviour
             randomScale,
             1f
         );
+        pointLight.transform.localScale = new Vector3(
+            randomScale,
+            randomScale,
+            1f
+        );
     }
 
     void Twinkle()
