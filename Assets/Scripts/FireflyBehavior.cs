@@ -15,7 +15,7 @@ public class FireflyBehavior : MonoBehaviour
     public float maxLightIntensity = 1f;
     public float twinkleSpeed = 2f;
 
-    private GameObject player;
+    private GameObject [] fireflyAttractors;
     private NavMeshAgent agent;
     private SpriteRenderer spriteRenderer;
     private Light2D pointLight;
@@ -25,7 +25,7 @@ public class FireflyBehavior : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        fireflyAttractors = GameObject.FindGameObjectsWithTag("FireflyAttractor");
 
         agent = GetComponentInChildren<NavMeshAgent>();
         agent.updateRotation = false;
@@ -44,12 +44,7 @@ public class FireflyBehavior : MonoBehaviour
     void Update()
     {
         Twinkle();
-
-        // Uncomment when you want them to follow the player
-        // if (player != null)
-        // {
-        //     agent.SetDestination(player.transform.position);
-        // }
+        FollowNearestAttractor();
     }
 
     void LateUpdate()
@@ -84,4 +79,34 @@ public class FireflyBehavior : MonoBehaviour
         color.a = Mathf.Lerp(minAlpha, maxAlpha, t);
         spriteRenderer.color = color;
     }
+
+
+    void FollowNearestAttractor()
+    {
+        if (fireflyAttractors != null)
+        {
+            GameObject closestAttractor = null;
+            float closestDistance = Mathf.Infinity;
+
+            foreach (GameObject fireflyAttractor in fireflyAttractors)
+            {
+                float distance = Vector2.Distance(
+                    transform.position,
+                    fireflyAttractor.transform.position
+                );
+
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestAttractor = fireflyAttractor;
+                }
+            }
+
+            if (closestAttractor != null)
+            {
+                agent.SetDestination(closestAttractor.transform.position);
+            }
+        }
+    }
+
 }
