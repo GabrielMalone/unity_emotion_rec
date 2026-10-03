@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416697962258589696}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3411, y: 0.3411, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.34110022, y: 0.34109998, z: 0}
   m_LocalScale: {x: 0.3177, y: 0.3177, z: 0.3177}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -233,6 +233,14 @@ MonoBehaviour:
   minLightIntensity: 0
   maxLightIntensity: 1
   twinkleSpeed: 2.5
+  minSpeed: 1
+  maxSpeed: 10
+  minVolume: 0.05
+  maxVolume: 0.15
+  frequencySampleInterval: 0.75
+  frequencyChangeForMaxSpeed: 500
+  minFireflySpeed: 1
+  maxFireflySpeed: 20
 --- !u!1 &8743911994513715338
 GameObject:
   m_ObjectHideFlags: 0

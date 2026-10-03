@@ -15,7 +15,24 @@ public class FireflyBehavior : MonoBehaviour
     public float maxLightIntensity = 1f;
     public float twinkleSpeed = 2f;
 
-    private GameObject [] fireflyAttractors;
+    [Header("Speed-Audio Settings")]
+    public float minSpeed = 1f;
+    public float maxSpeed = 20f;
+    public float minVolume = 0.05f;
+    public float maxVolume = 0.10f;
+    private GameObject AudioManager;
+    private AudioAnalyzer audioAnalyzer;
+    private float prevFrequency;
+    private float targetSpeed;
+
+    public float frequencySampleInterval = 0.75f;
+    public float frequencyChangeForMaxSpeed = 500f;
+    public float minFireflySpeed = 1f;
+    public float maxFireflySpeed = 20f;
+
+    private float frequencySampleTimer;
+
+    private GameObject[] fireflyAttractors;
     private NavMeshAgent agent;
     private SpriteRenderer spriteRenderer;
     private Light2D pointLight;
@@ -38,6 +55,9 @@ public class FireflyBehavior : MonoBehaviour
 
         twinkleOffset = Random.Range(0f, Mathf.PI * 2f);
 
+        AudioManager = GameObject.Find("AudioManager");
+        audioAnalyzer = AudioManager.GetComponent<AudioAnalyzer>();
+        prevFrequency = audioAnalyzer.GetDominantFrequency();
         SetRandomSize();
     }
 
@@ -45,6 +65,7 @@ public class FireflyBehavior : MonoBehaviour
     {
         Twinkle();
         FollowNearestAttractor();
+        AudioFX();
     }
 
     void LateUpdate()
@@ -112,6 +133,38 @@ public class FireflyBehavior : MonoBehaviour
                 agent.SetDestination(closestAttractor.transform.position);
             }
         }
+    }
+
+    void AudioFX()
+    {
+        if (audioAnalyzer == null)
+            return;
+
+        frequencySampleTimer += Time.deltaTime;
+
+        // Every 0.75 seconds, calculate a new target speed
+        if (frequencySampleTimer >= frequencySampleInterval)
+        {
+            float volumeAmount = Mathf.InverseLerp(
+                minVolume,
+                maxVolume,
+                audioAnalyzer.volume
+            );
+            targetSpeed = Mathf.Lerp(
+                minSpeed,
+                maxSpeed,
+                volumeAmount
+            );
+
+            frequencySampleTimer = 0f;
+        }
+
+        // This part runs EVERY FRAME
+        agent.speed = Mathf.Lerp(
+            agent.speed,
+            targetSpeed,
+            Time.deltaTime * 2f
+        );
     }
 
 }

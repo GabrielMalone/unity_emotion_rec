@@ -7,7 +7,6 @@ public class DisgustedInteract : MonoBehaviour
 {
     public GameObject player;
     private bool playerInRange = false;
-    private bool enemySpawnedForDemo = false;
  
     [Header("Disgusted Intro Speech")]
     public Text dialogueText;
