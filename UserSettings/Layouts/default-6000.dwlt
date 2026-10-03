@@ -328,8 +328,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "UnityEditor.MainToolbarWindow\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1051
-    y: -1192
+    x: 0
+    y: 0
     width: 1248
     height: 36
   m_SerializedDataModeController:
@@ -591,13 +591,13 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Scene
-    m_Image: {fileID: 2593428753322112591, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: 8634526014445323508, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1051
-    y: -1156
+    x: 0
+    y: 24
     width: 711
     height: 414
   m_SerializedDataModeController:
@@ -1279,7 +1279,7 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Sprite Editor
-    m_Image: {fileID: 2800000, guid: b7784190913354d4fb9b7f77888f915f, type: 3}
+    m_Image: {fileID: 2800000, guid: 74d9036aa1bb14ccfafb89d639870288, type: 3}
     m_Tooltip: 
     m_TextWithWhitespace: "Sprite Editor\u200B"
   m_Pos:
@@ -3373,13 +3373,13 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Game
-    m_Image: {fileID: -6423792434712278376, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: 4621777727084837110, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1051
-    y: -716
+    x: 0
+    y: 464
     width: 711
     height: 209
   m_SerializedDataModeController:
@@ -3478,7 +3478,7 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Hierarchy
-    m_Image: {fileID: 7966133145522015247, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -3734745235275155857, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Hierarchy\u200B"
   m_Pos:
@@ -3505,10 +3505,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs:
-      - m_rawData: 568105584918844316
+      m_SelectedIDs: []
       m_LastClickedID:
-        m_rawData: 568105584918844316
+        m_rawData: 0
       m_ExpandedIDs:
       - m_rawData: 568105589213735844
       - m_rawData: 568105589213756046
@@ -3566,8 +3565,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Tile Palette\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1763
-    y: -1156
+    x: 1
+    y: 24
     width: 234
     height: 426
   m_SerializedDataModeController:
@@ -3643,13 +3642,13 @@ MonoBehaviour:
   m_MaxSize: {x: 10000, y: 10000}
   m_TitleContent:
     m_Text: Project
-    m_Image: {fileID: -5467254957812901981, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -5179483145760003458, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Project\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1763
-    y: -704
+    x: 1
+    y: 476
     width: 234
     height: 197
   m_SerializedDataModeController:
@@ -3701,65 +3700,66 @@ MonoBehaviour:
     m_ExpandedIDs:
     - m_rawData: 0
     - m_rawData: 568105584918790870
-    - m_rawData: 568105584918844554
-    - m_rawData: 568105584918844556
-    - m_rawData: 568105584918844586
-    - m_rawData: 568105584918845080
-    - m_rawData: 568105584918845082
-    - m_rawData: 568105584918845084
-    - m_rawData: 568105584918845086
-    - m_rawData: 568105584918845088
-    - m_rawData: 568105584918845090
-    - m_rawData: 568105584918845092
-    - m_rawData: 568105584918845094
-    - m_rawData: 568105584918845096
-    - m_rawData: 568105584918845098
-    - m_rawData: 568105584918845100
-    - m_rawData: 568105584918845102
-    - m_rawData: 568105584918845104
-    - m_rawData: 568105584918845106
-    - m_rawData: 568105584918845108
-    - m_rawData: 568105584918845110
-    - m_rawData: 568105584918845112
-    - m_rawData: 568105584918845114
-    - m_rawData: 568105584918845116
-    - m_rawData: 568105584918845118
-    - m_rawData: 568105584918845120
-    - m_rawData: 568105584918845122
-    - m_rawData: 568105584918845124
-    - m_rawData: 568105584918845126
-    - m_rawData: 568105584918845128
-    - m_rawData: 568105584918845130
-    - m_rawData: 568105584918845132
-    - m_rawData: 568105584918845134
-    - m_rawData: 568105584918845136
-    - m_rawData: 568105584918845138
-    - m_rawData: 568105584918845140
-    - m_rawData: 568105584918845142
-    - m_rawData: 568105584918845144
-    - m_rawData: 568105584918845146
-    - m_rawData: 568105584918845148
-    - m_rawData: 568105584918845150
-    - m_rawData: 568105584918845152
-    - m_rawData: 568105584918845154
-    - m_rawData: 568105584918845156
-    - m_rawData: 568105584918845158
-    - m_rawData: 568105584918845160
-    - m_rawData: 568105584918845162
-    - m_rawData: 568105584918845164
-    - m_rawData: 568105584918845166
-    - m_rawData: 568105584918845168
-    - m_rawData: 568105584918845170
-    - m_rawData: 568105584918845172
-    - m_rawData: 568105584918845174
-    - m_rawData: 568105584918845176
-    - m_rawData: 568105584918845178
-    - m_rawData: 568105584918845180
-    - m_rawData: 568105584918845182
-    - m_rawData: 568105584918845184
-    - m_rawData: 568105584918845186
-    - m_rawData: 568105584918856186
-    - m_rawData: 568105584918918454
+    - m_rawData: 568105584918845270
+    - m_rawData: 568105584918845272
+    - m_rawData: 568105584918845438
+    - m_rawData: 568105584918845440
+    - m_rawData: 568105584918845442
+    - m_rawData: 568105584918845444
+    - m_rawData: 568105584918845446
+    - m_rawData: 568105584918845448
+    - m_rawData: 568105584918845450
+    - m_rawData: 568105584918845452
+    - m_rawData: 568105584918845454
+    - m_rawData: 568105584918845456
+    - m_rawData: 568105584918845458
+    - m_rawData: 568105584918845460
+    - m_rawData: 568105584918845462
+    - m_rawData: 568105584918845464
+    - m_rawData: 568105584918845466
+    - m_rawData: 568105584918845468
+    - m_rawData: 568105584918845470
+    - m_rawData: 568105584918845472
+    - m_rawData: 568105584918845474
+    - m_rawData: 568105584918845476
+    - m_rawData: 568105584918845478
+    - m_rawData: 568105584918845480
+    - m_rawData: 568105584918845482
+    - m_rawData: 568105584918845484
+    - m_rawData: 568105584918845486
+    - m_rawData: 568105584918845488
+    - m_rawData: 568105584918845490
+    - m_rawData: 568105584918845492
+    - m_rawData: 568105584918845494
+    - m_rawData: 568105584918845496
+    - m_rawData: 568105584918845498
+    - m_rawData: 568105584918845500
+    - m_rawData: 568105584918845502
+    - m_rawData: 568105584918845504
+    - m_rawData: 568105584918845506
+    - m_rawData: 568105584918845508
+    - m_rawData: 568105584918845510
+    - m_rawData: 568105584918845512
+    - m_rawData: 568105584918845514
+    - m_rawData: 568105584918845516
+    - m_rawData: 568105584918845518
+    - m_rawData: 568105584918845520
+    - m_rawData: 568105584918845522
+    - m_rawData: 568105584918845524
+    - m_rawData: 568105584918845526
+    - m_rawData: 568105584918845528
+    - m_rawData: 568105584918845530
+    - m_rawData: 568105584918845532
+    - m_rawData: 568105584918845534
+    - m_rawData: 568105584918845536
+    - m_rawData: 568105584918845538
+    - m_rawData: 568105584918845540
+    - m_rawData: 568105584918845542
+    - m_rawData: 568105584918845544
+    - m_rawData: 568105584918845546
+    - m_rawData: 568105584918845548
+    - m_rawData: 568105584918845550
+    - m_rawData: 568105584918845552
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -3795,70 +3795,70 @@ MonoBehaviour:
     m_ExpandedIDs:
     - m_rawData: 0
     - m_rawData: 568105584918790870
-    - m_rawData: 568105584918844554
-    - m_rawData: 568105584918844556
-    - m_rawData: 568105584918844586
-    - m_rawData: 568105584918845080
-    - m_rawData: 568105584918845082
-    - m_rawData: 568105584918845084
-    - m_rawData: 568105584918845086
-    - m_rawData: 568105584918845088
-    - m_rawData: 568105584918845090
-    - m_rawData: 568105584918845092
-    - m_rawData: 568105584918845094
-    - m_rawData: 568105584918845096
-    - m_rawData: 568105584918845098
-    - m_rawData: 568105584918845100
-    - m_rawData: 568105584918845102
-    - m_rawData: 568105584918845104
-    - m_rawData: 568105584918845106
-    - m_rawData: 568105584918845108
-    - m_rawData: 568105584918845110
-    - m_rawData: 568105584918845112
-    - m_rawData: 568105584918845114
-    - m_rawData: 568105584918845116
-    - m_rawData: 568105584918845118
-    - m_rawData: 568105584918845120
-    - m_rawData: 568105584918845122
-    - m_rawData: 568105584918845124
-    - m_rawData: 568105584918845126
-    - m_rawData: 568105584918845128
-    - m_rawData: 568105584918845130
-    - m_rawData: 568105584918845132
-    - m_rawData: 568105584918845134
-    - m_rawData: 568105584918845136
-    - m_rawData: 568105584918845138
-    - m_rawData: 568105584918845140
-    - m_rawData: 568105584918845142
-    - m_rawData: 568105584918845144
-    - m_rawData: 568105584918845146
-    - m_rawData: 568105584918845148
-    - m_rawData: 568105584918845150
-    - m_rawData: 568105584918845152
-    - m_rawData: 568105584918845154
-    - m_rawData: 568105584918845156
-    - m_rawData: 568105584918845158
-    - m_rawData: 568105584918845160
-    - m_rawData: 568105584918845162
-    - m_rawData: 568105584918845164
-    - m_rawData: 568105584918845166
-    - m_rawData: 568105584918845168
-    - m_rawData: 568105584918845170
-    - m_rawData: 568105584918845172
-    - m_rawData: 568105584918845174
-    - m_rawData: 568105584918845176
-    - m_rawData: 568105584918845178
-    - m_rawData: 568105584918845180
-    - m_rawData: 568105584918845182
-    - m_rawData: 568105584918845186
-    - m_rawData: 568105584918845556
-    - m_rawData: 568105584918845560
-    - m_rawData: 568105584918856186
-    - m_rawData: 568105584918918454
+    - m_rawData: 568105584918845270
+    - m_rawData: 568105584918845272
+    - m_rawData: 568105584918845438
+    - m_rawData: 568105584918845440
+    - m_rawData: 568105584918845442
+    - m_rawData: 568105584918845444
+    - m_rawData: 568105584918845446
+    - m_rawData: 568105584918845448
+    - m_rawData: 568105584918845450
+    - m_rawData: 568105584918845452
+    - m_rawData: 568105584918845454
+    - m_rawData: 568105584918845456
+    - m_rawData: 568105584918845458
+    - m_rawData: 568105584918845460
+    - m_rawData: 568105584918845462
+    - m_rawData: 568105584918845464
+    - m_rawData: 568105584918845466
+    - m_rawData: 568105584918845468
+    - m_rawData: 568105584918845470
+    - m_rawData: 568105584918845472
+    - m_rawData: 568105584918845474
+    - m_rawData: 568105584918845476
+    - m_rawData: 568105584918845478
+    - m_rawData: 568105584918845480
+    - m_rawData: 568105584918845482
+    - m_rawData: 568105584918845484
+    - m_rawData: 568105584918845486
+    - m_rawData: 568105584918845488
+    - m_rawData: 568105584918845490
+    - m_rawData: 568105584918845492
+    - m_rawData: 568105584918845494
+    - m_rawData: 568105584918845496
+    - m_rawData: 568105584918845498
+    - m_rawData: 568105584918845500
+    - m_rawData: 568105584918845502
+    - m_rawData: 568105584918845504
+    - m_rawData: 568105584918845506
+    - m_rawData: 568105584918845508
+    - m_rawData: 568105584918845510
+    - m_rawData: 568105584918845512
+    - m_rawData: 568105584918845514
+    - m_rawData: 568105584918845516
+    - m_rawData: 568105584918845518
+    - m_rawData: 568105584918845520
+    - m_rawData: 568105584918845522
+    - m_rawData: 568105584918845524
+    - m_rawData: 568105584918845526
+    - m_rawData: 568105584918845528
+    - m_rawData: 568105584918845530
+    - m_rawData: 568105584918845532
+    - m_rawData: 568105584918845534
+    - m_rawData: 568105584918845536
+    - m_rawData: 568105584918845538
+    - m_rawData: 568105584918845540
+    - m_rawData: 568105584918845542
+    - m_rawData: 568105584918845544
+    - m_rawData: 568105584918845546
+    - m_rawData: 568105584918845548
+    - m_rawData: 568105584918845550
+    - m_rawData: 568105584918845552
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: TX Plant with Shadow
-      m_OriginalName: TX Plant with Shadow
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
@@ -3866,10 +3866,10 @@ MonoBehaviour:
         width: 0
         height: 0
       m_UserData:
-        m_rawData: 568105584918844564
+        m_rawData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
       m_ClientGUIView: {fileID: 11}
@@ -3934,13 +3934,13 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Inspector
-    m_Image: {fileID: -2667387946076563598, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -440750813802333266, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1999
-    y: -1156
+    x: 949
+    y: 24
     width: 299
     height: 649
   m_SerializedDataModeController:
