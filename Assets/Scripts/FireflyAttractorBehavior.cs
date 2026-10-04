@@ -5,6 +5,7 @@ public class FireflyAttractorBehavior : MonoBehaviour
 {
     [Header("Firefly Attractor Settings")]
     public CircleCollider2D environmentArea;
+    public Transform firstStatue;
     public NavMeshAgent agent;
 
     private Vector3 destination;
@@ -14,23 +15,34 @@ public class FireflyAttractorBehavior : MonoBehaviour
 
     void Start()
     {
-        MoveToRandomLocation();
+
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+
+        GoToStatue();
+        //MoveToRandomLocation();
     }
 
-    void Update()
-    {
-        // Reached destination
-        if (!agent.pathPending &&
-            agent.remainingDistance <= agent.stoppingDistance)
-        {
-            MoveToRandomLocation();
-        }
+    // void Update()
+    // {
+    //     // Reached destination
+    //     if (!agent.pathPending &&
+    //         agent.remainingDistance <= agent.stoppingDistance)
+    //     {
+    //         MoveToRandomLocation();
+    //     }
 
-        // Something prevented us from reaching it — abandon it
-        else if (Time.time - timeSinceMove > maxTravelTime)
-        {
-            MoveToRandomLocation();
-        }
+    //     // Something prevented us from reaching it — abandon it
+    //     else if (Time.time - timeSinceMove > maxTravelTime)
+    //     {
+    //         MoveToRandomLocation();
+    //     }
+    // }
+
+    void GoToStatue()
+    {
+        agent.SetDestination(firstStatue.position);
     }
 
     void MoveToRandomLocation()

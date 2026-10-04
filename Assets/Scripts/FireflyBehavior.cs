@@ -45,6 +45,7 @@ public class FireflyBehavior : MonoBehaviour
         fireflyAttractors = GameObject.FindGameObjectsWithTag("FireflyAttractor");
 
         agent = GetComponentInChildren<NavMeshAgent>();
+
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 

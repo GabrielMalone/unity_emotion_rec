@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +20,11 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb.freezeRotation = true;
         transform.rotation = Quaternion.identity;
+    }
+
+    void FixedUpdate() 
+    {
+        GamePadControls();
     }
 
     // Update is called once per frame
@@ -76,6 +80,45 @@ public class PlayerController : MonoBehaviour
             // normalized takes away speed and gives only direction. 
             rb.linearVelocity = rb.linearVelocity.normalized * maxPlayerSpeed;
         }
+    }
+
+
+    void GamePadControls()
+    {
+        if (Gamepad.current == null)
+            return;
+
+        Gamepad gamepad = Gamepad.current;
+
+        // Left stick
+        Vector2 leftStick = gamepad.leftStick.ReadValue();
+
+        if (leftStick.x < 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (leftStick.x > 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+
+        rb.AddForce(leftStick * thrustForce);
+
+
+        // Face buttons
+        if (gamepad.buttonSouth.wasPressedThisFrame)
+            Debug.Log("South button pressed"); // A on Xbox, X on PlayStation
+
+        if (gamepad.buttonEast.wasPressedThisFrame)
+            Debug.Log("East button pressed"); // B on Xbox, Circle on PlayStation
+
+        // Bumpers
+        if (gamepad.leftShoulder.wasPressedThisFrame)
+            Debug.Log("Left bumper");
+
+        if (gamepad.rightShoulder.wasPressedThisFrame)
+            Debug.Log("Right bumper");
+
     }
 
 }
