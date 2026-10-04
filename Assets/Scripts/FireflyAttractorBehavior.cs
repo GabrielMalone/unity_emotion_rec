@@ -20,25 +20,25 @@ public class FireflyAttractorBehavior : MonoBehaviour
         agent.updateUpAxis = false;
         agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
 
-        GoToStatue();
-        //MoveToRandomLocation();
+        //GoToStatue();
+        MoveToRandomLocation();
     }
 
-    // void Update()
-    // {
-    //     // Reached destination
-    //     if (!agent.pathPending &&
-    //         agent.remainingDistance <= agent.stoppingDistance)
-    //     {
-    //         MoveToRandomLocation();
-    //     }
+    void Update()
+    {
+        // Reached destination
+        if (!agent.pathPending &&
+            agent.remainingDistance <= agent.stoppingDistance)
+        {
+            MoveToRandomLocation();
+        }
 
-    //     // Something prevented us from reaching it — abandon it
-    //     else if (Time.time - timeSinceMove > maxTravelTime)
-    //     {
-    //         MoveToRandomLocation();
-    //     }
-    // }
+        // Something prevented us from reaching it — abandon it
+        else if (Time.time - timeSinceMove > maxTravelTime)
+        {
+            MoveToRandomLocation();
+        }
+    }
 
     void GoToStatue()
     {
