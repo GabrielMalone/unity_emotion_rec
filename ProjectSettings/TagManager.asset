@@ -5,10 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - DisgustedStatue
-  - DisgustedStatueTrigger
   - Enemies
   - Enemy
   - FireflyAttractor
+  - Statue
   layers:
   - Default
   - TransparentFX
