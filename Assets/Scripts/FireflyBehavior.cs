@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering.Universal;
+using System.Collections.Generic;
 
 public class FireflyBehavior : MonoBehaviour
 {
     [Header("Firefly Behavior")]
     public float minScale = 0.5f;
     public float maxScale = 1.5f;
+
 
     [Header("Twinkle Settings")]
     public float minAlpha = 0.2f;
