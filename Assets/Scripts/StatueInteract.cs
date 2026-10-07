@@ -116,7 +116,7 @@ public class StatueInteract : MonoBehaviour
             Debug.Log($"LOCKING PLAYER! with og damp of {ogLinearDamp}");
             rb.linearVelocity = Vector2.zero;
             rb.angularVelocity = 0f;
-            rb.linearDamping = 20f;
+            rb.linearDamping = 200f;
             playerLocked = true;
             timeLocked = Time.time;
         }
@@ -137,8 +137,6 @@ public class StatueInteract : MonoBehaviour
             }
 
         }
-
-
     }
 
 
