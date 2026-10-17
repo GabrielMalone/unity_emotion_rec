@@ -675,6 +675,10 @@
       <HintPath>/Applications/Unity/Hub/Editor/6000.5.4f1/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>/Applications/Unity/Hub/Editor/6000.5.4f1/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="TextMateSharpPlastic">
       <HintPath>Library/PackageCache/com.unity.collab-proxy@0b1559bcd34e/Lib/Editor/TextMateSharp/TextMateSharpPlastic.dll</HintPath>
       <Private>False</Private>
