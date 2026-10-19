@@ -7974,13 +7974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DisgustedInteract
   player: {fileID: 1572544063}
   cameraFollow: {fileID: 42252868}
-  dialogueText: {fileID: 0}
-  message: Press E to interact
   interactionRadius: 3
-  charactersPerSecond: 50
-  textWorldOffset: {x: 0, y: 1.5, z: 0}
-  dialougeHandler: {fileID: 258199951}
-  TheConversation: {fileID: 11400000, guid: d5a7919b0340ec34b86addf8ac9cd4ac, type: 2}
 --- !u!61 &482407420
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8101,13 +8095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatueInteract
   player: {fileID: 1572544063}
   cameraFollow: {fileID: 42252868}
-  dialogueText: {fileID: 0}
-  message: im disgusted
   interactionRadius: 3
-  charactersPerSecond: 30
-  textWorldOffset: {x: 0, y: 1.5, z: 0}
-  dialougeHandler: {fileID: 0}
-  TheConversation: {fileID: 0}
 --- !u!1 &498834525
 GameObject:
   m_ObjectHideFlags: 0
@@ -8572,7 +8560,7 @@ Transform:
   m_GameObject: {fileID: 577105538}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.6625, y: 23.3485, z: 25}
+  m_LocalPosition: {x: -20.19, y: 21.25, z: 25}
   m_LocalScale: {x: 136.27501, y: 105.139626, z: 1.7948201}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -160122,7 +160110,7 @@ Transform:
   m_GameObject: {fileID: 854992018}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.9617, y: 23.908, z: 10}
+  m_LocalPosition: {x: -9.57, y: 25.4, z: 10}
   m_LocalScale: {x: 135.67754, y: 106.03268, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -161297,7 +161285,7 @@ Transform:
   m_GameObject: {fileID: 973241371}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.0099998, y: 26.12, z: 0}
+  m_LocalPosition: {x: -6.41, y: 23.21, z: 0}
   m_LocalScale: {x: 125.775444, y: 99.67059, z: 1.3954328}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -163178,13 +163166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DisgustedInteract
   player: {fileID: 1572544063}
   cameraFollow: {fileID: 42252868}
-  dialogueText: {fileID: 0}
-  message: Press E to interact
   interactionRadius: 3
-  charactersPerSecond: 50
-  textWorldOffset: {x: 0, y: 1.5, z: 0}
-  dialougeHandler: {fileID: 258199951}
-  TheConversation: {fileID: 11400000, guid: d5a7919b0340ec34b86addf8ac9cd4ac, type: 2}
 --- !u!61 &1175923252
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -163448,13 +163430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatueInteract
   player: {fileID: 1572544063}
   cameraFollow: {fileID: 42252868}
-  dialogueText: {fileID: 0}
-  message: im disgusted
   interactionRadius: 3
-  charactersPerSecond: 30
-  textWorldOffset: {x: 0, y: 1.5, z: 0}
-  dialougeHandler: {fileID: 0}
-  TheConversation: {fileID: 0}
 --- !u!1 &1209706775
 GameObject:
   m_ObjectHideFlags: 0
@@ -174151,13 +174127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DisgustedInteract
   player: {fileID: 1572544063}
   cameraFollow: {fileID: 42252868}
-  dialogueText: {fileID: 0}
-  message: Press E to interact
   interactionRadius: 3
-  charactersPerSecond: 50
-  textWorldOffset: {x: 0, y: 1.5, z: 0}
-  dialougeHandler: {fileID: 258199951}
-  TheConversation: {fileID: 11400000, guid: d5a7919b0340ec34b86addf8ac9cd4ac, type: 2}
 --- !u!61 &1602290395
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174520,13 +174490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatueInteract
   player: {fileID: 1572544063}
   cameraFollow: {fileID: 42252868}
-  dialogueText: {fileID: 0}
-  message: im disgusted
   interactionRadius: 3
-  charactersPerSecond: 30
-  textWorldOffset: {x: 0, y: 1.5, z: 0}
-  dialougeHandler: {fileID: 0}
-  TheConversation: {fileID: 0}
 --- !u!1 &1604376001
 GameObject:
   m_ObjectHideFlags: 0
@@ -182771,13 +182735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DisgustedInteract
   player: {fileID: 1572544063}
   cameraFollow: {fileID: 42252868}
-  dialogueText: {fileID: 0}
-  message: Press E to interact
   interactionRadius: 3
-  charactersPerSecond: 50
-  textWorldOffset: {x: 0, y: 1.5, z: 0}
-  dialougeHandler: {fileID: 258199951}
-  TheConversation: {fileID: 11400000, guid: d5a7919b0340ec34b86addf8ac9cd4ac, type: 2}
 --- !u!61 &2097300443
 BoxCollider2D:
   m_ObjectHideFlags: 0
