@@ -12,7 +12,7 @@ public class DialougeHandler : MonoBehaviour
     [Header("Dialogue Setup")]
     public GameObject GameStateManager;
     public GameObject mainTextObj;
-    private TextMeshPro mainText;
+    public bool agreedToWatch = false;
 
     public float textSpeed; // the length in seconds every letter comes on screen
     public DialougeObject dialouge;  
@@ -47,8 +47,7 @@ public class DialougeHandler : MonoBehaviour
 
     void Start()
     {
-        mainText = mainTextObj.GetComponent<TextMeshPro>();
-        //nextText(0); // starts the first line
+
     }
 
     // Update is called once per frame
@@ -124,15 +123,8 @@ public class DialougeHandler : MonoBehaviour
 
     public void SubmitAnswer(int optionPicked)
     {
-        if (optionPicked == correctOption)
-        {
-            dialougeIndex++;
-            isQuestioning = false;
-            nextText(dialougeIndex);
-        }
-        else
-        {
-            nextText(dialougeIndex, false);
+        if (optionPicked == 0){
+            agreedToWatch = true;
         }
     }
 
