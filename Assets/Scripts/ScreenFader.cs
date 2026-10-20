@@ -9,6 +9,10 @@ public class ScreenFader : MonoBehaviour
     [SerializeField] private float fadeDuration = 1f;
     public GameObject player;
     public AudioSource audioSource;
+    // these will have to be dynamically controlled by 
+    // the gamestate manager
+    // maybe turn these into a dictionary of gameobjects
+    // like you did w/ the alphabet in other game
     public VideoPlayer videoTest;
     public RawImage videoImage;
 

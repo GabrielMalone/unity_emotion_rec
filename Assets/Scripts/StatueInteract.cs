@@ -53,7 +53,6 @@ public class StatueInteract : MonoBehaviour
         {
             playerInRange = false;
             cameraFollow.ZoomOut();
-            screenFader.FadeFromBlack();
         }
     }
 
