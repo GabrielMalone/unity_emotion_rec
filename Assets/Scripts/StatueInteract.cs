@@ -21,34 +21,59 @@ public class StatueInteract : MonoBehaviour
     public GameObject GameStateManger;
     private GameStateManagerScript gsms;
     private ScreenFader  screenFader;
+    private GameObject Quiz;
+    private TextMeshProUGUI quizMainText;
+    private DialougeHandler quizDialogueHandler;
     private GameObject DialogueHolder;
     private DialougeHandler dialougeHandler;
     private TextMeshProUGUI mainText;
     private bool agreedToWatch = false;
+    private bool readyForQuiz = false;
 
 
     void Start()
     {
+        // slow player
         rb = player.GetComponent<Rigidbody2D>();
         ogLinearDamp = rb.linearDamping;
 
+        // intro dialogue stuff
         screenFader = GameStateManger.GetComponent<ScreenFader>();
         DialogueHolder = screenFader.DialogueHolder;
         mainText = DialogueHolder.GetComponentInChildren<TextMeshProUGUI>(true);
         dialougeHandler = DialogueHolder.GetComponent<DialougeHandler>();
         gsms = GameStateManger.GetComponent<GameStateManagerScript>();
+
+        // quiz stuff
+        Quiz = screenFader.Qiuz;
+        quizMainText = Quiz.GetComponentInChildren<TextMeshProUGUI>(true);
+
     }
 
     void Update()
     {
-        UnlockPlayer();
+        StartQuiz();
     }
 
     void IntroSpeech()
     {
-        // will needs to base this on gamestatemanager deciding
+        // will needs to base this on 
+        // gamestatemanager deciding
         // which statue is talking 
-        mainText.text = $"hello {gsms.playerName}! Can you help me figure out what my friend is feeling?";
+        mainText.text = 
+            $"hello {gsms.playerName}! Can you help me figure out what my friend is feeling?";
+    }
+
+    public void StartQuiz()
+    {
+        if (screenFader.readyForQuiz)
+        {
+            Quiz.SetActive(true);
+            quizMainText.text = 
+                $"{gsms.playerName} Which emotion do you think they were feeling?";
+            // eventually
+            UnlockPlayer();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -92,6 +117,8 @@ public class StatueInteract : MonoBehaviour
 
     void LockPlayer()
     {
+        gsms.playerControllerDisabled = true;
+        Debug.Log($"controller disabled? {gsms.playerControllerDisabled}");
         if (rb!=null)
         {
             Debug.Log($"LOCKING PLAYER! with og damp of {ogLinearDamp}");
@@ -103,8 +130,7 @@ public class StatueInteract : MonoBehaviour
 
     void UnlockPlayer()
     {
-        if (!playerLocked) return;
-        
+        gsms.playerControllerDisabled = false;
         if (rb != null)
         {
             if (Time.time - timeLocked > timeLockDelay)
@@ -112,7 +138,6 @@ public class StatueInteract : MonoBehaviour
                 rb.linearDamping = ogLinearDamp;
                 playerLocked = false;
             }
-
         }
     }
     
@@ -135,10 +160,5 @@ public class StatueInteract : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
         rb.linearDamping = 200f; 
-    }
-
-    private void FadeScreenToBlack()
-    {
-        
     }
 }

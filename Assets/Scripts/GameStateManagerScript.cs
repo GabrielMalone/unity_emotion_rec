@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameStateManagerScript : MonoBehaviour
@@ -8,6 +9,8 @@ public class GameStateManagerScript : MonoBehaviour
     public GameObject player;
     public GameObject firstStatue;
     public GameObject fireflyManager;
+    public String [] introAreaEmotionOptions;
+    public bool playerControllerDisabled = false;
     private bool playerReachedFirstStatue = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

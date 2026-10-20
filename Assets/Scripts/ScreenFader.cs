@@ -1,4 +1,6 @@
 using System.Collections;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.UI; // Required for the Image component
 using UnityEngine.Video;
@@ -9,6 +11,8 @@ public class ScreenFader : MonoBehaviour
     [SerializeField] private float fadeDuration = 1f;
     public GameObject player;
     public AudioSource audioSource;
+    public GameObject GameStateManager;
+    private GameStateManagerScript gsm;
     // these will have to be dynamically controlled by 
     // the gamestate manager
     // maybe turn these into a dictionary of gameobjects
@@ -16,7 +20,9 @@ public class ScreenFader : MonoBehaviour
     public VideoPlayer videoTest;
     public RawImage videoImage;
     public GameObject DialogueHolder;
+    public GameObject Qiuz;
     private PlayerController playerController;
+    public bool readyForQuiz = false;
 
     void Start()
     {   
@@ -35,15 +41,18 @@ public class ScreenFader : MonoBehaviour
 
         // add method to end event
         videoTest.loopPointReached += OnVideoFinished;
+
+        // game state manager
+        gsm = GameStateManager.GetComponent<GameStateManagerScript>();
+
     }
 
-    void OnVideoFinished(VideoPlayer vp)
+    public void OnVideoFinished(VideoPlayer vp)
     {
         Debug.Log("Video finished playing!");
         videoImage.gameObject.SetActive(false);
         FadeFromBlack();
-        // pop up dialogue again w/ questions
-        // on correct --> destroy statue
+        readyForQuiz = true;
     }
 
     void OnDestroy()
@@ -88,7 +97,7 @@ public class ScreenFader : MonoBehaviour
         fadeImage.color = color;
         if (targetAlpha == 1f)
         {
-            playerController.controllerDisabled = true;
+            gsm.playerControllerDisabled = true;
             // if faded to black then play movie
             videoImage.gameObject.SetActive(true);
             videoImage.transform.SetAsLastSibling();
@@ -96,7 +105,7 @@ public class ScreenFader : MonoBehaviour
         } 
         else
         {
-            playerController.controllerDisabled = false;
+            gsm.playerControllerDisabled = false;
         }
     }
 }

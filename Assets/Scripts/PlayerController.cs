@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     public Transform playerSprite;
     private SpriteRenderer spriteRenderer;
     public Rigidbody2D rb;
-
-    public bool controllerDisabled = false;
+    public GameObject GameStateManager;
+    private GameStateManagerScript gsm;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Start()
@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb.freezeRotation = true;
         transform.rotation = Quaternion.identity;
+        gsm = GameStateManager.GetComponent<GameStateManagerScript>();
+
     }
 
     void FixedUpdate() 
@@ -32,8 +34,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (controllerDisabled) return;
+        if (gsm.playerControllerDisabled) return;
 
         if (Mouse.current.leftButton.isPressed)
         {
@@ -91,7 +92,7 @@ public class PlayerController : MonoBehaviour
     void GamePadControls()
     {
 
-        if (controllerDisabled) return;
+        if (gsm.playerControllerDisabled) return;
 
         if (Gamepad.current == null)
             return;
