@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public Transform playerSprite;
     private SpriteRenderer spriteRenderer;
     public Rigidbody2D rb;
+
+    public bool controllerDisabled = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Start()
@@ -30,6 +32,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (controllerDisabled) return;
+
         if (Mouse.current.leftButton.isPressed)
         {
             // Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
@@ -85,6 +90,9 @@ public class PlayerController : MonoBehaviour
 
     void GamePadControls()
     {
+
+        if (controllerDisabled) return;
+
         if (Gamepad.current == null)
             return;
 

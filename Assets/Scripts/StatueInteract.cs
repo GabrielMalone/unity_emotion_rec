@@ -17,11 +17,15 @@ public class StatueInteract : MonoBehaviour
     private float ogLinearDamp;
     private Rigidbody2D rb;
 
+    public GameObject GameStateManger;
+    private ScreenFader  screenFader;
+
 
     void Start()
     {
         rb = player.GetComponent<Rigidbody2D>();
         ogLinearDamp = rb.linearDamping;
+        screenFader = GameStateManger.GetComponent<ScreenFader>();
     }
 
 
@@ -38,6 +42,8 @@ public class StatueInteract : MonoBehaviour
             playerInRange = true;
             LockPlayer();
             cameraFollow.ZoomIn();
+            screenFader.FadeToBlack();
+      
         }
     }
 
@@ -47,6 +53,7 @@ public class StatueInteract : MonoBehaviour
         {
             playerInRange = false;
             cameraFollow.ZoomOut();
+            screenFader.FadeFromBlack();
         }
     }
 
@@ -80,33 +87,31 @@ public class StatueInteract : MonoBehaviour
     }
 
     
-private IEnumerator SlowDownSmoothly()
-{
-    // 1. Correctly cache variables with their exact types
-    Vector2 initialSpeed = rb.linearVelocity;
-    float initialAngular = rb.angularVelocity; 
-    float elapsedTime = 0f;
-    float slowDuration = 0.5f;
-
-    while (elapsedTime < slowDuration)
+    private IEnumerator SlowDownSmoothly()
     {
-        elapsedTime += Time.deltaTime;
-        float t = elapsedTime / slowDuration;
+        Vector2 initialSpeed = rb.linearVelocity;
+        float initialAngular = rb.angularVelocity; 
+        float elapsedTime = 0f;
+        float slowDuration = 0.5f;
 
-        // 2. Linearly interpolate using correct matching types
-        rb.linearVelocity = Vector2.Lerp(initialSpeed, Vector2.zero, t);
-        rb.angularVelocity = Mathf.Lerp(initialAngular, 0f, t);
-        
-        yield return null;
+        while (elapsedTime < slowDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / slowDuration;
+            rb.linearVelocity = Vector2.Lerp(initialSpeed, Vector2.zero, t);
+            rb.angularVelocity = Mathf.Lerp(initialAngular, 0f, t);
+            
+            yield return null;
+        }
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        rb.linearDamping = 200f; 
     }
 
-    // 3. Use Vector2.zero and proper float assignments to prevent compiler errors
-    rb.linearVelocity = Vector2.zero;
-    rb.angularVelocity = 0f;
-    
-    // Apply your high dampening at the very end to keep it securely stopped
-    rb.linearDamping = 200f; 
-}
+    private void FadeScreenToBlack()
+    {
+        
+    }
 
 
 
