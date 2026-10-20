@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI; // Required for the Image component
-using UnityEngine.InputSystem;
+using UnityEngine.Video;
 
 public class ScreenFader : MonoBehaviour
 {
@@ -9,17 +9,41 @@ public class ScreenFader : MonoBehaviour
     [SerializeField] private float fadeDuration = 1f;
     public GameObject player;
     public AudioSource audioSource;
+    public VideoPlayer videoTest;
+    public RawImage videoImage;
 
     private PlayerController playerController;
 
     void Start()
-    {
+    {   
+        // make sure everything is visible for video playback
+        videoTest.renderMode = VideoRenderMode.RenderTexture;
+        videoTest.targetTexture = videoImage.texture as RenderTexture;
+        videoImage.gameObject.SetActive(false);
 
+        // so we can disable controls while video plays
         playerController = player.GetComponent<PlayerController>();
+
         //  image starts  transparent
         Color c = fadeImage.color;
         c.a = 0f;
         fadeImage.color = c;
+
+        // add method to end event
+        videoTest.loopPointReached += OnVideoFinished;
+    }
+
+    void OnVideoFinished(VideoPlayer vp)
+    {
+        Debug.Log("Video finished playing!");
+        videoImage.gameObject.SetActive(false);
+        FadeFromBlack();
+        // will still need to lock movement controlls at this point until questions completed
+    }
+
+    void OnDestroy()
+    {
+        videoTest.loopPointReached -= OnVideoFinished;
     }
 
     public void FadeToBlack()
@@ -36,7 +60,6 @@ public class ScreenFader : MonoBehaviour
     {
         float elapsedTime = 0f;
         Color color = fadeImage.color;
-        float curVolume = audioSource.volume;
 
         while (elapsedTime < fadeDuration)
         {
@@ -47,19 +70,24 @@ public class ScreenFader : MonoBehaviour
 
             if (targetAlpha == 1f)
             {
-                audioSource.volume = Mathf.Lerp(curVolume, 0, elapsedTime / fadeDuration);
+                audioSource.volume = Mathf.Lerp(1, 0, elapsedTime / fadeDuration);
+            } 
+            else
+            {
+                audioSource.volume = Mathf.Lerp(0, 1, elapsedTime / fadeDuration);
             }
-
-
             yield return null;
         }
-        // Snap precisely to the target alpha at the end
+   
         color.a = targetAlpha;
         fadeImage.color = color;
         if (targetAlpha == 1f)
         {
             playerController.controllerDisabled = true;
-
+            // if faded to black then play movie
+            videoImage.gameObject.SetActive(true);
+            videoImage.transform.SetAsLastSibling();
+            videoTest.Play();
         } 
         else
         {
