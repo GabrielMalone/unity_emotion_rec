@@ -8,6 +8,12 @@ using System.Linq;
 
 public class DialougeHandler : MonoBehaviour
 {
+
+    [Header("Dialogue Setup")]
+    public GameObject GameStateManager;
+    public GameObject mainTextObj;
+    private TextMeshPro mainText;
+
     public float textSpeed; // the length in seconds every letter comes on screen
     public DialougeObject dialouge;  
 
@@ -41,6 +47,7 @@ public class DialougeHandler : MonoBehaviour
 
     void Start()
     {
+        mainText = mainTextObj.GetComponent<TextMeshPro>();
         //nextText(0); // starts the first line
     }
 

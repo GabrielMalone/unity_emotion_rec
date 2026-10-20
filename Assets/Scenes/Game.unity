@@ -157,7 +157,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 627808915386258365, guid: be780a121276d466ca061a9b18725640, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -211,7 +211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &27425027
 RectTransform:
   m_ObjectHideFlags: 0
@@ -329,7 +329,7 @@ Camera:
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -358,7 +358,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1169806863}
   - {fileID: 1250347095}
   - {fileID: 577105539}
   - {fileID: 854992019}
@@ -423,7 +422,7 @@ MonoBehaviour:
   target: {fileID: 1572544064}
   offset: {x: 0, y: 0, z: -10}
   smoothSpeed: 0.125
-  normalZoom: 20
+  normalZoom: 9
   zoomedIn: 5
   zoomSpeed: 3
 --- !u!1 &61610889
@@ -5749,7 +5748,7 @@ Transform:
   m_GameObject: {fileID: 99728444}
   serializedVersion: 2
   m_LocalRotation: {x: -0.021120837, y: 0.011869937, z: -0.4897876, w: 0.87150514}
-  m_LocalPosition: {x: 2.2, y: -4.3, z: -20}
+  m_LocalPosition: {x: 2.2, y: -4.3, z: 0}
   m_LocalScale: {x: -1.9145904, y: -1.6289117, z: -0.43348634}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6159,7 +6158,7 @@ GameObject:
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &258199947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6222,7 +6221,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &258199950
 RectTransform:
@@ -6256,9 +6255,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac6a0bd3b7a63f40bee429a5c1e51e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  GameStateManager: {fileID: 1577304796}
+  mainTextObj: {fileID: 0}
   textSpeed: 20
   dialouge: {fileID: 0}
-  face: {fileID: 24953512}
+  face: {fileID: 0}
   textBox: {fileID: 401250286}
   options: {fileID: 259021465}
   answers:
@@ -6798,7 +6799,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: HELLo NEW TEXT
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eef2aa918fcf2b24ab7b3d1fa87dcf66, type: 2}
   m_sharedMaterial: {fileID: -7372614324784633489, guid: eef2aa918fcf2b24ab7b3d1fa87dcf66, type: 2}
@@ -6808,7 +6809,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6825,10 +6826,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29
-  m_fontSizeBase: 29
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -7766,7 +7767,6 @@ GameObject:
   - component: {fileID: 482407420}
   - component: {fileID: 482407419}
   - component: {fileID: 482407418}
-  - component: {fileID: 482407422}
   m_Layer: 3
   m_Name: Statue3
   m_TagString: Statue
@@ -8155,22 +8155,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!114 &482407422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 482407416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96215fdb632fd4c59b53fe21b3ecaabd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatueInteract
-  player: {fileID: 1572544063}
-  cameraFollow: {fileID: 42252868}
-  interactionRadius: 3
-  GameStateManger: {fileID: 1577304796}
 --- !u!1 &498834525
 GameObject:
   m_ObjectHideFlags: 0
@@ -9898,8 +9882,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Material: {fileID: 2100000, guid: 133a65c7083944aa7a8b486d714748ec, type: 2}
+  m_Color: {r: 0.7735849, g: 0.09122462, b: 0.6940677, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -163295,7 +163279,7 @@ RectTransform:
   - {fileID: 593215024}
   - {fileID: 1511704686}
   - {fileID: 27425027}
-  m_Father: {fileID: 42252866}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -163379,7 +163363,6 @@ GameObject:
   - component: {fileID: 1175923252}
   - component: {fileID: 1175923251}
   - component: {fileID: 1175923254}
-  - component: {fileID: 1175923255}
   m_Layer: 3
   m_Name: Statue4
   m_TagString: Statue
@@ -163669,22 +163652,6 @@ MonoBehaviour:
           m_Image: {fileID: 0}
           m_Tooltip: 
           m_TextWithWhitespace: "Shape Editor\u200B"
---- !u!114 &1175923255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1175923248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96215fdb632fd4c59b53fe21b3ecaabd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatueInteract
-  player: {fileID: 1572544063}
-  cameraFollow: {fileID: 42252868}
-  interactionRadius: 3
-  GameStateManger: {fileID: 1577304796}
 --- !u!1 &1209706775
 GameObject:
   m_ObjectHideFlags: 0
@@ -168787,7 +168754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1272419974
 RectTransform:
   m_ObjectHideFlags: 0
@@ -174312,6 +174279,7 @@ MonoBehaviour:
   audioSource: {fileID: 1381216020}
   videoTest: {fileID: 593215025}
   videoImage: {fileID: 27425028}
+  DialogueHolder: {fileID: 258199946}
 --- !u!1 &1582369639
 GameObject:
   m_ObjectHideFlags: 0
@@ -174437,7 +174405,6 @@ GameObject:
   - component: {fileID: 1602290395}
   - component: {fileID: 1602290394}
   - component: {fileID: 1602290398}
-  - component: {fileID: 1602290399}
   m_Layer: 3
   m_Name: Statue2
   m_TagString: Statue
@@ -174826,22 +174793,6 @@ MonoBehaviour:
           m_Image: {fileID: 0}
           m_Tooltip: 
           m_TextWithWhitespace: "Shape Editor\u200B"
---- !u!114 &1602290399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1602290391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96215fdb632fd4c59b53fe21b3ecaabd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatueInteract
-  player: {fileID: 1572544063}
-  cameraFollow: {fileID: 42252868}
-  interactionRadius: 3
-  GameStateManger: {fileID: 1577304796}
 --- !u!1 &1604376001
 GameObject:
   m_ObjectHideFlags: 0
@@ -175160,7 +175111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -183509,6 +183460,7 @@ SceneRoots:
   - {fileID: 42252866}
   - {fileID: 1534416551}
   - {fileID: 1754530107}
+  - {fileID: 1169806863}
   - {fileID: 258199950}
   - {fileID: 1767349031}
   - {fileID: 1577304798}

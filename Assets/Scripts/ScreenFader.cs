@@ -15,7 +15,7 @@ public class ScreenFader : MonoBehaviour
     // like you did w/ the alphabet in other game
     public VideoPlayer videoTest;
     public RawImage videoImage;
-
+    public GameObject DialogueHolder;
     private PlayerController playerController;
 
     void Start()
@@ -42,7 +42,8 @@ public class ScreenFader : MonoBehaviour
         Debug.Log("Video finished playing!");
         videoImage.gameObject.SetActive(false);
         FadeFromBlack();
-        // will still need to lock movement controlls at this point until questions completed
+        // pop up dialogue again w/ questions
+        // on correct --> destroy statue
     }
 
     void OnDestroy()

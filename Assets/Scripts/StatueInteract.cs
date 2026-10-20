@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,6 +20,10 @@ public class StatueInteract : MonoBehaviour
 
     public GameObject GameStateManger;
     private ScreenFader  screenFader;
+    private GameObject DialogueHolder;
+    private DialougeHandler dialougeHandler;
+    private TextMeshProUGUI mainText;
+    private bool agreedToWatch = false;
 
 
     void Start()
@@ -26,14 +31,19 @@ public class StatueInteract : MonoBehaviour
         rb = player.GetComponent<Rigidbody2D>();
         ogLinearDamp = rb.linearDamping;
         screenFader = GameStateManger.GetComponent<ScreenFader>();
+        DialogueHolder = screenFader.DialogueHolder;
+        mainText = DialogueHolder.GetComponentInChildren<TextMeshProUGUI>(true);
     }
-
 
     void Update()
     {
         UnlockPlayer();
     }
 
+    void IntroSpeech()
+    {
+        mainText.text = "hello";
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -42,9 +52,27 @@ public class StatueInteract : MonoBehaviour
             playerInRange = true;
             LockPlayer();
             cameraFollow.ZoomIn();
-            screenFader.FadeToBlack();
-      
+            DialogueHolder.SetActive(true);
+            IntroSpeech();
+            // start dialogue interaction here, when okay hit
+            // proceed to nxt part
+            // so guess need a while loop
+            StartCoroutine(WaitForAgreement());
         }
+    }
+
+    IEnumerator WaitForAgreement()
+    {
+        while (!agreedToWatch)
+        {
+            if (Keyboard.current.eKey.isPressed)
+            {
+                agreedToWatch = true;
+            }
+            yield return null;
+        }
+        screenFader.FadeToBlack();
+        DialogueHolder.SetActive(false);
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -55,7 +83,6 @@ public class StatueInteract : MonoBehaviour
             cameraFollow.ZoomOut();
         }
     }
-
 
     void LockPlayer()
     {
@@ -68,7 +95,6 @@ public class StatueInteract : MonoBehaviour
         }
     }
 
-
     void UnlockPlayer()
     {
         if (!playerLocked) return;
@@ -79,12 +105,10 @@ public class StatueInteract : MonoBehaviour
             {
                 rb.linearDamping = ogLinearDamp;
                 playerLocked = false;
-                Debug.Log($"UNLOCKING PLAYER! with damp of {ogLinearDamp}");
             }
 
         }
     }
-
     
     private IEnumerator SlowDownSmoothly()
     {
@@ -111,8 +135,4 @@ public class StatueInteract : MonoBehaviour
     {
         
     }
-
-
-
-
 }
