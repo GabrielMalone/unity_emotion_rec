@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,11 +16,9 @@ public class StatueInteract : MonoBehaviour
     private float ogLinearDamp;
     private Rigidbody2D rb;
     public GameObject GameStateManger;
-    private GameStateManagerScript gsms;
-    private ScreenFader  screenFader;
+    private ScreenFader screenFader;
     private GameObject Quiz;
     private TextMeshProUGUI quizMainText;
-    private DialougeHandler quizDialogueHandler;
     private GameObject DialogueHolder;
     private DialougeHandler dialougeHandler;
     private TextMeshProUGUI mainText;
@@ -57,7 +54,6 @@ public class StatueInteract : MonoBehaviour
         DialogueHolder = screenFader.DialogueHolder;
         mainText = DialogueHolder.GetComponentInChildren<TextMeshProUGUI>(true);
         dialougeHandler = DialogueHolder.GetComponent<DialougeHandler>();
-        gsms = GameStateManger.GetComponent<GameStateManagerScript>();
 
         // quiz stuff
         Quiz = screenFader.Qiuz;
@@ -107,9 +103,7 @@ public class StatueInteract : MonoBehaviour
             cameraFollow.ZoomIn();
             DialogueHolder.SetActive(true);
             IntroSpeech();
-            // start dialogue interaction here, when okay hit
-            // proceed to nxt part
-            // so guess need a while loop
+            // start dialogue interaction here
             StartCoroutine(WaitForAgreement());
         }
     }
