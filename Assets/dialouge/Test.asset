@@ -14,60 +14,115 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialougeObject
   Dialouge:
   - expression: {fileID: -1360465217409437449, guid: 14063583ee6804009a6dc8a107158034, type: 3}
+    videoExpression: {fileID: 0}
     text: HELLO IM A SNAIL
-    isQuestion: 0
-    Answers: []
+    answers: []
     wrongText: 
+    noWrongAnswers: 0
+    answerPaths: []
   - expression: {fileID: 0}
-    text: 'NOW I WILL TURN INTO A <color=yellow>bush</color> '
-    isQuestion: 0
-    Answers: []
+    videoExpression: {fileID: 0}
+    text: 'NOW I WILL TURN INTO A <color=yellow>happy</color> '
+    answers: []
     wrongText: 
+    noWrongAnswers: 0
+    answerPaths: []
   - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
-    text: I AM NOW A BUSH
-    isQuestion: 0
-    Answers: []
+    videoExpression: {fileID: 32900000, guid: 9f99d6d445fb83847b1be223a48f89e7, type: 3}
+    text: '*what is being said*'
+    answers: []
     wrongText: 
-  - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
-    text: hurray hurray hurray hurray hurray hurray hurray hurray hurray hurray hurray
-      hurray hurray hurray hurray hurray hurray hurray
-    isQuestion: 0
-    Answers: []
+    noWrongAnswers: 0
+    answerPaths: []
+  - expression: {fileID: 0}
+    videoExpression: {fileID: 0}
+    text: now im what was before
+    answers: []
     wrongText: 
+    noWrongAnswers: 0
+    answerPaths: []
   - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
-    text: NOW
-    isQuestion: 0
-    Answers: []
+    videoExpression: {fileID: 0}
+    text: im a bush now
+    answers: []
     wrongText: NOW
+    noWrongAnswers: 0
+    answerPaths: []
   - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
+    videoExpression: {fileID: 0}
     text: I HAVE A QUESTION
-    isQuestion: 0
-    Answers: []
+    answers: []
     wrongText: NOW
+    noWrongAnswers: 0
+    answerPaths: []
   - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
+    videoExpression: {fileID: 0}
     text: WHAT IS 2 + 2
-    isQuestion: 1
-    Answers:
+    answers:
     - 4
+    - 5
     - 6
-    - 8
-    - france
+    - 78
     wrongText: NO NO NO NO NO <color=red>WRONG</color>
+    noWrongAnswers: 0
+    answerPaths: []
   - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
+    videoExpression: {fileID: 0}
     text: YOU DID IT
-    isQuestion: 0
-    Answers:
-    - 4
-    - 6
-    - 8
-    - france
+    answers: []
     wrongText: NO NO NO NO NO <color=red>WRONG</color>
+    noWrongAnswers: 0
+    answerPaths: []
   - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
-    text: YAY
-    isQuestion: 0
-    Answers:
+    videoExpression: {fileID: 0}
+    text: how many apples do i have after eating 3
+    answers:
+    - 1
+    - 2
+    - 3
     - 4
+    - 5
     - 6
-    - 8
-    - france
     wrongText: NO NO NO NO NO <color=red>WRONG</color>
+    noWrongAnswers: 0
+    answerPaths: []
+  - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
+    videoExpression: {fileID: 0}
+    text: YAY
+    answers: []
+    wrongText: NO NO NO NO NO <color=red>WRONG</color>
+    noWrongAnswers: 0
+    answerPaths: []
+  - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
+    videoExpression: {fileID: 0}
+    text: now here are 6 choices they all continue you to the next section
+    answers:
+    - hi
+    - hello
+    - cool
+    - amazing
+    - nice
+    - sick
+    wrongText: NO NO NO NO NO <color=red>WRONG</color>
+    noWrongAnswers: 1
+    answerPaths: []
+  - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
+    videoExpression: {fileID: 0}
+    text: did you like that
+    answers:
+    - yes
+    wrongText: NO NO NO NO NO <color=red>WRONG</color>
+    noWrongAnswers: 1
+    answerPaths: []
+  - expression: {fileID: 1064565259245522136, guid: c2aab2f335cba465296f745beae05867, type: 3}
+    videoExpression: {fileID: 0}
+    text: now heres a choice, if you pick the up path i will say banana, if you pick
+      down i will say apple and give you a choice
+    answers:
+    - up
+    - down
+    wrongText: NO NO NO NO NO <color=red>WRONG</color>
+    noWrongAnswers: 1
+    answerPaths:
+    - {fileID: 11400000, guid: a348b6bfe4317064a912a84b3f4a8086, type: 2}
+    - {fileID: 11400000, guid: bcc38310fd8d78340b1f644361829539, type: 2}

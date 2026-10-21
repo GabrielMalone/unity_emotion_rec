@@ -15,7 +15,6 @@ public class ScreenFader : MonoBehaviour
     // like you did w/ the alphabet in other game
     public VideoPlayer videoTest;
     public RawImage videoImage;
-    public GameObject DialogueHolder;
     private PlayerController playerController;
 
     void Start()

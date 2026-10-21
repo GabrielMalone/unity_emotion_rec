@@ -1,23 +1,16 @@
 using UnityEngine;
 
-public class GameStateManagerScript : MonoBehaviour
+public static class GameStateManagerScript
 {
+    //allows these values to be access from any script without needing to be declared
+    // you can call any value with just GameStateManagerScript.{valueName}
 
     [Header("Game State Settings")]
-    public string playerName;
-    public GameObject player;
-    public GameObject firstStatue;
-    public GameObject fireflyManager;
-    private bool playerReachedFirstStatue = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public static string playerName;
+    public static GameObject player;
+    public static DialougeHandler dialougeHandler;
+    public static ScreenFader screenFader;
+    public static GameObject firstStatue;
+    public static GameObject fireflyManager;
+    private static bool playerReachedFirstStatue = false;
 }

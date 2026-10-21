@@ -16,14 +16,12 @@ public class StatueInteract : MonoBehaviour
     private float timeLocked;
     private float timeLockDelay = 2f;
     private float ogLinearDamp;
-    private Rigidbody2D rb;
 
-    public GameObject GameStateManger;
-    private GameStateManagerScript gsms;
-    private ScreenFader  screenFader;
-    private GameObject DialogueHolder;
-    private DialougeHandler dialougeHandler;
-    private TextMeshProUGUI mainText;
+    [Header("dialouge")]
+    public DialougeObject dialouge;
+
+
+    private Rigidbody2D rb;
     private bool agreedToWatch = false;
 
 
@@ -31,12 +29,6 @@ public class StatueInteract : MonoBehaviour
     {
         rb = player.GetComponent<Rigidbody2D>();
         ogLinearDamp = rb.linearDamping;
-
-        screenFader = GameStateManger.GetComponent<ScreenFader>();
-        DialogueHolder = screenFader.DialogueHolder;
-        mainText = DialogueHolder.GetComponentInChildren<TextMeshProUGUI>(true);
-        dialougeHandler = DialogueHolder.GetComponent<DialougeHandler>();
-        gsms = GameStateManger.GetComponent<GameStateManagerScript>();
     }
 
     void Update()
@@ -44,11 +36,21 @@ public class StatueInteract : MonoBehaviour
         UnlockPlayer();
     }
 
-    void IntroSpeech()
+    IEnumerator WaitForAgreement()
     {
+
         // will needs to base this on gamestatemanager deciding
         // which statue is talking 
-        mainText.text = $"hello {gsms.playerName}! Can you help me figure out what my friend is feeling?";
+
+        GameStateManagerScript.dialougeHandler.startDialouge(dialouge);
+
+        yield return new WaitUntil(() => GameStateManagerScript.dialougeHandler.dialougeEnded);
+
+        //if (GameStateManagerScript.dialougeHandler.lastAnswered == 1)
+        //{
+            agreedToWatch = true;
+            GameStateManagerScript.screenFader.FadeToBlack();
+        //}
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -58,27 +60,11 @@ public class StatueInteract : MonoBehaviour
             playerInRange = true;
             LockPlayer();
             cameraFollow.ZoomIn();
-            DialogueHolder.SetActive(true);
-            IntroSpeech();
+            StartCoroutine(WaitForAgreement());
             // start dialogue interaction here, when okay hit
             // proceed to nxt part
             // so guess need a while loop
-            StartCoroutine(WaitForAgreement());
         }
-    }
-
-    IEnumerator WaitForAgreement()
-    {
-        while (!agreedToWatch)
-        {
-            if (Keyboard.current.eKey.isPressed || dialougeHandler.agreedToWatch)
-            {
-                agreedToWatch = true;
-            }
-            yield return null;
-        }
-        screenFader.FadeToBlack();
-        DialogueHolder.SetActive(false);
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -135,10 +121,5 @@ public class StatueInteract : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
         rb.linearDamping = 200f; 
-    }
-
-    private void FadeScreenToBlack()
-    {
-        
     }
 }

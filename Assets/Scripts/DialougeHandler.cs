@@ -1,23 +1,23 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using System.Collections;
-using UnityEngine.InputSystem;
-using Unity.VisualScripting;
 using System.Linq;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using UnityEngine.Video;
+using UnityEngine.Windows.Speech;
 
 public class DialougeHandler : MonoBehaviour
 {
 
     [Header("Dialogue Setup")]
-    public GameObject GameStateManager;
-    public GameObject mainTextObj;
-    public bool agreedToWatch = false;
 
     public float textSpeed; // the length in seconds every letter comes on screen
-    public DialougeObject dialouge;  
+    public DialougeObject dialouge;
 
     public Image face;
+    public VideoPlayer videoFace;
     public TextMeshProUGUI textBox;
 
     public Transform options;
@@ -34,20 +34,30 @@ public class DialougeHandler : MonoBehaviour
 
     float charactersSpoken;
 
-    public void StartUpDialouge(DialougeObject newDialouge)
+    public bool dialougeEnded;
+
+    public int lastAnswered;
+
+    bool randomizeAnswers;
+
+    //GameObject menu;
+
+    void Start()
+    {
+     //   menu = transform.GetChild(0).gameObject;
+    }
+
+    public void startDialouge(DialougeObject newDialouge)
     {
         if (dialouge == null)
         {
             dialouge = newDialouge;
+            dialougeEnded = false;
+
             animator.Play("pull up");
             dialougeIndex = 0;
             nextText(0);
         }
-    }
-
-    void Start()
-    {
-
     }
 
     // Update is called once per frame
@@ -59,7 +69,7 @@ public class DialougeHandler : MonoBehaviour
         textBox.maxVisibleCharacters = (int)charactersSpoken;
 
 
-        if (Keyboard.current.eKey.wasPressedThisFrame && !isQuestioning && dialouge != null)
+        if (Keyboard.current.eKey.wasPressedThisFrame && !dialougeEnded)
         {
             if (isSpeaking)
             {
@@ -79,54 +89,131 @@ public class DialougeHandler : MonoBehaviour
         if (dialouge.Dialouge.Length <= index)
         {
             animator.Play("pull down");
+            dialougeEnded = true;
+            randomizeAnswers = false;
+            isQuestioning = false;
             return;
         }
 
-        if (dialouge.Dialouge[index].expression != null) //if an sprite isn't used for text, than it uses the last sprite used
+        DialougeObject.Speech currentDialouge = dialouge.Dialouge[index];
+
+        currentDialouge.text = changeTextToHaveVaribles(currentDialouge.text);
+        currentDialouge.wrongText = changeTextToHaveVaribles(currentDialouge.wrongText);
+
+        videoFace.gameObject.SetActive(false);
+        face.gameObject.SetActive(true);
+
+        if (currentDialouge.videoExpression != null)//if a video isn't used, than it wont show up and will used last sprite used
         {
-            face.sprite = dialouge.Dialouge[index].expression;
+            videoFace.clip = dialouge.Dialouge[index].videoExpression;
+            face.gameObject.SetActive(false);
+            videoFace.gameObject.SetActive(true);
+            videoFace.Play();
+        }
+        else if (currentDialouge.expression != null) //if an sprite isn't used for text, than it uses the last sprite used
+        {
+            face.sprite = currentDialouge.expression;
         }
 
-        if (correct) textBox.text = dialouge.Dialouge[index].text;
+        if (correct)
+        {
+            textBox.text = currentDialouge.text;
+        }
         else
         {
-            isQuestioning = false;
-            textBox.text = dialouge.Dialouge[index].wrongText;
+            textBox.text = currentDialouge.wrongText;
         }
 
         charactersSpoken = 0;
         textBox.maxVisibleCharacters = 0;
 
         // for questions
-        if (dialouge.Dialouge[index].isQuestion && correct)
+        int amountOfAnswers = currentDialouge.answers.Length;
+        if (amountOfAnswers > 0 && correct)
         {
-            options.gameObject.SetActive(true);
+            //options.gameObject.SetActive(true);
             isQuestioning = true;
+            randomizeAnswers = true;
 
-            int[] randomOrder = {0, 1, 2, 3};
-            if (Random.value > 0.5) randomOrder.Reverse();
-
-            for (int i = 0; i < answers.Length; i++)
+            for (int i = 0; i < options.childCount; i++)
             {
-                answers[i].text = dialouge.Dialouge[index].Answers[randomOrder[i]];
+                answers[i].transform.parent.gameObject.SetActive(false);
+            }
+
+
+            int[] randomOrder = new int[amountOfAnswers];
+            int randomStartingPoint = Random.Range(0, amountOfAnswers);
+            int randomSteps = Random.Range(1, amountOfAnswers);
+
+            if (currentDialouge.noWrongAnswers)
+            {
+                randomStartingPoint = 0;
+                randomSteps = 1;
+            }
+
+            for (int i = 0; i < amountOfAnswers; i++)
+            {
+                int indexPointer = (randomStartingPoint + (i * randomSteps)) % amountOfAnswers;
+                if (i != 0 && indexPointer == randomStartingPoint)
+                {
+                    indexPointer = (indexPointer + 1) % amountOfAnswers;
+                    randomStartingPoint = (randomStartingPoint + 1) % amountOfAnswers;
+                }
+                randomOrder[i] = indexPointer;
+            }
+            //if (Random.value > 0.5) randomOrder.Reverse();
+
+            for (int i = 0; i < amountOfAnswers; i++)
+            {
+                answers[i].transform.parent.gameObject.SetActive(true);
+                answers[i].text = currentDialouge.answers[randomOrder[i]];
 
                 if (randomOrder[i] == 0) correctOption = i;
             }
         }
-        else if (correct)
+        else if (correct && amountOfAnswers == 0)
         {
-            options.gameObject.SetActive(false);
+            randomizeAnswers = false;
+            for (int i = 0; i < options.childCount; i++)
+            {
+                answers[i].transform.parent.gameObject.SetActive(false);
+            }
 
             dialougeIndex++;
         }
     }
 
+    string changeTextToHaveVaribles(string text) //used to state player name or any other varible
+    {
+        text = text.Replace("{playerName}", GameStateManagerScript.playerName);
+        return text;
+    }
+
     public void SubmitAnswer(int optionPicked)
     {
-        if (optionPicked == 0){
-            agreedToWatch = true;
+        lastAnswered = optionPicked;
+
+        DialougeObject.Speech current = dialouge.Dialouge[dialougeIndex];
+
+        if (optionPicked == correctOption || current.noWrongAnswers) {
+            isQuestioning = false;
+            dialougeIndex++;
+
+            if (current.answerPaths.Length > optionPicked && current.answerPaths[optionPicked] != null)
+            {
+                dialouge = current.answerPaths[optionPicked];
+                dialougeIndex = 0;
+            }
+
+            nextText(dialougeIndex, true);
+        }
+        else
+        {
+            nextText(dialougeIndex, false);
         }
     }
+
+
 
     public void end()
     {
