@@ -172706,7 +172706,9 @@ MonoBehaviour:
   - {fileID: 32900000, guid: c61cbc0ab11564a04a6bac5c6265572a, type: 3}
   emotionAudios: []
   totalNumQuestions: 0
+  numQuestionsCompleted: 0
   playerControllerDisabled: 0
+  playerAnsweredCorrectly: 0
 --- !u!4 &1577304798
 Transform:
   m_ObjectHideFlags: 0

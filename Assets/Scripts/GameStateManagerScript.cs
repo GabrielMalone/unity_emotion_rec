@@ -34,20 +34,19 @@ public class GameStateManagerScript : MonoBehaviour
 
     [Header("Game State Settings")]
     public List<EmotionResult> results = new List<EmotionResult>();
-    public string playerName;
-    public GameObject player;
+    public static string playerName;
+    public static GameObject player;
     public GameObject firstStatue;
     public GameObject fireflyManager;
-    public String [] introAreaEmotionOptions;
-    public String currentEmotion;
-    public String [] emotionOptions;
-    public VideoClip [] emotionVideos;
-    public AudioClip [] emotionAudios;
-    public int totalNumQuestions;
-    public int numQuestionsCompleted;
-    public bool playerControllerDisabled = false;
-    public bool playerAnsweredCorrectly = false;
-    private bool playerReachedFirstStatue = false;
+    public static String [] introAreaEmotionOptions;
+    public static String currentEmotion;
+    public static String [] emotionOptions;
+    public static VideoClip [] emotionVideos;
+    public static AudioClip [] emotionAudios;
+    public static int totalNumQuestions;
+    public static int numQuestionsCompleted;
+    public static bool playerControllerDisabled = false;
+    public static bool playerAnsweredCorrectly = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

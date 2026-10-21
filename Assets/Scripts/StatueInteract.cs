@@ -16,7 +16,6 @@ public class StatueInteract : MonoBehaviour
     private float timeLockDelay = 2f;
     private float ogLinearDamp;
     private Rigidbody2D rb;
-
     public GameObject GameStateManger;
     private GameStateManagerScript gsms;
     private ScreenFader  screenFader;
@@ -40,7 +39,7 @@ public class StatueInteract : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (gsms.playerAnsweredCorrectly && playerInRange)
+        if (GameStateManagerScript.playerAnsweredCorrectly && playerInRange)
         {
             CorrectAnswerSequence();
         }
@@ -69,7 +68,7 @@ public class StatueInteract : MonoBehaviour
     {
         // play some effect
         Debug.Log("PLAYER ANSWERED CORRECLTY!");
-        gsms.playerAnsweredCorrectly = false;
+        GameStateManagerScript.playerAnsweredCorrectly = false;
         screenFader.readyForQuiz = false;
         // destroy statue
         Quiz.SetActive(false);
@@ -85,7 +84,7 @@ public class StatueInteract : MonoBehaviour
         // gamestatemanager deciding
         // which statue is talking 
         mainText.text = 
-            $"hello {gsms.playerName}! Can you help me figure out what my friend is feeling?";
+            $"hello {GameStateManagerScript.playerName}! Can you help me figure out what my friend is feeling?";
     }
 
     public void StartQuiz()
@@ -94,7 +93,7 @@ public class StatueInteract : MonoBehaviour
         {
             Quiz.SetActive(true);
             quizMainText.text = 
-                $"{gsms.playerName} Which emotion do you think they were feeling?";
+                $"{GameStateManagerScript.playerName} Which emotion do you think they were feeling?";
             // eventually
         }
     }
@@ -140,8 +139,8 @@ public class StatueInteract : MonoBehaviour
 
     void LockPlayer()
     {
-        gsms.playerControllerDisabled = true;
-        Debug.Log($"controller disabled? {gsms.playerControllerDisabled}");
+        GameStateManagerScript.playerControllerDisabled = true;
+        Debug.Log($"controller disabled? {GameStateManagerScript.playerControllerDisabled}");
         if (rb!=null && playerInRange)
         {
             Debug.Log($"LOCKING PLAYER! with og damp of {ogLinearDamp}");
@@ -153,7 +152,7 @@ public class StatueInteract : MonoBehaviour
     void UnlockPlayer()
     {
         if (!playerInRange) return;
-        gsms.playerControllerDisabled = false;
+        GameStateManagerScript.playerControllerDisabled = false;
 
         if (rb != null)
         {

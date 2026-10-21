@@ -6,8 +6,6 @@ public class QuizScript : MonoBehaviour
 {
 
     [Header("Dialogue Setup")]
-    public GameObject GameStateManager;
-    private GameStateManagerScript gsm;
     public GameObject mainTextObj;
 
     public float textSpeed; // the length in seconds every letter comes on screen
@@ -25,7 +23,7 @@ public class QuizScript : MonoBehaviour
 
     void Start()
     {
-        gsm = GameStateManager.GetComponent<GameStateManagerScript>();
+
         SetEmotionButtons();
     }
 
@@ -50,7 +48,7 @@ public class QuizScript : MonoBehaviour
         foreach(GameObject emotionButton in emotionOptions)
         {
             TextMeshProUGUI TMP = emotionButton.GetComponentInChildren<TextMeshProUGUI>();
-            TMP.text = gsm.introAreaEmotionOptions[idx];
+            TMP.text = GameStateManagerScript.introAreaEmotionOptions[idx];
             idx ++ ;
         }
     }
@@ -60,7 +58,7 @@ public class QuizScript : MonoBehaviour
         // check gameStateManager for current emotion.
         if (optionPicked == 0)
         {
-            gsm.playerAnsweredCorrectly = true;
+            GameStateManagerScript.playerAnsweredCorrectly = true;
         }
     }
 }

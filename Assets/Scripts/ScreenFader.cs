@@ -12,7 +12,6 @@ public class ScreenFader : MonoBehaviour
     public GameObject player;
     public AudioSource audioSource;
     public GameObject GameStateManager;
-    private GameStateManagerScript gsm;
     // these will have to be dynamically controlled by 
     // the gamestate manager
     // maybe turn these into a dictionary of gameobjects
@@ -41,9 +40,6 @@ public class ScreenFader : MonoBehaviour
 
         // add method to end event
         videoTest.loopPointReached += OnVideoFinished;
-
-        // game state manager
-        gsm = GameStateManager.GetComponent<GameStateManagerScript>();
 
     }
 
