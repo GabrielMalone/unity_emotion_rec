@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using GSM = GameStateManagerScript;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameStateManagerScript.playerControllerDisabled) return;
+        if (GSM.Instance.playerControllerDisabled) return;
 
         if (Mouse.current.leftButton.isPressed)
         {
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour
     void GamePadControls()
     {
 
-        if (GameStateManagerScript.playerControllerDisabled) return;
+        if (GSM.Instance.playerControllerDisabled) return;
 
         if (Gamepad.current == null)
             return;

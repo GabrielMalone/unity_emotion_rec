@@ -1,6 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.UI; // Required for the Image component
 using UnityEngine.Video;
@@ -75,22 +73,36 @@ public class ScreenFader : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             
-            color.a = Mathf.Lerp(startAlpha, targetAlpha, elapsedTime / fadeDuration);
+            color.a = Mathf.Lerp(
+                startAlpha, 
+                targetAlpha, 
+                elapsedTime / fadeDuration
+            );
             fadeImage.color = color;
-
+            // fade game volume too
             if (targetAlpha == 1f)
             {
-                audioSource.volume = Mathf.Lerp(1, 0, elapsedTime / fadeDuration);
+                audioSource.volume = Mathf.Lerp(
+                    1, 
+                    0, 
+                    elapsedTime / fadeDuration
+                );
             } 
             else
             {
-                audioSource.volume = Mathf.Lerp(0, 1, elapsedTime / fadeDuration);
+                audioSource.volume = Mathf.Lerp(
+                    0, 
+                    1, 
+                    elapsedTime / fadeDuration
+                );
             }
             yield return null;
         }
-   
+
+        // snap final values into place
         color.a = targetAlpha;
         fadeImage.color = color;
+
         if (targetAlpha == 1f)
         {
             // if faded to black then play movie
@@ -98,5 +110,6 @@ public class ScreenFader : MonoBehaviour
             videoImage.transform.SetAsLastSibling();
             videoTest.Play();
         } 
+        
     }
 }

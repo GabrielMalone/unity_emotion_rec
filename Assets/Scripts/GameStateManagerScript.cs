@@ -6,6 +6,23 @@ using System.IO;
 
 public class GameStateManagerScript : MonoBehaviour
 {
+    // --------------------------------------------------------------------------------------------
+    // SINGLETON (single instance of class / global access)
+    // --------------------------------------------------------------------------------------------
+    public static GameStateManagerScript Instance { get; private set; }
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
+
+    // --------------------------------------------------------------------------------------------
     // create a class that can be converted to JSON
     // JSON utility in c sharp
     // has to work on an object
@@ -24,40 +41,73 @@ public class GameStateManagerScript : MonoBehaviour
         public float timeCompleted;
         public string emotionName;
         public bool correct;
-        public int numOptionsPresent;
         public bool hasVideo;
         public bool hasAudio;
         public bool hasText;
-        public int numOptionsGiven;
-        public List<string> options;
+        public List<string> emotionsGuessed;
     }
 
+    // --------------------------------------------------------------------------------------------
+    // GAME STATE SETTINGS
+    // --------------------------------------------------------------------------------------------
     [Header("Game State Settings")]
     public List<EmotionResult> results = new List<EmotionResult>();
-    public static string playerName;
-    public static GameObject player;
+
+    public string playerName;
+    public GameObject player;
     public GameObject firstStatue;
     public GameObject fireflyManager;
-    public static String [] introAreaEmotionOptions;
-    public static String currentEmotion;
-    public static String [] emotionOptions;
-    public static VideoClip [] emotionVideos;
-    public static AudioClip [] emotionAudios;
-    public static int totalNumQuestions;
-    public static int numQuestionsCompleted;
-    public static bool playerControllerDisabled = false;
-    public static bool playerAnsweredCorrectly = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    // --------------------------------------------------------------------------------------------
+    // EMOTION SETTINGS
+    // --------------------------------------------------------------------------------------------
+    [Header("Emotion Settings")]
+    public string[] introAreaEmotionOptions;
+    public string currentEmotion;
+    public string[] emotionOptions;
+    public VideoClip[] emotionVideos;
+    public AudioClip[] emotionAudios;
+
+    // --------------------------------------------------------------------------------------------
+    // QUESTION SETTINGS
+    // --------------------------------------------------------------------------------------------
+    [Header("Question Settings")]
+    public int totalNumQuestions;
+    public int numQuestionsCompleted;
+    public bool playerControllerDisabled = false;
+    public bool playerAnsweredCorrectly = false;
+    // --------------------------------------------------------------------------------------------
+    public string[] incorrectResponses = {
+            "Not quite! Try again!",
+            "That's not it! Give it another try!",
+            "Not this time! Keep trying!",
+            "That's incorrect, but you've got this!",
+            "Not quite right! Take another look!",
+            "Oops, that's not the one!",
+            "Good try, but that's not correct!",
+            "Not quite! What else could it be?",
+            "That's not the right emotion! Try again!",
+            "Not this one! Have another guess!",
+            "That's not quite right! Keep going!",
+            "Nice effort, but not quite!",
+            "Not the right answer! Try again!",
+            "That's not it! Take your time!",
+            "Incorrect, but don't give up!"
+        };
+
+    // --------------------------------------------------------------------------------------------
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
+
+    // --------------------------------------------------------------------------------------------
 
     public void InitialAreaSetUp()
     {
@@ -69,6 +119,7 @@ public class GameStateManagerScript : MonoBehaviour
         // 6 - apply that media to the quiz canvas stuff
     }
 
+    // --------------------------------------------------------------------------------------------
 
     public void SaveResults()
     {

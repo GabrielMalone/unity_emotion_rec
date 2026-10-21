@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using GSM = GameStateManagerScript;
 
 public class StatueInteract : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class StatueInteract : MonoBehaviour
     private DialougeHandler dialougeHandler;
     private TextMeshProUGUI mainText;
     private bool agreedToWatch = false;
+    private bool hasRun = false;
 
     void Start()
     {
@@ -36,7 +38,7 @@ public class StatueInteract : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (GameStateManagerScript.playerAnsweredCorrectly && playerInRange)
+        if (GSM.Instance.playerAnsweredCorrectly && playerInRange)
         {
             CorrectAnswerSequence();
         }
@@ -64,7 +66,7 @@ public class StatueInteract : MonoBehaviour
     {
         // play some effect
         Debug.Log("PLAYER ANSWERED CORRECLTY!");
-        GameStateManagerScript.playerAnsweredCorrectly = false;
+        GameStateManagerScript.Instance.playerAnsweredCorrectly = false;
         screenFader.readyForQuiz = false;
         // destroy statue
         Quiz.SetActive(false);
@@ -80,17 +82,18 @@ public class StatueInteract : MonoBehaviour
         // gamestatemanager deciding
         // which statue is talking 
         mainText.text = 
-            $"hello {GameStateManagerScript.playerName}! Can you help me figure out what my friend is feeling?";
+            $"hello {GSM.Instance.playerName}! Can you help me figure out what my friend is feeling?";
     }
 
     public void StartQuiz()
     {
-        if (screenFader.readyForQuiz)
+        if (screenFader.readyForQuiz && !hasRun)
         {
             Quiz.SetActive(true);
             quizMainText.text = 
-                $"{GameStateManagerScript.playerName} Which emotion do you think they were feeling?";
-            // eventually
+                $"{GSM.Instance.playerName}, which emotion do you think they were feeling?";
+            // just do StartQuiz once
+            hasRun = true;
         }
     }
 
@@ -133,8 +136,8 @@ public class StatueInteract : MonoBehaviour
 
     void LockPlayer()
     {
-        GameStateManagerScript.playerControllerDisabled = true;
-        Debug.Log($"controller disabled? {GameStateManagerScript.playerControllerDisabled}");
+        GSM.Instance.playerControllerDisabled = true;
+        Debug.Log($"controller disabled? {GSM.Instance.playerControllerDisabled}");
         if (rb!=null && playerInRange)
         {
             Debug.Log($"LOCKING PLAYER! with og damp of {ogLinearDamp}");
@@ -146,7 +149,7 @@ public class StatueInteract : MonoBehaviour
     void UnlockPlayer()
     {
         if (!playerInRange) return;
-        GameStateManagerScript.playerControllerDisabled = false;
+        GSM.Instance.playerControllerDisabled = false;
 
         if (rb != null)
         {

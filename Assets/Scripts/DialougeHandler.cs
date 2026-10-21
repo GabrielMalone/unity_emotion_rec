@@ -58,7 +58,6 @@ public class DialougeHandler : MonoBehaviour
 
         textBox.maxVisibleCharacters = (int)charactersSpoken;
 
-
         if (Keyboard.current.eKey.wasPressedThisFrame && !isQuestioning && dialouge != null)
         {
             if (isSpeaking)
@@ -70,7 +69,7 @@ public class DialougeHandler : MonoBehaviour
                 nextText(dialougeIndex);
             }
         }
-
+        
         isSpeaking = textBox.maxVisibleCharacters < textBox.text.Length; //the statue is speaking if it is currently writting text to the screen
     }
 
