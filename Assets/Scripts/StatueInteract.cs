@@ -12,7 +12,6 @@ public class StatueInteract : MonoBehaviour
 
     [Header("Radius Settings")]
     public float interactionRadius = 3f;
-    private bool playerLocked = false;
     private float timeLocked;
     private float timeLockDelay = 2f;
     private float ogLinearDamp;
@@ -28,10 +27,27 @@ public class StatueInteract : MonoBehaviour
     private DialougeHandler dialougeHandler;
     private TextMeshProUGUI mainText;
     private bool agreedToWatch = false;
-    private bool readyForQuiz = false;
-
 
     void Start()
+    {
+        initSequence();
+    }
+
+    void Update()
+    {
+        StartQuiz();
+    }
+
+    void FixedUpdate()
+    {
+        if (gsms.playerAnsweredCorrectly && playerInRange)
+        {
+            CorrectAnswerSequence();
+        }
+    }
+
+
+    void initSequence()
     {
         // slow player
         rb = player.GetComponent<Rigidbody2D>();
@@ -47,12 +63,20 @@ public class StatueInteract : MonoBehaviour
         // quiz stuff
         Quiz = screenFader.Qiuz;
         quizMainText = Quiz.GetComponentInChildren<TextMeshProUGUI>(true);
-
     }
 
-    void Update()
+    void CorrectAnswerSequence()
     {
-        StartQuiz();
+        // play some effect
+        Debug.Log("PLAYER ANSWERED CORRECLTY!");
+        gsms.playerAnsweredCorrectly = false;
+        screenFader.readyForQuiz = false;
+        // destroy statue
+        Quiz.SetActive(false);
+        // let them go
+        UnlockPlayer();
+        Debug.Log($"Destroying statue: {gameObject.name}");
+        Destroy(gameObject);
     }
 
     void IntroSpeech()
@@ -72,7 +96,6 @@ public class StatueInteract : MonoBehaviour
             quizMainText.text = 
                 $"{gsms.playerName} Which emotion do you think they were feeling?";
             // eventually
-            UnlockPlayer();
         }
     }
 
@@ -119,24 +142,24 @@ public class StatueInteract : MonoBehaviour
     {
         gsms.playerControllerDisabled = true;
         Debug.Log($"controller disabled? {gsms.playerControllerDisabled}");
-        if (rb!=null)
+        if (rb!=null && playerInRange)
         {
             Debug.Log($"LOCKING PLAYER! with og damp of {ogLinearDamp}");
             StartCoroutine(SlowDownSmoothly());
-            playerLocked = true;
             timeLocked = Time.time;
         }
     }
 
     void UnlockPlayer()
     {
+        if (!playerInRange) return;
         gsms.playerControllerDisabled = false;
+
         if (rb != null)
         {
             if (Time.time - timeLocked > timeLockDelay)
             {
                 rb.linearDamping = ogLinearDamp;
-                playerLocked = false;
             }
         }
     }

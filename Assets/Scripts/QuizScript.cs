@@ -51,16 +51,16 @@ public class QuizScript : MonoBehaviour
         {
             TextMeshProUGUI TMP = emotionButton.GetComponentInChildren<TextMeshProUGUI>();
             TMP.text = gsm.introAreaEmotionOptions[idx];
-            Debug.Log($"emotionButton: {emotionButton} | TMP: {TMP} | TMP.txt {TMP.text}");
             idx ++ ;
         }
     }
 
     public void SubmitAnswer(int optionPicked)
     {
+        // check gameStateManager for current emotion.
         if (optionPicked == 0)
         {
-
+            gsm.playerAnsweredCorrectly = true;
         }
     }
 }

@@ -97,15 +97,10 @@ public class ScreenFader : MonoBehaviour
         fadeImage.color = color;
         if (targetAlpha == 1f)
         {
-            gsm.playerControllerDisabled = true;
             // if faded to black then play movie
             videoImage.gameObject.SetActive(true);
             videoImage.transform.SetAsLastSibling();
             videoTest.Play();
         } 
-        else
-        {
-            gsm.playerControllerDisabled = false;
-        }
     }
 }

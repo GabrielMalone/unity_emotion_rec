@@ -524,7 +524,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -161110,7 +161110,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sure!
+  m_text: Emotion_2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eef2aa918fcf2b24ab7b3d1fa87dcf66, type: 2}
   m_sharedMaterial: {fileID: -7372614324784633489, guid: eef2aa918fcf2b24ab7b3d1fa87dcf66, type: 2}
@@ -161176,7 +161176,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -13.45211, y: 0, z: -12.170914, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -161936,10 +161936,10 @@ RectTransform:
   - {fileID: 41397964}
   m_Father: {fileID: 2070200720}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 223.9, y: 54.315}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 223.9, y: 54.315002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1023849202
 MonoBehaviour:
@@ -171454,10 +171454,10 @@ RectTransform:
   - {fileID: 916344829}
   m_Father: {fileID: 2070200720}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 223.9, y: 54.315}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -150}
+  m_SizeDelta: {x: 223.9, y: 54.315002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1524170854
 MonoBehaviour:
@@ -171994,7 +171994,7 @@ MonoBehaviour:
   boostDuration: 0.5
   playerSprite: {fileID: 1572544064}
   rb: {fileID: 1572544071}
-  controllerDisabled: 0
+  GameStateManager: {fileID: 1577304796}
 --- !u!114 &1572544069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172673,10 +172673,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb3ebc383f824b26908dfbd41dbb552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStateManagerScript
+  results: []
   playerName: Kelly
   player: {fileID: 1572544063}
   firstStatue: {fileID: 2097300440}
   fireflyManager: {fileID: 1453551277}
+  introAreaEmotionOptions:
+  - HAPPY
+  - AFRAID
+  currentEmotion: 
+  emotionOptions:
+  - HAPPY
+  - AFRAID
+  - SAD
+  - ANGRY
+  emotionVideos:
+  - {fileID: 32900000, guid: b44f1d58cf5c941c79c1b8d2397e7221, type: 3}
+  - {fileID: 32900000, guid: 585881c2c353b4c7386be6d8db137b2c, type: 3}
+  - {fileID: 32900000, guid: 5d3d952415fee4eba98dc291877552c8, type: 3}
+  - {fileID: 32900000, guid: c69c7d6c7a67d48a08eeb57a0ae565ef, type: 3}
+  - {fileID: 32900000, guid: a6af44f544e534768ac6814b20908c38, type: 3}
+  - {fileID: 32900000, guid: 06662d36f96c94b52b0bcb3a8e9f1ffe, type: 3}
+  - {fileID: 32900000, guid: a2ceefb13292746ee88c997edd165258, type: 3}
+  - {fileID: 32900000, guid: 50e0dcb2693da46a2a49be12783144cd, type: 3}
+  - {fileID: 32900000, guid: 8b10b0741e5ed4b16bb4f5d223239833, type: 3}
+  - {fileID: 32900000, guid: 04898090a329543698e3dd0a74e0731a, type: 3}
+  - {fileID: 32900000, guid: 93909f00a1fb248c89c6a94d566a95ac, type: 3}
+  - {fileID: 32900000, guid: 9925e14101fbf48deba095cdbf70a24e, type: 3}
+  - {fileID: 32900000, guid: bc09fbd545d174d61bbffbd649bc5340, type: 3}
+  - {fileID: 32900000, guid: 3958b343800e843c08e5e8f07c89b96f, type: 3}
+  - {fileID: 32900000, guid: 9c4dddd7d846741a7a7952bb1e9675c0, type: 3}
+  - {fileID: 32900000, guid: c61cbc0ab11564a04a6bac5c6265572a, type: 3}
+  emotionAudios: []
+  totalNumQuestions: 0
+  playerControllerDisabled: 0
 --- !u!4 &1577304798
 Transform:
   m_ObjectHideFlags: 0
@@ -172711,6 +172741,7 @@ MonoBehaviour:
   fadeDuration: 1.5
   player: {fileID: 1572544063}
   audioSource: {fileID: 1381216020}
+  GameStateManager: {fileID: 1577304796}
   videoTest: {fileID: 593215025}
   videoImage: {fileID: 27425028}
   DialogueHolder: {fileID: 258199946}
@@ -176614,7 +176645,7 @@ GameObject:
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1901455712
 Animator:
   serializedVersion: 7
@@ -176737,13 +176768,11 @@ MonoBehaviour:
   mainTextObj: {fileID: 0}
   textSpeed: 20
   dialouge: {fileID: 0}
+  emotionOptions:
+  - {fileID: 1023849200}
+  - {fileID: 1524170852}
   face: {fileID: 0}
   textBox: {fileID: 41397962}
-  options: {fileID: 2070200720}
-  answers:
-  - {fileID: 41397962}
-  - {fileID: 41397962}
-  animator: {fileID: 258199952}
 --- !u!1 &1935767334
 GameObject:
   m_ObjectHideFlags: 0
@@ -181221,8 +181250,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 412.71082, y: 142.472}
+  m_AnchoredPosition: {x: 0, y: -65.65899}
+  m_SizeDelta: {x: 412.71, y: 273.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2080953014
 GameObject:
