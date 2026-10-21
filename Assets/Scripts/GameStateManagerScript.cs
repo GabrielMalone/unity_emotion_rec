@@ -65,8 +65,12 @@ public class GameStateManagerScript : MonoBehaviour
     public string[] introAreaEmotionOptions;
     public string currentEmotion;
     public string[] emotionOptions;
-    public VideoClip[] emotionVideos;
+    public VideoClip[] happyVideos;
+    public VideoClip[] sadVideos;
+    public VideoClip[] angryVideos;
+    public VideoClip[] afraidVideos;
     public AudioClip[] emotionAudios;
+    public VideoPlayer videoPlayer;
 
     // --------------------------------------------------------------------------------------------
     // QUESTION SETTINGS
@@ -99,7 +103,8 @@ public class GameStateManagerScript : MonoBehaviour
 
     void Start()
     {
-
+        PickNextEmotion();
+        SetEmotionVideo();
     }
 
     void Update()
@@ -143,5 +148,27 @@ public class GameStateManagerScript : MonoBehaviour
 
         File.WriteAllText(filePath, json);
         Debug.Log("Results saved to: " + filePath);
+    }
+
+    // --------------------------------------------------------------------------------------------
+
+    public void PickNextEmotion()
+    {
+        // for now just pick random
+        currentEmotion = emotionOptions[UnityEngine.Random.Range(0, emotionOptions.Length)];
+        Debug.Log($"Current emotion picked: {currentEmotion}");
+    }
+
+    public void SetEmotionVideo()
+    {
+        int idx = UnityEngine.Random.Range(0,happyVideos.Length); 
+        switch(currentEmotion)
+        {
+            case "HAPPY" : videoPlayer.clip = happyVideos[idx]; return;
+            case "SAD": videoPlayer.clip = sadVideos[idx]; return;
+            case "ANGRY": videoPlayer.clip = angryVideos[idx]; return;
+            case "AFRAID": videoPlayer.clip = afraidVideos[idx]; return;
+            default : return;
+        }
     }
 }

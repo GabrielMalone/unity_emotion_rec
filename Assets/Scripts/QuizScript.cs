@@ -17,6 +17,10 @@ public class QuizScript : MonoBehaviour
     public TextMeshProUGUI textBox;
     bool isSpeaking; //is dialouge currently being written on screen
     float charactersSpoken;
+    [Header("Sound FX")]
+    public AudioSource audioSource;
+    public AudioClip incorrectSFX;
+    public AudioClip correctSFX;
     // --------------------------------------------------------------------------------------------
     void Start()
     {
@@ -65,22 +69,24 @@ public class QuizScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public void SubmitAnswer(int optionPicked)
     {
-        Debug.Log($"optionPicked: {optionPicked} | buttonOptions[optionPicked]: {buttonOptions[optionPicked]}");
         // check gameStateManager for current emotion.
         // compare against buttons in this quiz
         if (buttonOptions[optionPicked] == GSM.Instance.currentEmotion)
         {
-            // play sound
+            audioSource.PlayOneShot(correctSFX);
             GSM.Instance.playerAnsweredCorrectly = true;
+            GSM.Instance.PickNextEmotion();
+            GSM.Instance.SetEmotionVideo();
         }
         // what do when wrong
         {
             textBox.text = 
-                GSM.Instance.incorrectResponses[Random.Range(0, GSM.Instance.incorrectResponses.Length)];
-
-            Debug.Log($"INCORRECT ANSWER TEXT: {textBox.text}");
+                GSM.Instance.incorrectResponses
+                [Random.Range(0, GSM.Instance.incorrectResponses.Length)];
             // play sound
+            audioSource.PlayOneShot(incorrectSFX);
             // rewrite text in main dialogue area
         }
     }
 }
+    

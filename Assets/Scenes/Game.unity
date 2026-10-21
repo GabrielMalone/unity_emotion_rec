@@ -8900,7 +8900,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593215023}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 93909f00a1fb248c89c6a94d566a95ac, type: 3}
+  m_VideoClip: {fileID: 0}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -173226,9 +173226,29 @@ MonoBehaviour:
   - AFRAID
   - ANGRY
   - SAD
-  emotionVideos: []
+  happyVideos:
+  - {fileID: 32900000, guid: 8b10b0741e5ed4b16bb4f5d223239833, type: 3}
+  - {fileID: 32900000, guid: 04898090a329543698e3dd0a74e0731a, type: 3}
+  - {fileID: 32900000, guid: 93909f00a1fb248c89c6a94d566a95ac, type: 3}
+  - {fileID: 32900000, guid: 9925e14101fbf48deba095cdbf70a24e, type: 3}
+  sadVideos:
+  - {fileID: 32900000, guid: bc09fbd545d174d61bbffbd649bc5340, type: 3}
+  - {fileID: 32900000, guid: 3958b343800e843c08e5e8f07c89b96f, type: 3}
+  - {fileID: 32900000, guid: 9c4dddd7d846741a7a7952bb1e9675c0, type: 3}
+  - {fileID: 32900000, guid: c61cbc0ab11564a04a6bac5c6265572a, type: 3}
+  angryVideos:
+  - {fileID: 32900000, guid: b44f1d58cf5c941c79c1b8d2397e7221, type: 3}
+  - {fileID: 32900000, guid: 585881c2c353b4c7386be6d8db137b2c, type: 3}
+  - {fileID: 32900000, guid: 5d3d952415fee4eba98dc291877552c8, type: 3}
+  - {fileID: 32900000, guid: c69c7d6c7a67d48a08eeb57a0ae565ef, type: 3}
+  afraidVideos:
+  - {fileID: 32900000, guid: a6af44f544e534768ac6814b20908c38, type: 3}
+  - {fileID: 32900000, guid: 06662d36f96c94b52b0bcb3a8e9f1ffe, type: 3}
+  - {fileID: 32900000, guid: a2ceefb13292746ee88c997edd165258, type: 3}
+  - {fileID: 32900000, guid: 50e0dcb2693da46a2a49be12783144cd, type: 3}
   emotionAudios: []
-  totalNumQuestions: 0
+  videoPlayer: {fileID: 593215025}
+  totalNumQuestions: 24
   numQuestionsCompleted: 0
   playerControllerDisabled: 0
   playerAnsweredCorrectly: 0
@@ -177314,6 +177334,9 @@ MonoBehaviour:
   - {fileID: 1056137653}
   face: {fileID: 0}
   textBox: {fileID: 534464812}
+  audioSource: {fileID: 1381216020}
+  incorrectSFX: {fileID: 8300000, guid: 6935ed3c7f5cd43d590b32348963aecd, type: 3}
+  correctSFX: {fileID: 8300000, guid: 547eb1c9994394a5aa8323e460ed32cb, type: 3}
 --- !u!1 &1935767334
 GameObject:
   m_ObjectHideFlags: 0
