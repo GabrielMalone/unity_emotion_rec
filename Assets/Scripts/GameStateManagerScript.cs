@@ -45,6 +45,7 @@ public class GameStateManagerScript : MonoBehaviour
     public class EmotionResult
     {
         public string playerName;
+        public float timeGameStarted;
         public float timeStarted; 
         public float timeCompleted;
         public string emotionName;
@@ -88,6 +89,7 @@ public class GameStateManagerScript : MonoBehaviour
     public bool agreedToHelp = false;
     public bool playerControllerDisabled = false;
     public bool playerAnsweredCorrectly = false;
+    public float timeGameStarted;
     // --------------------------------------------------------------------------------------------
     public string[] incorrectResponses = {
             "Not quite! Try again!",

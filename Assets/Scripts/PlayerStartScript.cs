@@ -22,7 +22,6 @@ public class PlayerStartScript : MonoBehaviour
     {
         playerNameInput.text = "Enter particpant name";
         GSM.Instance.playerControllerDisabled = true;
-
         audioSource.volume = 0;
     }
 
@@ -75,9 +74,9 @@ public class PlayerStartScript : MonoBehaviour
             );
             yield return null;
         }
-
         GSM.Instance.playerName = playerNameInput.text;
         GSM.Instance.playerControllerDisabled = false;
         gameObject.SetActive(false);
+        GSM.Instance.timeGameStarted = Time.time;
     }
 }

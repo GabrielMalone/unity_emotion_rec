@@ -21,6 +21,7 @@ public class StatueInteract : MonoBehaviour
     public GameObject face;
     private ScreenFader screenFader;
     private GameObject Quiz;
+    private QuizScript quizScript;
     private TextMeshProUGUI quizMainText;
     private GameObject DialogueHolder;
     private DialougeHandler dialougeHandler;
@@ -63,6 +64,7 @@ public class StatueInteract : MonoBehaviour
 
         // quiz stuff
         Quiz = screenFader.Qiuz;
+        quizScript = Quiz.GetComponent<QuizScript>();
         quizMainText = Quiz.GetComponentInChildren<TextMeshProUGUI>(true);
 
         // what do i look like
@@ -96,6 +98,9 @@ public class StatueInteract : MonoBehaviour
         if (screenFader.readyForQuiz && !hasRun)
         {
             Quiz.SetActive(true);
+            // so quiz does not endlessless repeat after quiz end
+            // we can check if the statue is gone or not
+            quizScript.myStuate = gameObject;
             quizMainText.text = 
                 $"{GSM.Instance.playerName}, which emotion do you think they were feeling?";
             // just do StartQuiz once

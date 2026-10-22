@@ -23,6 +23,8 @@ public class QuizScript : MonoBehaviour
     public AudioClip incorrectSFX;
     public AudioClip correctSFX;
     private bool quizStarted = false;
+    [Header("Associated Statue")]
+    public GameObject myStuate;
     // --------------------------------------------------------------------------------------------
     void Start()
     {
@@ -36,7 +38,9 @@ public class QuizScript : MonoBehaviour
         // this is only happening 
         // once per game
 
-        if (!quizStarted)
+        // check for null on associate statue as well
+        // so quiz does not restart after quiz end
+        if (!quizStarted && myStuate)
         {
             quizStarted = true;
             SetEmotionButtons();
@@ -98,8 +102,10 @@ public class QuizScript : MonoBehaviour
         if (buttonOptions[optionPicked] == GSM.Instance.currentEmotion)
         {
             audioSource.PlayOneShot(correctSFX);
+
             // telemetry data
             GSM.Instance.result.playerName = GSM.Instance.playerName;
+            GSM.Instance.result.timeGameStarted = GSM.Instance.timeGameStarted;
             // when did player finish this quiz
             GSM.Instance.result.timeCompleted = Time.time;
             // increment questions completed
