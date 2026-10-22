@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI; // Required for the Image component
 using UnityEngine.Video;
+using GSM = GameStateManagerScript;
 
 public class ScreenFader : MonoBehaviour
 {
@@ -106,10 +107,28 @@ public class ScreenFader : MonoBehaviour
         if (targetAlpha == 1f)
         {
             // if faded to black then play movie
-            videoImage.gameObject.SetActive(true);
-            videoImage.transform.SetAsLastSibling();
-            videoTest.Play();
-        } 
-        
+
+            // this is where I need to determine 
+            // video audio or text
+            if (GSM.Instance.numQuestionsCompleted % 3 == 0)
+            {
+                videoImage.gameObject.SetActive(true);
+                videoImage.transform.SetAsLastSibling();
+                videoTest.Play();
+            }
+            if (GSM.Instance.numQuestionsCompleted % 3 == 1)
+            {
+                videoImage.gameObject.SetActive(true);
+                videoImage.transform.SetAsLastSibling();
+                videoTest.Play();
+            }
+            if (GSM.Instance.numQuestionsCompleted % 3 == 2)
+            {
+                videoImage.gameObject.SetActive(true);
+                videoImage.transform.SetAsLastSibling();
+                videoTest.Play();
+            }
+
+        }        
     }
 }

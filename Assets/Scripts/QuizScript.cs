@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using TMPro;
 using GSM = GameStateManagerScript;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 
 public class QuizScript : MonoBehaviour
 {
@@ -87,7 +86,7 @@ public class QuizScript : MonoBehaviour
                     validCandidateFound = true;
                 }
             }
-            option++;
+            option ++;
         }
     }
     // --------------------------------------------------------------------------------------------
@@ -115,7 +114,7 @@ public class QuizScript : MonoBehaviour
 
             // resets needed for next interaction
             GSM.Instance.PickNextEmotion();
-            GSM.Instance.SetEmotionVideo();
+            GSM.Instance.SetEmotionMedia();
             GSM.Instance.agreedToHelp = false;
 
             // should save data to list then 

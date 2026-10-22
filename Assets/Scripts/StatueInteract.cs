@@ -29,27 +29,26 @@ public class StatueInteract : MonoBehaviour
     private bool agreedToWatch = false;
     private bool hasRun = false;
     private SpriteRenderer statueSprite;
-
-
+    // --------------------------------------------------------------------------------------------
     void Start()
     {
         InitSequence();
     }
-
+    // --------------------------------------------------------------------------------------------
     void Update()
     {
         StartQuiz();
-    }
-
-    void FixedUpdate()
-    {
         if (GSM.Instance.playerAnsweredCorrectly && playerInRange)
         {
             CorrectAnswerSequence();
         }
     }
+    // --------------------------------------------------------------------------------------------
+    void FixedUpdate()
+    {
 
-
+    }
+    // --------------------------------------------------------------------------------------------
     void InitSequence()
     {
         // slow player
@@ -70,7 +69,7 @@ public class StatueInteract : MonoBehaviour
         // what do i look like
         statueSprite = GetComponent<SpriteRenderer>();
     }
-
+    // --------------------------------------------------------------------------------------------
     void CorrectAnswerSequence()
     {
         // reset screen fader
@@ -83,7 +82,7 @@ public class StatueInteract : MonoBehaviour
         // reset quiz status
         GSM.Instance.playerAnsweredCorrectly = false;
     }
-
+    // --------------------------------------------------------------------------------------------
     void IntroSpeech()
     {
         // will needs to base this on 
@@ -92,7 +91,7 @@ public class StatueInteract : MonoBehaviour
         mainText.text = 
             $"hello {GSM.Instance.playerName}! Can you help me figure out what my friend is feeling?";
     }
-
+    // --------------------------------------------------------------------------------------------
     public void StartQuiz()
     {
         if (screenFader.readyForQuiz && !hasRun)
@@ -113,7 +112,7 @@ public class StatueInteract : MonoBehaviour
             hasRun = false;
         }
     }
-
+    // --------------------------------------------------------------------------------------------
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -130,7 +129,7 @@ public class StatueInteract : MonoBehaviour
             StartCoroutine(WaitForAgreement());
         }
     }
-
+    // --------------------------------------------------------------------------------------------
     IEnumerator WaitForAgreement()
     {
         while (!agreedToWatch)
@@ -144,7 +143,7 @@ public class StatueInteract : MonoBehaviour
         screenFader.FadeToBlack();
         DialogueHolder.SetActive(false);
     }
-
+    // --------------------------------------------------------------------------------------------
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -153,7 +152,7 @@ public class StatueInteract : MonoBehaviour
             cameraFollow.ZoomOut();
         }
     }
-
+    // --------------------------------------------------------------------------------------------
     void LockPlayer()
     {
         GSM.Instance.playerControllerDisabled = true;
@@ -165,7 +164,7 @@ public class StatueInteract : MonoBehaviour
             timeLocked = Time.time;
         }
     }
-
+    // --------------------------------------------------------------------------------------------
     void UnlockPlayer()
     {
         if (!playerInRange) return;
@@ -179,7 +178,7 @@ public class StatueInteract : MonoBehaviour
             }
         }
     }
-    
+    // --------------------------------------------------------------------------------------------
     private IEnumerator SlowDownSmoothly()
     {
         Vector2 initialSpeed = rb.linearVelocity;

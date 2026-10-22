@@ -1,8 +1,8 @@
-using System;
 using UnityEngine;
 using UnityEngine.Video;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor.Rendering;
 
 public class GameStateManagerScript : MonoBehaviour
 {
@@ -21,13 +21,15 @@ public class GameStateManagerScript : MonoBehaviour
 
         Instance = this;
     }
-
+    // --------------------------------------------------------------------------------------------
+    // TELEMETRY STRUCTURES
     // --------------------------------------------------------------------------------------------
     // create a class that can be converted to JSON
     // JSON utility in c sharp
     // has to work on an object
     // not directly on a list
     // so this is the hack
+    // --------------------------------------------------------------------------------------------
     [System.Serializable]
     public class ResultsWrapper
     {
@@ -49,11 +51,12 @@ public class GameStateManagerScript : MonoBehaviour
         public float timeStarted;
         public float timeCompleted;
         public string emotionName;
-        public bool correct;
-        public bool hasVideo;
-        public bool hasAudio;
-        public bool hasText;
+        public bool isVideo;
+        public bool isAudio;
+        public bool isText;
         public string video_title;
+        public string audio_title;
+        public string text_title;
         public int questionNumber;
         public List<EmotionGuess> emotionsGuessed = new List<EmotionGuess>();
     }
@@ -62,6 +65,21 @@ public class GameStateManagerScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     [Header("Game State Settings")]
     public List<EmotionResult> results = new List<EmotionResult>();
+
+    public int happyVideoIndex;
+    public int sadVideoIndex;
+    public int angryVideoIndex;
+    public int afraidVideoIndex;
+
+    public int happyAudioIndex;
+    public int sadAudioIndex;
+    public int angryAudioIndex;
+    public int afraidAudioIndex;
+
+    public int happyTextIndex;
+    public int sadVTextIndex;
+    public int angryTextIndex;
+    public int afraidTextIndex;
 
     public string playerName;
     public GameObject player;
@@ -82,8 +100,6 @@ public class GameStateManagerScript : MonoBehaviour
     public string[] emotionsTestedInLvl_1;
     public string[] emotionsTestedInLvl_2;
     public string[] emotionsTestedInLvl_3;
-
-
     // --------------------------------------------------------------------------------------------
     // EMOTION SETTINGS
     // --------------------------------------------------------------------------------------------
@@ -124,30 +140,19 @@ public class GameStateManagerScript : MonoBehaviour
             "That's not it! Take your time!",
             "Incorrect, but don't give up!"
         };
-
+    // --------------------------------------------------------------------------------------------
     [Header("Telemetry Per Quiz")]
     public EmotionResult result = new EmotionResult();
     // --------------------------------------------------------------------------------------------
     void Start()
     {
         PickNextEmotion();
-        SetEmotionVideo();
+        SetEmotionMedia();
     }
 
     void Update()
     {
 
-    }
-    // --------------------------------------------------------------------------------------------
-
-    public void InitialAreaSetUp()
-    {
-        // 1 - get all the statue game objects
-        // 2 - get all the emotion options for init area
-        // 3 - determine how often we want each emotion to show up
-        // 4 - determine which type of question player is to get (video, audio, text)
-        // 5 - get the video / audio / text that corresponds to results from above
-        // 6 - apply that media to the quiz canvas stuff
     }
     // --------------------------------------------------------------------------------------------
     public void SaveResults()
@@ -176,26 +181,103 @@ public class GameStateManagerScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public void PickNextEmotion()
     {
-
         if (lvl1) currentEmotion = emotionsTestedInLvl_1[UnityEngine.Random.Range(0, emotionsTestedInLvl_1.Length)];
         if (lvl2) currentEmotion = emotionsTestedInLvl_2[UnityEngine.Random.Range(0, emotionsTestedInLvl_2.Length)];
         if (lvl3) currentEmotion = emotionsTestedInLvl_3[UnityEngine.Random.Range(0, emotionsTestedInLvl_3.Length)];
-
         Debug.Log($"Current emotion picked: {currentEmotion}");
     }
     // --------------------------------------------------------------------------------------------
-    public void SetEmotionVideo()
+    public void SetEmotionMedia()
     {
 
-        int idx = UnityEngine.Random.Range(0, happyVideos.Length);
+        ClearPreviousVideoTexture();
 
-        switch (currentEmotion)
+        // video audio text
+        if (numQuestionsCompleted % 3 == 0)
         {
-            case "HAPPY": videoPlayer.clip = happyVideos[idx]; return;
-            case "SAD": videoPlayer.clip = sadVideos[idx]; return;
-            case "ANGRY": videoPlayer.clip = angryVideos[idx]; return;
-            case "AFRAID": videoPlayer.clip = afraidVideos[idx]; return;
-            default: return;
+            result.isVideo = true;
+            switch (currentEmotion)
+            {
+                case "HAPPY": 
+                    videoPlayer.clip = happyVideos[happyVideoIndex++]; 
+                    result.video_title = videoPlayer.clip.name;
+                    return;
+                case "SAD": 
+                    videoPlayer.clip = sadVideos[sadVideoIndex++];
+                    result.video_title = videoPlayer.clip.name;
+                    return;
+                case "ANGRY": 
+                    videoPlayer.clip = angryVideos[angryVideoIndex++];
+                    result.video_title = videoPlayer.clip.name;
+                    return;
+                case "AFRAID": 
+                    videoPlayer.clip = afraidVideos[afraidVideoIndex++];
+                    result.video_title = videoPlayer.clip.name;
+                    return;
+                default: return;
+            }
+        }
+        // audio and text
+        if (numQuestionsCompleted % 3 == 1)
+        {
+            result.isAudio = true;
+            switch (currentEmotion)
+            {
+                case "HAPPY":
+                    videoPlayer.clip = happyVideos[happyVideoIndex++];
+                    result.video_title = videoPlayer.clip.name;
+                    return;
+                case "SAD":
+                    videoPlayer.clip = sadVideos[sadVideoIndex++];
+                    result.video_title = videoPlayer.clip.name;
+                    return;
+                case "ANGRY":
+                    videoPlayer.clip = angryVideos[angryVideoIndex++];
+                    result.video_title = videoPlayer.clip.name;
+                    return;
+                case "AFRAID":
+                    videoPlayer.clip = afraidVideos[afraidVideoIndex++];
+                    result.video_title = videoPlayer.clip.name;
+                    return;
+                default: return;
+            }
+        }
+        // text only
+        if (numQuestionsCompleted % 3 == 2)
+        {
+            result.isText = true;
+            switch (currentEmotion)
+            {
+                case "HAPPY":
+                    videoPlayer.clip = happyVideos[happyVideoIndex++];
+                    result.video_title = videoPlayer.clip.name;
+                    return;
+                case "SAD":
+                    videoPlayer.clip = sadVideos[sadVideoIndex++];
+                    result.video_title = videoPlayer.clip.name;
+                    return;
+                case "ANGRY":
+                    videoPlayer.clip = angryVideos[angryVideoIndex++];
+                    result.video_title = videoPlayer.clip.name;
+                    return;
+                case "AFRAID":
+                    videoPlayer.clip = afraidVideos[afraidVideoIndex++];
+                    result.video_title = videoPlayer.clip.name;
+                    return;
+                default: return;
+            }
         }
     }
+
+
+    public void ClearPreviousVideoTexture()
+    {
+        videoPlayer.Stop();
+        RenderTexture rt = videoPlayer.targetTexture;
+        RenderTexture previous = RenderTexture.active;
+        RenderTexture.active = rt;
+        GL.Clear(true, true, Color.black);
+        RenderTexture.active = previous;
+    }
+
 }
