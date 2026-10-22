@@ -44,7 +44,7 @@ public class DialougeHandler : MonoBehaviour
     {
         //advancing the text per character
         if (isSpeaking) charactersSpoken += Time.deltaTime * textSpeed;
-
+        if (textBox == null) return;
         textBox.maxVisibleCharacters = (int)charactersSpoken;
 
         if (Keyboard.current.eKey.wasPressedThisFrame && !isQuestioning && dialouge != null)

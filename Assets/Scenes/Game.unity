@@ -8075,6 +8075,37 @@ Transform:
   - {fileID: 1148805347}
   m_Father: {fileID: 771964892}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &477141961
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 477141962}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &477141962
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477141961}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.15, y: -11.57, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &477380761
 GameObject:
   m_ObjectHideFlags: 0
@@ -174013,6 +174044,24 @@ MonoBehaviour:
   player: {fileID: 1572544063}
   firstStatue: {fileID: 2097300440}
   fireflyManager: {fileID: 1453551277}
+  lvl1: 0
+  lvl2: 0
+  lvl3: 0
+  numStatuesInLvl_1: 4
+  numStatuesInLvl_2: 8
+  numStatuesInLvl_3: 12
+  emotionsTestedInLvl_1:
+  - HAPPY
+  - AFRAID
+  emotionsTestedInLvl_2:
+  - HAPPY
+  - AFRAID
+  - ANGRY
+  emotionsTestedInLvl_3:
+  - HAPPY
+  - AFRAID
+  - SCARED
+  - SAD
   introAreaEmotionOptions:
   - HAPPY
   - AFRAID
@@ -174049,6 +174098,7 @@ MonoBehaviour:
   agreedToHelp: 0
   playerControllerDisabled: 0
   playerAnsweredCorrectly: 0
+  timeGameStarted: 0
   incorrectResponses:
   - Not quite! Try again!
   - That's not it! Give it another try!
@@ -174067,6 +174117,7 @@ MonoBehaviour:
   - Incorrect, but don't give up!
   result:
     playerName: 
+    timeGameStarted: 0
     timeStarted: 0
     timeCompleted: 0
     emotionName: 
@@ -178147,6 +178198,7 @@ MonoBehaviour:
   audioSource: {fileID: 1381216020}
   incorrectSFX: {fileID: 8300000, guid: 6935ed3c7f5cd43d590b32348963aecd, type: 3}
   correctSFX: {fileID: 8300000, guid: 547eb1c9994394a5aa8323e460ed32cb, type: 3}
+  myStuate: {fileID: 0}
 --- !u!1 &1935767334
 GameObject:
   m_ObjectHideFlags: 0
@@ -183552,3 +183604,4 @@ SceneRoots:
   - {fileID: 1767349031}
   - {fileID: 1577304798}
   - {fileID: 1582369640}
+  - {fileID: 477141962}

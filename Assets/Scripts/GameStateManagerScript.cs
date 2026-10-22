@@ -46,7 +46,7 @@ public class GameStateManagerScript : MonoBehaviour
     {
         public string playerName;
         public float timeGameStarted;
-        public float timeStarted; 
+        public float timeStarted;
         public float timeCompleted;
         public string emotionName;
         public bool correct;
@@ -68,10 +68,26 @@ public class GameStateManagerScript : MonoBehaviour
     public GameObject firstStatue;
     public GameObject fireflyManager;
     // --------------------------------------------------------------------------------------------
+    // LEVEL SETTINGS
+    // --------------------------------------------------------------------------------------------
+    [Header("Level Settings")]
+    public bool lvl1 = false;
+    public bool lvl2 = false;
+    public bool lvl3 = false;
+
+    public int numStatuesInLvl_1 = 4;
+    public int numStatuesInLvl_2 = 8;
+    public int numStatuesInLvl_3 = 12;
+
+    public string[] emotionsTestedInLvl_1;
+    public string[] emotionsTestedInLvl_2;
+    public string[] emotionsTestedInLvl_3;
+
+
+    // --------------------------------------------------------------------------------------------
     // EMOTION SETTINGS
     // --------------------------------------------------------------------------------------------
     [Header("Emotion Settings")]
-    public string[] introAreaEmotionOptions;
     public string currentEmotion;
     public string[] emotionOptions;
     public VideoClip[] happyVideos;
@@ -160,21 +176,26 @@ public class GameStateManagerScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public void PickNextEmotion()
     {
-        // for now just pick random
-        currentEmotion = emotionOptions[UnityEngine.Random.Range(0, emotionOptions.Length)];
+
+        if (lvl1) currentEmotion = emotionsTestedInLvl_1[UnityEngine.Random.Range(0, emotionsTestedInLvl_1.Length)];
+        if (lvl2) currentEmotion = emotionsTestedInLvl_2[UnityEngine.Random.Range(0, emotionsTestedInLvl_2.Length)];
+        if (lvl3) currentEmotion = emotionsTestedInLvl_3[UnityEngine.Random.Range(0, emotionsTestedInLvl_3.Length)];
+
         Debug.Log($"Current emotion picked: {currentEmotion}");
     }
     // --------------------------------------------------------------------------------------------
     public void SetEmotionVideo()
     {
-        int idx = UnityEngine.Random.Range(0,happyVideos.Length); 
-        switch(currentEmotion)
+
+        int idx = UnityEngine.Random.Range(0, happyVideos.Length);
+
+        switch (currentEmotion)
         {
-            case "HAPPY" :  videoPlayer.clip = happyVideos[idx];    return;
-            case "SAD"   :  videoPlayer.clip = sadVideos[idx];      return;
-            case "ANGRY" :  videoPlayer.clip = angryVideos[idx];    return;
-            case "AFRAID":  videoPlayer.clip = afraidVideos[idx];   return;
-            default : return;
+            case "HAPPY": videoPlayer.clip = happyVideos[idx]; return;
+            case "SAD": videoPlayer.clip = sadVideos[idx]; return;
+            case "ANGRY": videoPlayer.clip = angryVideos[idx]; return;
+            case "AFRAID": videoPlayer.clip = afraidVideos[idx]; return;
+            default: return;
         }
     }
 }

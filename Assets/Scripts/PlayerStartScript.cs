@@ -22,6 +22,7 @@ public class PlayerStartScript : MonoBehaviour
     {
         playerNameInput.text = "Enter particpant name";
         GSM.Instance.playerControllerDisabled = true;
+        GSM.Instance.lvl1 = true;
         audioSource.volume = 0;
     }
 
