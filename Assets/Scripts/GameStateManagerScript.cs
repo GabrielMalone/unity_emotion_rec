@@ -56,7 +56,6 @@ public class GameStateManagerScript : MonoBehaviour
         public int questionNumber;
         public List<EmotionGuess> emotionsGuessed = new List<EmotionGuess>();
     }
-
     // --------------------------------------------------------------------------------------------
     // GAME STATE SETTINGS
     // --------------------------------------------------------------------------------------------
@@ -67,7 +66,6 @@ public class GameStateManagerScript : MonoBehaviour
     public GameObject player;
     public GameObject firstStatue;
     public GameObject fireflyManager;
-
     // --------------------------------------------------------------------------------------------
     // EMOTION SETTINGS
     // --------------------------------------------------------------------------------------------
@@ -81,7 +79,6 @@ public class GameStateManagerScript : MonoBehaviour
     public VideoClip[] afraidVideos;
     public AudioClip[] emotionAudios;
     public VideoPlayer videoPlayer;
-
     // --------------------------------------------------------------------------------------------
     // QUESTION SETTINGS
     // --------------------------------------------------------------------------------------------
@@ -112,9 +109,7 @@ public class GameStateManagerScript : MonoBehaviour
 
     [Header("Telemetry Per Quiz")]
     public EmotionResult result = new EmotionResult();
-
     // --------------------------------------------------------------------------------------------
-
     void Start()
     {
         PickNextEmotion();
@@ -125,7 +120,6 @@ public class GameStateManagerScript : MonoBehaviour
     {
 
     }
-
     // --------------------------------------------------------------------------------------------
 
     public void InitialAreaSetUp()
@@ -161,7 +155,6 @@ public class GameStateManagerScript : MonoBehaviour
         File.WriteAllText(filePath, json);
         Debug.Log("Results saved to: " + filePath);
     }
-
     // --------------------------------------------------------------------------------------------
     public void PickNextEmotion()
     {
@@ -169,7 +162,7 @@ public class GameStateManagerScript : MonoBehaviour
         currentEmotion = emotionOptions[UnityEngine.Random.Range(0, emotionOptions.Length)];
         Debug.Log($"Current emotion picked: {currentEmotion}");
     }
-
+    // --------------------------------------------------------------------------------------------
     public void SetEmotionVideo()
     {
         int idx = UnityEngine.Random.Range(0,happyVideos.Length); 
