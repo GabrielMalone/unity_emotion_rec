@@ -71,16 +71,15 @@ public class StatueInteract : MonoBehaviour
 
     void CorrectAnswerSequence()
     {
-        // play some effect
-        Debug.Log("PLAYER ANSWERED CORRECLTY!");
-        GSM.Instance.playerAnsweredCorrectly = false;
+        // reset screen fader
         screenFader.readyForQuiz = false;
         // destroy statue
         Quiz.SetActive(false);
         // let them go
         UnlockPlayer();
-        Debug.Log($"Destroying statue: {gameObject.name}");
         Destroy(gameObject);
+        // reset quiz status
+        GSM.Instance.playerAnsweredCorrectly = false;
     }
 
     void IntroSpeech()
@@ -105,6 +104,7 @@ public class StatueInteract : MonoBehaviour
         // reset when done w statue
         if (GSM.Instance.playerAnsweredCorrectly)
         {
+            // maybe do all telemetry here?
             hasRun = false;
         }
     }

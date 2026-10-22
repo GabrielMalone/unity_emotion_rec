@@ -38,12 +38,15 @@ public class GameStateManagerScript : MonoBehaviour
     public class EmotionResult
     {
         public string playerName;
+        public float timeStarted; 
         public float timeCompleted;
         public string emotionName;
         public bool correct;
         public bool hasVideo;
         public bool hasAudio;
         public bool hasText;
+        public string video_title;
+        public int questionNumber;
         public List<string> emotionsGuessed;
     }
 
@@ -100,6 +103,9 @@ public class GameStateManagerScript : MonoBehaviour
             "Incorrect, but don't give up!"
         };
 
+    [Header("Telemetry Per Quiz")]
+    public EmotionResult result = new EmotionResult();
+
     // --------------------------------------------------------------------------------------------
 
     void Start()
@@ -124,9 +130,7 @@ public class GameStateManagerScript : MonoBehaviour
         // 5 - get the video / audio / text that corresponds to results from above
         // 6 - apply that media to the quiz canvas stuff
     }
-
     // --------------------------------------------------------------------------------------------
-
     public void SaveResults()
     {
         // results to JSON with pretty print = true
@@ -137,7 +141,7 @@ public class GameStateManagerScript : MonoBehaviour
 
         // unique filename for each participant/session
         string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-        string fileName = $"emotionResults_{timestamp}.json";
+        string fileName = $"{playerName}_emotionResults_{timestamp}.json";
 
         // save the file
         // C:\Users\<Username>\AppData\LocalLow\<CompanyName>\<ProductName>\emotionResults.json
@@ -152,7 +156,6 @@ public class GameStateManagerScript : MonoBehaviour
     }
 
     // --------------------------------------------------------------------------------------------
-
     public void PickNextEmotion()
     {
         // for now just pick random
@@ -165,10 +168,10 @@ public class GameStateManagerScript : MonoBehaviour
         int idx = UnityEngine.Random.Range(0,happyVideos.Length); 
         switch(currentEmotion)
         {
-            case "HAPPY" : videoPlayer.clip = happyVideos[idx]; return;
-            case "SAD": videoPlayer.clip = sadVideos[idx]; return;
-            case "ANGRY": videoPlayer.clip = angryVideos[idx]; return;
-            case "AFRAID": videoPlayer.clip = afraidVideos[idx]; return;
+            case "HAPPY" :  videoPlayer.clip = happyVideos[idx];    return;
+            case "SAD"   :  videoPlayer.clip = sadVideos[idx];      return;
+            case "ANGRY" :  videoPlayer.clip = angryVideos[idx];    return;
+            case "AFRAID":  videoPlayer.clip = afraidVideos[idx];   return;
             default : return;
         }
     }

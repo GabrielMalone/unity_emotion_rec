@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using GSM = GameStateManagerScript;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 
 public class QuizScript : MonoBehaviour
 {
@@ -21,16 +22,31 @@ public class QuizScript : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip incorrectSFX;
     public AudioClip correctSFX;
+    private bool quizStarted = false;
     // --------------------------------------------------------------------------------------------
     void Start()
     {
-        SetEmotionButtons();
+
     }
     // --------------------------------------------------------------------------------------------
     // Update is called once per frame
     void Update()
     {
         ScrollText();
+        // this is only happening 
+        // once per game
+
+        if (!quizStarted)
+        {
+            quizStarted = true;
+            SetEmotionButtons();
+            // telemetry - when did quiz start
+            GSM.Instance.result.timeStarted = Time.time;
+            // current emotion being tested
+            GSM.Instance.result.emotionName = GSM.Instance.currentEmotion;
+            // what question is the player on
+            GSM.Instance.result.questionNumber = GSM.Instance.numQuestionsCompleted + 1;
+        }
     }
     // --------------------------------------------------------------------------------------------
     void ScrollText()
@@ -47,10 +63,14 @@ public class QuizScript : MonoBehaviour
         // let's randomize it, though. 
         HashSet<string> seen = new HashSet<string>();
         int option = 0;
+
         foreach (GameObject emotionButton in emotionOptions)
         {
-            TextMeshProUGUI TMP = emotionButton.GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI TMP = 
+                emotionButton.GetComponentInChildren<TextMeshProUGUI>();
+
             bool validCandidateFound = false;
+
             while (!validCandidateFound)
             {
                 int idx = Random.Range(0, GSM.Instance.emotionOptions.Length);
@@ -74,20 +94,36 @@ public class QuizScript : MonoBehaviour
         if (buttonOptions[optionPicked] == GSM.Instance.currentEmotion)
         {
             audioSource.PlayOneShot(correctSFX);
+            // telemetry data
+            GSM.Instance.result.playerName = GSM.Instance.playerName;
+            // when did player finish this quiz
+            GSM.Instance.result.timeCompleted = Time.time;
+            // increment questions completed
+            GSM.Instance.numQuestionsCompleted++;
             GSM.Instance.playerAnsweredCorrectly = true;
+            quizStarted = false;
+
             // resets needed for next interaction
             GSM.Instance.PickNextEmotion();
             GSM.Instance.SetEmotionVideo();
             GSM.Instance.agreedToHelp = false;
+
+            // should save data to list then 
+            // create new instance of result here. 
+            GSM.Instance.results.Add(GSM.Instance.result);
+            GSM.Instance.result = new GSM.EmotionResult();
+
+            // test save
+            GSM.Instance.SaveResults();
         }
         // what do when wrong
         {
+            // get random wrong resposne
             textBox.text = 
                 GSM.Instance.incorrectResponses
                 [Random.Range(0, GSM.Instance.incorrectResponses.Length)];
             // play sound
             audioSource.PlayOneShot(incorrectSFX);
-            // rewrite text in main dialogue area
         }
     }
 }
