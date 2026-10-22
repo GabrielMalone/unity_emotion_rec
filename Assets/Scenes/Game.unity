@@ -6394,7 +6394,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   GameStateManager: {fileID: 1577304796}
   mainTextObj: {fileID: 0}
-  agreedToWatch: 0
   textSpeed: 50
   dialouge: {fileID: 0}
   face: {fileID: 0}
@@ -7799,7 +7798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.ShadowCaster2D
   m_ShadowGroup: 0
-  m_Priority: 3
+  m_Priority: 1
   m_ComponentVersion: 6
   m_HasRenderer: 1
   m_UseRendererSilhouette: 1
@@ -8044,6 +8043,7 @@ MonoBehaviour:
   cameraFollow: {fileID: 42252868}
   interactionRadius: 3
   GameStateManger: {fileID: 1577304796}
+  face: {fileID: 24953511}
 --- !u!61 &482407420
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8082,7 +8082,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 2.53, y: 5.11}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -8137,9 +8137,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 4e6c060e125494e7f91d998d07918888, type: 3}
+  m_Sprite: {fileID: 253778686170084881, guid: ce4b79e04c310437d99205099af32c65, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -163996,6 +163996,7 @@ MonoBehaviour:
   cameraFollow: {fileID: 42252868}
   interactionRadius: 3
   GameStateManger: {fileID: 1577304796}
+  face: {fileID: 24953511}
 --- !u!61 &1175923252
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -164034,7 +164035,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 2.78, y: 5.1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -164089,9 +164090,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 268a5f98e2b99475c96cf9cba245cef5, type: 3}
+  m_Sprite: {fileID: 1446100911941335212, guid: 1c14c4173153447d491089709b8f9d7a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -164115,7 +164116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.ShadowCaster2D
   m_ShadowGroup: 0
-  m_Priority: 3
+  m_Priority: 1
   m_ComponentVersion: 6
   m_HasRenderer: 1
   m_UseRendererSilhouette: 1
@@ -173250,6 +173251,7 @@ MonoBehaviour:
   videoPlayer: {fileID: 593215025}
   totalNumQuestions: 24
   numQuestionsCompleted: 0
+  agreedToHelp: 0
   playerControllerDisabled: 0
   playerAnsweredCorrectly: 0
   incorrectResponses:
@@ -173473,6 +173475,7 @@ MonoBehaviour:
   cameraFollow: {fileID: 42252868}
   interactionRadius: 3
   GameStateManger: {fileID: 1577304796}
+  face: {fileID: 24953511}
 --- !u!61 &1602290395
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -173511,7 +173514,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 4.14, y: 5.09}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -173568,7 +173571,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 8cb77d4c40c504f9e83d3681500a6183, type: 3}
+  m_Sprite: {fileID: -2893615185849222275, guid: 92ac2b25819944694904c965a11a3764, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -182105,6 +182108,7 @@ MonoBehaviour:
   cameraFollow: {fileID: 42252868}
   interactionRadius: 3
   GameStateManger: {fileID: 1577304796}
+  face: {fileID: 24953511}
 --- !u!61 &2097300443
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,10 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections;
 using UnityEngine.InputSystem;
-using Unity.VisualScripting;
-using System.Linq;
+using GSM = GameStateManagerScript;
 
 public class DialougeHandler : MonoBehaviour
 {
@@ -12,26 +10,17 @@ public class DialougeHandler : MonoBehaviour
     [Header("Dialogue Setup")]
     public GameObject GameStateManager;
     public GameObject mainTextObj;
-    public bool agreedToWatch = false;
-
     public float textSpeed; // the length in seconds every letter comes on screen
     public DialougeObject dialouge;  
-
     public Image face;
     public TextMeshProUGUI textBox;
-
     public Transform options;
     public TextMeshProUGUI[] answers;
-
     public Animator animator;
-
     bool isSpeaking; //is dialouge currently being written on screen
     int dialougeIndex; //the place you are in the dialouge
-
     int correctOption;
-
     bool isQuestioning;
-
     float charactersSpoken;
 
     public void StartUpDialouge(DialougeObject newDialouge)
@@ -69,7 +58,7 @@ public class DialougeHandler : MonoBehaviour
                 nextText(dialougeIndex);
             }
         }
-        
+
         isSpeaking = textBox.maxVisibleCharacters < textBox.text.Length; //the statue is speaking if it is currently writting text to the screen
     }
 
@@ -80,50 +69,12 @@ public class DialougeHandler : MonoBehaviour
             animator.Play("pull down");
             return;
         }
-
-        if (dialouge.Dialouge[index].expression != null) //if an sprite isn't used for text, than it uses the last sprite used
-        {
-            face.sprite = dialouge.Dialouge[index].expression;
-        }
-
-        if (correct) textBox.text = dialouge.Dialouge[index].text;
-        else
-        {
-            isQuestioning = false;
-            textBox.text = dialouge.Dialouge[index].wrongText;
-        }
-
-        charactersSpoken = 0;
-        textBox.maxVisibleCharacters = 0;
-
-        // for questions
-        if (dialouge.Dialouge[index].isQuestion && correct)
-        {
-            options.gameObject.SetActive(true);
-            isQuestioning = true;
-
-            int[] randomOrder = {0, 1, 2, 3};
-            if (Random.value > 0.5) randomOrder.Reverse();
-
-            for (int i = 0; i < answers.Length; i++)
-            {
-                answers[i].text = dialouge.Dialouge[index].Answers[randomOrder[i]];
-
-                if (randomOrder[i] == 0) correctOption = i;
-            }
-        }
-        else if (correct)
-        {
-            options.gameObject.SetActive(false);
-
-            dialougeIndex++;
-        }
     }
 
     public void SubmitAnswer(int optionPicked)
     {
         if (optionPicked == 0){
-            agreedToWatch = true;
+            GSM.Instance.agreedToHelp = true;
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using GSM = GameStateManagerScript;
 
@@ -17,6 +18,7 @@ public class StatueInteract : MonoBehaviour
     private float ogLinearDamp;
     private Rigidbody2D rb;
     public GameObject GameStateManger;
+    public GameObject face;
     private ScreenFader screenFader;
     private GameObject Quiz;
     private TextMeshProUGUI quizMainText;
@@ -25,10 +27,12 @@ public class StatueInteract : MonoBehaviour
     private TextMeshProUGUI mainText;
     private bool agreedToWatch = false;
     private bool hasRun = false;
+    private SpriteRenderer statueSprite;
+
 
     void Start()
     {
-        initSequence();
+        InitSequence();
     }
 
     void Update()
@@ -45,7 +49,7 @@ public class StatueInteract : MonoBehaviour
     }
 
 
-    void initSequence()
+    void InitSequence()
     {
         // slow player
         rb = player.GetComponent<Rigidbody2D>();
@@ -60,13 +64,16 @@ public class StatueInteract : MonoBehaviour
         // quiz stuff
         Quiz = screenFader.Qiuz;
         quizMainText = Quiz.GetComponentInChildren<TextMeshProUGUI>(true);
+
+        // what do i look like
+        statueSprite = GetComponent<SpriteRenderer>();
     }
 
     void CorrectAnswerSequence()
     {
         // play some effect
         Debug.Log("PLAYER ANSWERED CORRECLTY!");
-        GameStateManagerScript.Instance.playerAnsweredCorrectly = false;
+        GSM.Instance.playerAnsweredCorrectly = false;
         screenFader.readyForQuiz = false;
         // destroy statue
         Quiz.SetActive(false);
@@ -95,6 +102,11 @@ public class StatueInteract : MonoBehaviour
             // just do StartQuiz once
             hasRun = true;
         }
+        // reset when done w statue
+        if (GSM.Instance.playerAnsweredCorrectly)
+        {
+            hasRun = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -104,6 +116,9 @@ public class StatueInteract : MonoBehaviour
             playerInRange = true;
             LockPlayer();
             cameraFollow.ZoomIn();
+            // set my image as the dialogue UI image
+            Image statue_face = face.GetComponent<Image>();
+            statue_face.sprite = statueSprite.sprite;
             DialogueHolder.SetActive(true);
             IntroSpeech();
             // start dialogue interaction here
@@ -115,7 +130,7 @@ public class StatueInteract : MonoBehaviour
     {
         while (!agreedToWatch)
         {
-            if (Keyboard.current.eKey.isPressed || dialougeHandler.agreedToWatch)
+            if (Keyboard.current.eKey.isPressed || GSM.Instance.agreedToHelp)
             {
                 agreedToWatch = true;
             }

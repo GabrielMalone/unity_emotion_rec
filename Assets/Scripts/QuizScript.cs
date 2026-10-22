@@ -75,8 +75,10 @@ public class QuizScript : MonoBehaviour
         {
             audioSource.PlayOneShot(correctSFX);
             GSM.Instance.playerAnsweredCorrectly = true;
+            // resets needed for next interaction
             GSM.Instance.PickNextEmotion();
             GSM.Instance.SetEmotionVideo();
+            GSM.Instance.agreedToHelp = false;
         }
         // what do when wrong
         {

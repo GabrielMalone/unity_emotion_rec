@@ -78,6 +78,7 @@ public class GameStateManagerScript : MonoBehaviour
     [Header("Question Settings")]
     public int totalNumQuestions;
     public int numQuestionsCompleted;
+    public bool agreedToHelp = false;
     public bool playerControllerDisabled = false;
     public bool playerAnsweredCorrectly = false;
     // --------------------------------------------------------------------------------------------
