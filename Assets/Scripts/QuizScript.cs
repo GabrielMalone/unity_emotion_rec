@@ -104,7 +104,7 @@ public class QuizScript : MonoBehaviour
             GSM.Instance.result.timeCompleted = Time.time;
             // increment questions completed
             GSM.Instance.numQuestionsCompleted++;
-            GSM.Instance.playerAnsweredCorrectly = true;
+      
             quizStarted = false;     
 
             // resets needed for next interaction
@@ -116,6 +116,9 @@ public class QuizScript : MonoBehaviour
             // create new instance of result here. 
             GSM.Instance.results.Add(GSM.Instance.result);
             GSM.Instance.result = new GSM.EmotionResult();
+            // maybe need to place this at end to prevent bug 
+            // where quiz does not go away
+            GSM.Instance.playerAnsweredCorrectly = true;
         }
         // what do when wrong
         else
