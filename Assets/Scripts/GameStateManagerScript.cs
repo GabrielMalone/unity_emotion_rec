@@ -35,6 +35,13 @@ public class GameStateManagerScript : MonoBehaviour
     }
 
     [System.Serializable]
+    public class EmotionGuess
+    {
+        public string emotion;
+        public float time;
+    }
+
+    [System.Serializable]
     public class EmotionResult
     {
         public string playerName;
@@ -47,7 +54,7 @@ public class GameStateManagerScript : MonoBehaviour
         public bool hasText;
         public string video_title;
         public int questionNumber;
-        public List<string> emotionsGuessed;
+        public List<EmotionGuess> emotionsGuessed = new List<EmotionGuess>();
     }
 
     // --------------------------------------------------------------------------------------------
@@ -140,8 +147,8 @@ public class GameStateManagerScript : MonoBehaviour
         );
 
         // unique filename for each participant/session
-        string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-        string fileName = $"{playerName}_emotionResults_{timestamp}.json";
+        // string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        string fileName = $"{playerName}_emotionResults.json";
 
         // save the file
         // C:\Users\<Username>\AppData\LocalLow\<CompanyName>\<ProductName>\emotionResults.json

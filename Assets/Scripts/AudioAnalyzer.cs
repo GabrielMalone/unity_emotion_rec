@@ -258,7 +258,7 @@ public class AudioAnalyzer : MonoBehaviour
         {
             trebleDetected = true;
             lastTrebleTime = Time.time;
-            Debug.Log("Treble detected!!");
+            // Debug.Log("Treble detected!!");
 
         }
         previousTreble = treble;

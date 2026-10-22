@@ -89,6 +89,10 @@ public class QuizScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public void SubmitAnswer(int optionPicked)
     {
+        GSM.EmotionGuess emotionGuess = new GSM.EmotionGuess();
+        emotionGuess.emotion = buttonOptions[optionPicked];
+        emotionGuess.time = Time.time;
+        GSM.Instance.result.emotionsGuessed.Add(emotionGuess);
         // check gameStateManager for current emotion.
         // compare against buttons in this quiz
         if (buttonOptions[optionPicked] == GSM.Instance.currentEmotion)
@@ -101,7 +105,7 @@ public class QuizScript : MonoBehaviour
             // increment questions completed
             GSM.Instance.numQuestionsCompleted++;
             GSM.Instance.playerAnsweredCorrectly = true;
-            quizStarted = false;
+            quizStarted = false;     
 
             // resets needed for next interaction
             GSM.Instance.PickNextEmotion();
@@ -112,11 +116,9 @@ public class QuizScript : MonoBehaviour
             // create new instance of result here. 
             GSM.Instance.results.Add(GSM.Instance.result);
             GSM.Instance.result = new GSM.EmotionResult();
-
-            // test save
-            GSM.Instance.SaveResults();
         }
         // what do when wrong
+        else
         {
             // get random wrong resposne
             textBox.text = 
@@ -125,6 +127,8 @@ public class QuizScript : MonoBehaviour
             // play sound
             audioSource.PlayOneShot(incorrectSFX);
         }
+        // save telemetry to disk
+        GSM.Instance.SaveResults();
     }
 }
     
