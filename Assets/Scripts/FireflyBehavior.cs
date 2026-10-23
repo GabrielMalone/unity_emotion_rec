@@ -2,13 +2,12 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering.Universal;
 using System.Collections.Generic;
-
+// --------------------------------------------------------------------------------------------
 public class FireflyBehavior : MonoBehaviour
 {
     [Header("Firefly Behavior")]
     public float minScale = 0.5f;
     public float maxScale = 1.5f;
-
 
     [Header("Twinkle Settings")]
     public float minAlpha = 0.2f;
@@ -22,26 +21,23 @@ public class FireflyBehavior : MonoBehaviour
     public float maxSpeed = 20f;
     public float minVolume = 0.05f;
     public float maxVolume = 0.10f;
-    private GameObject AudioManager;
-    private AudioAnalyzer audioAnalyzer;
-    private float prevFrequency;
-    private float targetSpeed;
-
     public float frequencySampleInterval = 0.75f;
     public float frequencyChangeForMaxSpeed = 500f;
     public float minFireflySpeed = 1f;
     public float maxFireflySpeed = 20f;
 
     private float frequencySampleTimer;
-
     private GameObject[] fireflyAttractors;
     private NavMeshAgent agent;
     private SpriteRenderer spriteRenderer;
     private Light2D pointLight;
     private Transform fireflyVisual;
-
     private float twinkleOffset;
-
+    private GameObject AudioManager;
+    private AudioAnalyzer audioAnalyzer;
+    private float prevFrequency;
+    private float targetSpeed;
+    // --------------------------------------------------------------------------------------------
     void Start()
     {
         fireflyAttractors = GameObject.FindGameObjectsWithTag("FireflyAttractor");
@@ -63,19 +59,19 @@ public class FireflyBehavior : MonoBehaviour
         prevFrequency = audioAnalyzer.GetDominantFrequency();
         SetRandomSize();
     }
-
+    // --------------------------------------------------------------------------------------------
     void Update()
     {
         Twinkle();
         FollowNearestAttractor();
         AudioFX();
     }
-
+    // --------------------------------------------------------------------------------------------
     void LateUpdate()
     {
         pointLight.transform.position = fireflyVisual.position;
     }
-
+    // --------------------------------------------------------------------------------------------
     void SetRandomSize()
     {
         float randomScale = Random.Range(minScale, maxScale);
@@ -91,7 +87,7 @@ public class FireflyBehavior : MonoBehaviour
             1f
         );
     }
-
+    // --------------------------------------------------------------------------------------------
     void Twinkle()
     {
         float t = (Mathf.Sin(Time.time * twinkleSpeed + twinkleOffset) + 1f) / 2f;
@@ -108,8 +104,7 @@ public class FireflyBehavior : MonoBehaviour
         color.a = Mathf.Lerp(minAlpha, maxAlpha, t);
         spriteRenderer.color = color;
     }
-
-
+    // --------------------------------------------------------------------------------------------
     void FollowNearestAttractor()
     {
         if (fireflyAttractors != null)
@@ -137,7 +132,7 @@ public class FireflyBehavior : MonoBehaviour
             }
         }
     }
-
+    // --------------------------------------------------------------------------------------------
     void AudioFX()
     {
         if (audioAnalyzer == null)
@@ -169,5 +164,5 @@ public class FireflyBehavior : MonoBehaviour
             Time.deltaTime * 2f
         );
     }
-
+    // --------------------------------------------------------------------------------------------
 }

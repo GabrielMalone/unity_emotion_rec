@@ -232,7 +232,7 @@ MonoBehaviour:
   maxAlpha: 1
   minLightIntensity: 0
   maxLightIntensity: 2
-  twinkleSpeed: 25
+  twinkleSpeed: 4
   minSpeed: 1
   maxSpeed: 10
   minVolume: 0.05

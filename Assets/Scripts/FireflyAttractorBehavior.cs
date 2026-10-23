@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
-
+// --------------------------------------------------------------------------------------------
 public class FireflyAttractorBehavior : MonoBehaviour
 {
     [Header("Firefly Attractor Settings")]
@@ -9,10 +9,9 @@ public class FireflyAttractorBehavior : MonoBehaviour
     public NavMeshAgent agent;
 
     private Vector3 destination;
-
     private float timeSinceMove;
     private float maxTravelTime = 5f;
-
+    // --------------------------------------------------------------------------------------------
     void Start()
     {
 
@@ -23,7 +22,7 @@ public class FireflyAttractorBehavior : MonoBehaviour
         //GoToStatue();
         MoveToRandomLocation();
     }
-
+    // --------------------------------------------------------------------------------------------
     void Update()
     {
         // Reached destination
@@ -39,12 +38,12 @@ public class FireflyAttractorBehavior : MonoBehaviour
             MoveToRandomLocation();
         }
     }
-
+    // --------------------------------------------------------------------------------------------
     void GoToStatue()
     {
         agent.SetDestination(firstStatue.position);
     }
-
+    // --------------------------------------------------------------------------------------------
     void MoveToRandomLocation()
     {
         Vector2 rndPosition =

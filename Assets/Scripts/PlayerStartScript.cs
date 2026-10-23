@@ -4,20 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using GSM = GameStateManagerScript;
 
-
-
 public class PlayerStartScript : MonoBehaviour
 {
+    // --------------------------------------------------------------------------------------------
     [Header("Player Setup")]
     public TMP_InputField playerNameInput;
     public Button submitPlayerNameButton;
     private bool playerNameSet = false;
     [Header("Audio Setup")]
     public AudioSource audioSource;
-
-    // Start is called once before 
-    // the first execution of Update
-    //  after the MonoBehaviour is created
+    // --------------------------------------------------------------------------------------------
     void Start()
     {
         playerNameInput.text = "Enter particpant name";
@@ -25,7 +21,7 @@ public class PlayerStartScript : MonoBehaviour
         GSM.Instance.lvl1 = true;
         audioSource.volume = 0;
     }
-
+    // --------------------------------------------------------------------------------------------
     // Update is called once per frame
     void Update()
     {
@@ -35,8 +31,7 @@ public class PlayerStartScript : MonoBehaviour
             StartCoroutine(FadeOut());
         }
     }
-
-
+    // --------------------------------------------------------------------------------------------
     public void SubmitName()
     {
         Debug.Log("Setting Player Name!");
@@ -44,8 +39,7 @@ public class PlayerStartScript : MonoBehaviour
         playerNameSet = true;
         playerNameInput.interactable = false;
     }
-
-
+    // --------------------------------------------------------------------------------------------
     IEnumerator FadeOut()
     {
         Image bg = gameObject.GetComponent<Image>();

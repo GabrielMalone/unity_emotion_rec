@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public Rigidbody2D rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-
+    // --------------------------------------------------------------------------------------------
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -23,12 +23,12 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.identity;
 
     }
-
+    // --------------------------------------------------------------------------------------------
     void FixedUpdate() 
     {
         GamePadControls();
     }
-
+    // --------------------------------------------------------------------------------------------
     // Update is called once per frame
     void Update()
     {
@@ -74,9 +74,7 @@ public class PlayerController : MonoBehaviour
         SpeedCheck(rb);
 
     }
-
-
-
+    // --------------------------------------------------------------------------------------------
     void SpeedCheck(Rigidbody2D rb)
     {
         if (rb.linearVelocity.magnitude > maxPlayerSpeed)
@@ -85,8 +83,7 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = rb.linearVelocity.normalized * maxPlayerSpeed;
         }
     }
-
-
+    // --------------------------------------------------------------------------------------------
     void GamePadControls()
     {
 
@@ -96,10 +93,8 @@ public class PlayerController : MonoBehaviour
             return;
 
         Gamepad gamepad = Gamepad.current;
-
-        // Left stick
+        // left stick
         Vector2 leftStick = gamepad.leftStick.ReadValue();
-
         if (leftStick.x < 0)
         {
             spriteRenderer.flipX = false;
@@ -108,24 +103,19 @@ public class PlayerController : MonoBehaviour
         {
             spriteRenderer.flipX = true;
         }
-
         rb.AddForce(leftStick * thrustForce);
-
-
-        // Face buttons
+        // gace buttons
         if (gamepad.buttonSouth.wasPressedThisFrame)
-            Debug.Log("South button pressed"); // A on Xbox, X on PlayStation
+            Debug.Log("South button pressed"); 
 
         if (gamepad.buttonEast.wasPressedThisFrame)
-            Debug.Log("East button pressed"); // B on Xbox, Circle on PlayStation
-
-        // Bumpers
+            Debug.Log("East button pressed"); 
+        // bumpers
         if (gamepad.leftShoulder.wasPressedThisFrame)
             Debug.Log("Left bumper");
 
         if (gamepad.rightShoulder.wasPressedThisFrame)
             Debug.Log("Right bumper");
-
     }
-
+    // --------------------------------------------------------------------------------------------
 }

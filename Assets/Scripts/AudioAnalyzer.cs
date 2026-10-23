@@ -72,7 +72,7 @@ public class AudioAnalyzer : MonoBehaviour
     [Header("Smoothing")]
     public float colorSpeed = 0.25f;
 
-
+    // --------------------------------------------------------------------------------------------
     void Start()
     {
 
@@ -85,7 +85,7 @@ public class AudioAnalyzer : MonoBehaviour
         spectrum = new float[spectrumSize];
         samples = new float[spectrumSize];
     }
-
+    // --------------------------------------------------------------------------------------------
     void Update()
     {
         AnalyzeAudio();
@@ -94,7 +94,7 @@ public class AudioAnalyzer : MonoBehaviour
         UpdateMovement();
         FrequencyColorChange();
     }
-
+    // --------------------------------------------------------------------------------------------
     void AnalyzeAudio()
     {
         if (audioSource == null)
@@ -148,7 +148,7 @@ public class AudioAnalyzer : MonoBehaviour
         // average, then square root to return us to roughly same scale as before
         volume = Mathf.Sqrt(total / samples.Length);
     }
-
+    // --------------------------------------------------------------------------------------------
     float GetFrequencyRange(float minFrequency, float maxFrequency)
     {
         // how many measurements per second (e.g. 48000)
@@ -198,7 +198,7 @@ public class AudioAnalyzer : MonoBehaviour
         // return the average value
         return total / count;
     }
-
+    // --------------------------------------------------------------------------------------------
     public float GetDominantFrequency()
     {
         int strongestIndex = 0;
@@ -225,7 +225,7 @@ public class AudioAnalyzer : MonoBehaviour
 
         return frequency;
     }
-
+    // --------------------------------------------------------------------------------------------
     void DetectBeat()
     {
         // How much did the bass increase since last frame?
@@ -247,7 +247,7 @@ public class AudioAnalyzer : MonoBehaviour
         // Save current bass for comparison next frame
         previousBass = bass;
     }
-
+    // --------------------------------------------------------------------------------------------
     void DetectTreble()
     {
         trebleIncrease = treble - previousTreble;
@@ -263,8 +263,7 @@ public class AudioAnalyzer : MonoBehaviour
         }
         previousTreble = treble;
     }
-
-
+    // --------------------------------------------------------------------------------------------
     void UpdateMovement()
     {
         float volumeAmount = Mathf.InverseLerp(
@@ -294,7 +293,7 @@ public class AudioAnalyzer : MonoBehaviour
         targetSpeed *= beatPulse;
 
     }
-
+    // --------------------------------------------------------------------------------------------
     void FrequencyColorChange()
     {
         // -------------------------------
@@ -332,6 +331,5 @@ public class AudioAnalyzer : MonoBehaviour
         );
 
     }
-
-
+    // --------------------------------------------------------------------------------------------
 }

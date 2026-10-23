@@ -21,7 +21,7 @@ public class ScreenFader : MonoBehaviour
     public GameObject Qiuz;
     private PlayerController playerController;
     public bool readyForQuiz = false;
-
+    // --------------------------------------------------------------------------------------------
     void Start()
     {   
         // make sure everything is visible for video playback
@@ -41,7 +41,7 @@ public class ScreenFader : MonoBehaviour
         videoTest.loopPointReached += OnVideoFinished;
 
     }
-
+    // --------------------------------------------------------------------------------------------
     public void OnVideoFinished(VideoPlayer vp)
     {
         Debug.Log("Video finished playing!");
@@ -49,22 +49,22 @@ public class ScreenFader : MonoBehaviour
         FadeFromBlack();
         readyForQuiz = true;
     }
-
+    // --------------------------------------------------------------------------------------------
     void OnDestroy()
     {
         videoTest.loopPointReached -= OnVideoFinished;
     }
-
+    // --------------------------------------------------------------------------------------------
     public void FadeToBlack()
     {
         StartCoroutine(FadeRoutine(0f, 1f));
     }
-
+    // --------------------------------------------------------------------------------------------
     public void FadeFromBlack()
     {
         StartCoroutine(FadeRoutine(1f, 0f));
     }
-
+    // --------------------------------------------------------------------------------------------
     private IEnumerator FadeRoutine(float startAlpha, float targetAlpha)
     {
         float elapsedTime = 0f;
@@ -107,28 +107,32 @@ public class ScreenFader : MonoBehaviour
         if (targetAlpha == 1f)
         {
             // if faded to black then play movie
-
-            // this is where I need to determine 
-            // video audio or text
-            if (GSM.Instance.numQuestionsCompleted % 3 == 0)
-            {
-                videoImage.gameObject.SetActive(true);
-                videoImage.transform.SetAsLastSibling();
-                videoTest.Play();
-            }
-            if (GSM.Instance.numQuestionsCompleted % 3 == 1)
-            {
-                videoImage.gameObject.SetActive(true);
-                videoImage.transform.SetAsLastSibling();
-                videoTest.Play();
-            }
-            if (GSM.Instance.numQuestionsCompleted % 3 == 2)
-            {
-                videoImage.gameObject.SetActive(true);
-                videoImage.transform.SetAsLastSibling();
-                videoTest.Play();
-            }
-
+            PlayMediaVariation();
         }        
     }
+    // --------------------------------------------------------------------------------------------
+    public void PlayMediaVariation()
+    {
+        // this is where I need to determine 
+        // video audio or text
+        if (GSM.Instance.numQuestionsCompleted % 3 == 0)
+        {
+            videoImage.gameObject.SetActive(true);
+            videoImage.transform.SetAsLastSibling();
+            videoTest.Play();
+        }
+        if (GSM.Instance.numQuestionsCompleted % 3 == 1)
+        {
+            videoImage.gameObject.SetActive(true);
+            videoImage.transform.SetAsLastSibling();
+            videoTest.Play();
+        }
+        if (GSM.Instance.numQuestionsCompleted % 3 == 2)
+        {
+            videoImage.gameObject.SetActive(true);
+            videoImage.transform.SetAsLastSibling();
+            videoTest.Play();
+        }
+    }
+    // --------------------------------------------------------------------------------------------
 }

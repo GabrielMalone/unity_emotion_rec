@@ -105,7 +105,6 @@ public class StatueInteract : MonoBehaviour
         // reset when done w statue
         if (GSM.Instance.playerAnsweredCorrectly)
         {
-            // maybe do all telemetry here?
             hasRun = false;
         }
     }

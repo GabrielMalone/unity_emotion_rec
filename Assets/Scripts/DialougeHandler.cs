@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
 using GSM = GameStateManagerScript;
-
+// --------------------------------------------------------------------------------------------
 public class DialougeHandler : MonoBehaviour
 {
 
@@ -22,7 +22,7 @@ public class DialougeHandler : MonoBehaviour
     int correctOption;
     bool isQuestioning;
     float charactersSpoken;
-
+    // --------------------------------------------------------------------------------------------
     public void StartUpDialouge(DialougeObject newDialouge)
     {
         if (dialouge == null)
@@ -33,12 +33,12 @@ public class DialougeHandler : MonoBehaviour
             nextText(0);
         }
     }
-
+    // --------------------------------------------------------------------------------------------
     void Start()
     {
 
     }
-
+    // --------------------------------------------------------------------------------------------
     // Update is called once per frame
     void Update()
     {
@@ -61,7 +61,7 @@ public class DialougeHandler : MonoBehaviour
 
         isSpeaking = textBox.maxVisibleCharacters < textBox.text.Length; //the statue is speaking if it is currently writting text to the screen
     }
-
+    // --------------------------------------------------------------------------------------------
     void nextText(int index, bool correct = true)
     {
         if (dialouge.Dialouge.Length <= index)
@@ -70,16 +70,17 @@ public class DialougeHandler : MonoBehaviour
             return;
         }
     }
-
+    // --------------------------------------------------------------------------------------------
     public void SubmitAnswer(int optionPicked)
     {
         if (optionPicked == 0){
             GSM.Instance.agreedToHelp = true;
         }
     }
-
+    // --------------------------------------------------------------------------------------------
     public void end()
     {
         dialouge = null;
     }
+    // --------------------------------------------------------------------------------------------
 }

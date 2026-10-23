@@ -35,9 +35,9 @@ public class QuizScript : MonoBehaviour
     void Update()
     {
         ScrollText();
+        
         // this is only happening 
         // once per game
-
         // check for null on associate statue as well
         // so quiz does not restart after quiz end
         if (!quizStarted && myStatue)
