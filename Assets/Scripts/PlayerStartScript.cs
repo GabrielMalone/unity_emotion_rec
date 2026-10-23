@@ -13,6 +13,13 @@ public class PlayerStartScript : MonoBehaviour
     private bool playerNameSet = false;
     [Header("Audio Setup")]
     public AudioSource audioSource;
+
+    [Header("GameStart FX")]
+    public GameObject Grid;
+    public GameObject Trees;
+    public GameObject player;
+    public GameObject statues;
+    public GameObject sunglight;
     // --------------------------------------------------------------------------------------------
     void Start()
     {
@@ -38,6 +45,12 @@ public class PlayerStartScript : MonoBehaviour
         GSM.Instance.playerName = playerNameInput.text;
         playerNameSet = true;
         playerNameInput.interactable = false;
+        // visual stuff
+        Grid.SetActive(true);
+        Trees.SetActive(true);
+        player.SetActive(true);
+        statues.SetActive(true);
+        sunglight.SetActive(true);
     }
     // --------------------------------------------------------------------------------------------
     IEnumerator FadeOut()
