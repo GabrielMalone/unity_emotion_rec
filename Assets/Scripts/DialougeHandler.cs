@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 using GSM = GameStateManagerScript;
 // --------------------------------------------------------------------------------------------
 public class DialougeHandler : MonoBehaviour
@@ -17,6 +18,7 @@ public class DialougeHandler : MonoBehaviour
     public Transform options;
     public TextMeshProUGUI[] answers;
     public Animator animator;
+    public GameObject acceptButton;
     bool isSpeaking; //is dialouge currently being written on screen
     int dialougeIndex; //the place you are in the dialouge
     int correctOption;
@@ -36,12 +38,18 @@ public class DialougeHandler : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     void Start()
     {
-
+        
+    }
+    // --------------------------------------------------------------------------------------------
+    void OnEnable()
+    {
+        EventSystem.current.SetSelectedGameObject(acceptButton);
     }
     // --------------------------------------------------------------------------------------------
     // Update is called once per frame
     void Update()
     {
+        // 
         //advancing the text per character
         if (isSpeaking) charactersSpoken += Time.deltaTime * textSpeed;
         if (textBox == null) return;

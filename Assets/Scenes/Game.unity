@@ -8456,6 +8456,7 @@ MonoBehaviour:
   interactionRadius: 3
   GameStateManger: {fileID: 1577304796}
   face: {fileID: 24953511}
+  hasRun: 0
 --- !u!61 &482407420
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -164639,6 +164640,7 @@ MonoBehaviour:
   interactionRadius: 3
   GameStateManger: {fileID: 1577304796}
   face: {fileID: 24953511}
+  hasRun: 0
 --- !u!61 &1175923252
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174734,6 +174736,7 @@ MonoBehaviour:
   interactionRadius: 3
   GameStateManger: {fileID: 1577304796}
   face: {fileID: 24953511}
+  hasRun: 0
 --- !u!61 &1602290395
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -183505,6 +183508,7 @@ MonoBehaviour:
   interactionRadius: 3
   GameStateManger: {fileID: 1577304796}
   face: {fileID: 24953511}
+  hasRun: 0
 --- !u!61 &2097300443
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -91,11 +91,7 @@ public class StatueInteract : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public void StartQuiz()
     {
-        if (GSM.Instance.numQuestionsCompleted == 3)
-        {
-            Debug.Log($"on final question: ready for quiz? {screenFader.readyForQuiz} | hasrun? {hasRun}");
-        }
-        if (screenFader.readyForQuiz && !hasRun)
+        if (screenFader.readyForQuiz && !hasRun && GSM.Instance.lastStatueInteractedWith == gameObject)
         {
             Debug.Log("starting quiz!");
             Quiz.SetActive(true);
@@ -106,11 +102,6 @@ public class StatueInteract : MonoBehaviour
                 $"{GSM.Instance.playerName}, which emotion do you think they were feeling?";
             // just do StartQuiz once
             hasRun = true;
-        }
-        // reset when done w statue
-        if (GSM.Instance.playerAnsweredCorrectly)
-        {
-            hasRun = false;
         }
     }
     // --------------------------------------------------------------------------------------------

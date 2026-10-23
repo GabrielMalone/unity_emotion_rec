@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using GSM = GameStateManagerScript;
@@ -68,6 +69,8 @@ public class QuizScript : MonoBehaviour
         HashSet<string> seen = new HashSet<string>();
         int option = 0;
 
+        bool firstButtonSet = false;
+
         foreach (GameObject emotionButton in emotionOptions)
         {
             TextMeshProUGUI TMP = 
@@ -87,6 +90,13 @@ public class QuizScript : MonoBehaviour
                     validCandidateFound = true;
                 }
             }
+            // autoselect first button for gamepad
+            if (!firstButtonSet)
+            {
+                EventSystem.current.SetSelectedGameObject(emotionButton);
+                firstButtonSet = true;
+            }
+
             option ++;
         }
     }
