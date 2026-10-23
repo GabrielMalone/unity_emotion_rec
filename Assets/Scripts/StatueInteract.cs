@@ -93,6 +93,7 @@ public class StatueInteract : MonoBehaviour
     {
         if (screenFader.readyForQuiz && !hasRun)
         {
+            Debug.Log("starting quiz!");
             Quiz.SetActive(true);
             quizScript.myStatue = GSM.Instance.lastStatueInteractedWith;
             // so quiz does not endlessless repeat after quiz end
