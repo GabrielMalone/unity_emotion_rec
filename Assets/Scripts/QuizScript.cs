@@ -23,11 +23,12 @@ public class QuizScript : MonoBehaviour
     public AudioClip correctSFX;
     private bool quizStarted = false;
     [Header("Associated Statue")]
-    public GameObject myStuate;
+    public GameObject myStatue;
     // --------------------------------------------------------------------------------------------
     void Start()
     {
-
+        Image statue_face = face.GetComponent<Image>();
+        statue_face.sprite = myStatue.GetComponent<SpriteRenderer>().sprite;
     }
     // --------------------------------------------------------------------------------------------
     // Update is called once per frame
@@ -39,7 +40,7 @@ public class QuizScript : MonoBehaviour
 
         // check for null on associate statue as well
         // so quiz does not restart after quiz end
-        if (!quizStarted && myStuate)
+        if (!quizStarted && myStatue)
         {
             quizStarted = true;
             SetEmotionButtons();

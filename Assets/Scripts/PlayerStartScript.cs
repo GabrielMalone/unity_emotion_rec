@@ -31,6 +31,7 @@ public class PlayerStartScript : MonoBehaviour
     {
         if (playerNameSet)
         {
+            playerNameSet = false;
             StartCoroutine(FadeOut());
         }
     }
@@ -39,7 +40,9 @@ public class PlayerStartScript : MonoBehaviour
     public void SubmitName()
     {
         Debug.Log("Setting Player Name!");
+        GSM.Instance.playerName = playerNameInput.text;
         playerNameSet = true;
+        playerNameInput.interactable = false;
     }
 
 
@@ -75,7 +78,6 @@ public class PlayerStartScript : MonoBehaviour
             );
             yield return null;
         }
-        GSM.Instance.playerName = playerNameInput.text;
         GSM.Instance.playerControllerDisabled = false;
         gameObject.SetActive(false);
         GSM.Instance.timeGameStarted = Time.time;

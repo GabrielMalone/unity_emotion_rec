@@ -66,6 +66,8 @@ public class GameStateManagerScript : MonoBehaviour
     [Header("Game State Settings")]
     public List<EmotionResult> results = new List<EmotionResult>();
 
+    public GameObject lastStatueInteractedWith;
+
     public int happyVideoIndex;
     public int sadVideoIndex;
     public int angryVideoIndex;

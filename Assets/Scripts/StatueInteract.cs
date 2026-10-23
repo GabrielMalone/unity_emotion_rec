@@ -38,15 +38,12 @@ public class StatueInteract : MonoBehaviour
     void Update()
     {
         StartQuiz();
-        if (GSM.Instance.playerAnsweredCorrectly && playerInRange)
+        if (GSM.Instance.playerAnsweredCorrectly && 
+            GSM.Instance.lastStatueInteractedWith == gameObject
+        )
         {
             CorrectAnswerSequence();
         }
-    }
-    // --------------------------------------------------------------------------------------------
-    void FixedUpdate()
-    {
-
     }
     // --------------------------------------------------------------------------------------------
     void InitSequence()
@@ -78,9 +75,9 @@ public class StatueInteract : MonoBehaviour
         Quiz.SetActive(false);
         // let them go
         UnlockPlayer();
-        Destroy(gameObject);
         // reset quiz status
         GSM.Instance.playerAnsweredCorrectly = false;
+        Destroy(gameObject);
     }
     // --------------------------------------------------------------------------------------------
     void IntroSpeech()
@@ -97,9 +94,9 @@ public class StatueInteract : MonoBehaviour
         if (screenFader.readyForQuiz && !hasRun)
         {
             Quiz.SetActive(true);
+            quizScript.myStatue = GSM.Instance.lastStatueInteractedWith;
             // so quiz does not endlessless repeat after quiz end
             // we can check if the statue is gone or not
-            quizScript.myStuate = gameObject;
             quizMainText.text = 
                 $"{GSM.Instance.playerName}, which emotion do you think they were feeling?";
             // just do StartQuiz once
@@ -117,6 +114,7 @@ public class StatueInteract : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            GSM.Instance.lastStatueInteractedWith = gameObject;
             playerInRange = true;
             LockPlayer();
             cameraFollow.ZoomIn();
@@ -167,9 +165,7 @@ public class StatueInteract : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     void UnlockPlayer()
     {
-        if (!playerInRange) return;
         GSM.Instance.playerControllerDisabled = false;
-
         if (rb != null)
         {
             if (Time.time - timeLocked > timeLockDelay)

@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - FireflyAttractor
   - Statue
+  - Firefly
   layers:
   - Default
   - TransparentFX

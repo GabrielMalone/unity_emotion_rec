@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: -1068304000628640907}
   m_Layer: 8
   m_Name: Firefly
-  m_TagString: Untagged
+  m_TagString: Firefly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,8 +231,8 @@ MonoBehaviour:
   minAlpha: 0
   maxAlpha: 1
   minLightIntensity: 0
-  maxLightIntensity: 1
-  twinkleSpeed: 2.5
+  maxLightIntensity: 2
+  twinkleSpeed: 25
   minSpeed: 1
   maxSpeed: 10
   minVolume: 0.05
