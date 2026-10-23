@@ -27,7 +27,7 @@ public class StatueInteract : MonoBehaviour
     private DialougeHandler dialougeHandler;
     private TextMeshProUGUI mainText;
     private bool agreedToWatch = false;
-    private bool hasRun = false;
+    public bool hasRun = false;
     private SpriteRenderer statueSprite;
     // --------------------------------------------------------------------------------------------
     void Start()
@@ -91,6 +91,10 @@ public class StatueInteract : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public void StartQuiz()
     {
+        if (GSM.Instance.numQuestionsCompleted == 3)
+        {
+            Debug.Log($"on final question: ready for quiz? {screenFader.readyForQuiz} | hasrun? {hasRun}");
+        }
         if (screenFader.readyForQuiz && !hasRun)
         {
             Debug.Log("starting quiz!");

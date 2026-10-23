@@ -103,6 +103,10 @@ public class QuizScript : MonoBehaviour
         {
             audioSource.PlayOneShot(correctSFX);
 
+            // bug where quiz doesn't show up sometimes after video
+            // so maybe statue is destroyed before this is set?
+            // myStatue.GetComponent<StatueInteract>().hasRun = false;
+
             // telemetry data
             GSM.Instance.result.playerName = GSM.Instance.playerName;
             GSM.Instance.result.timeGameStarted = GSM.Instance.timeGameStarted;

@@ -49,6 +49,7 @@ public class PlayerStartScript : MonoBehaviour
         Grid.SetActive(true);
         Trees.SetActive(true);
         player.SetActive(true);
+        // why does this cause a bug !?
         statues.SetActive(true);
         sunglight.SetActive(true);
     }

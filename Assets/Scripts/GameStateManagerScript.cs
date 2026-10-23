@@ -193,82 +193,103 @@ public class GameStateManagerScript : MonoBehaviour
     {
 
         ClearPreviousVideoTexture();
+        result.isVideo = true;
+        switch (currentEmotion)
+        {
+            case "HAPPY":
+                videoPlayer.clip = happyVideos[happyVideoIndex++];
+                result.video_title = videoPlayer.clip.name;
+                return;
+            case "SAD":
+                videoPlayer.clip = sadVideos[sadVideoIndex++];
+                result.video_title = videoPlayer.clip.name;
+                return;
+            case "ANGRY":
+                videoPlayer.clip = angryVideos[angryVideoIndex++];
+                result.video_title = videoPlayer.clip.name;
+                return;
+            case "AFRAID":
+                videoPlayer.clip = afraidVideos[afraidVideoIndex++];
+                result.video_title = videoPlayer.clip.name;
+                return;
+            default: return;
+        }
 
-        // video audio text
-        if (numQuestionsCompleted % 3 == 0)
-        {
-            result.isVideo = true;
-            switch (currentEmotion)
-            {
-                case "HAPPY": 
-                    videoPlayer.clip = happyVideos[happyVideoIndex++]; 
-                    result.video_title = videoPlayer.clip.name;
-                    return;
-                case "SAD": 
-                    videoPlayer.clip = sadVideos[sadVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
-                    return;
-                case "ANGRY": 
-                    videoPlayer.clip = angryVideos[angryVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
-                    return;
-                case "AFRAID": 
-                    videoPlayer.clip = afraidVideos[afraidVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
-                    return;
-                default: return;
-            }
-        }
-        // audio and text
-        if (numQuestionsCompleted % 3 == 1)
-        {
-            result.isAudio = true;
-            switch (currentEmotion)
-            {
-                case "HAPPY":
-                    videoPlayer.clip = happyVideos[happyVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
-                    return;
-                case "SAD":
-                    videoPlayer.clip = sadVideos[sadVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
-                    return;
-                case "ANGRY":
-                    videoPlayer.clip = angryVideos[angryVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
-                    return;
-                case "AFRAID":
-                    videoPlayer.clip = afraidVideos[afraidVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
-                    return;
-                default: return;
-            }
-        }
-        // text only
-        if (numQuestionsCompleted % 3 == 2)
-        {
-            result.isText = true;
-            switch (currentEmotion)
-            {
-                case "HAPPY":
-                    videoPlayer.clip = happyVideos[happyVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
-                    return;
-                case "SAD":
-                    videoPlayer.clip = sadVideos[sadVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
-                    return;
-                case "ANGRY":
-                    videoPlayer.clip = angryVideos[angryVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
-                    return;
-                case "AFRAID":
-                    videoPlayer.clip = afraidVideos[afraidVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
-                    return;
-                default: return;
-            }
-        }
+        // // video audio text
+        // if (numQuestionsCompleted % 3 == 0)
+        // {
+        //     result.isVideo = true;
+        //     switch (currentEmotion)
+        //     {
+        //         case "HAPPY": 
+        //             videoPlayer.clip = happyVideos[happyVideoIndex++]; 
+        //             result.video_title = videoPlayer.clip.name;
+        //             return;
+        //         case "SAD": 
+        //             videoPlayer.clip = sadVideos[sadVideoIndex++];
+        //             result.video_title = videoPlayer.clip.name;
+        //             return;
+        //         case "ANGRY": 
+        //             videoPlayer.clip = angryVideos[angryVideoIndex++];
+        //             result.video_title = videoPlayer.clip.name;
+        //             return;
+        //         case "AFRAID": 
+        //             videoPlayer.clip = afraidVideos[afraidVideoIndex++];
+        //             result.video_title = videoPlayer.clip.name;
+        //             return;
+        //         default: return;
+        //     }
+        // }
+        // // audio and text
+        // if (numQuestionsCompleted % 3 == 1)
+        // {
+        //     result.isAudio = true;
+        //     switch (currentEmotion)
+        //     {
+        //         case "HAPPY":
+        //             videoPlayer.clip = happyVideos[happyVideoIndex++];
+        //             result.video_title = videoPlayer.clip.name;
+        //             return;
+        //         case "SAD":
+        //             videoPlayer.clip = sadVideos[sadVideoIndex++];
+        //             result.video_title = videoPlayer.clip.name;
+        //             return;
+        //         case "ANGRY":
+        //             videoPlayer.clip = angryVideos[angryVideoIndex++];
+        //             result.video_title = videoPlayer.clip.name;
+        //             return;
+        //         case "AFRAID":
+        //             videoPlayer.clip = afraidVideos[afraidVideoIndex++];
+        //             result.video_title = videoPlayer.clip.name;
+        //             return;
+        //         default: return;
+        //     }
+        // }
+        // // text only
+        // if (numQuestionsCompleted % 3 == 2)
+        // {
+        //     result.isText = true;
+        //     switch (currentEmotion)
+        //     {
+        //         case "HAPPY":
+        //             videoPlayer.clip = happyVideos[happyVideoIndex++];
+        //             result.video_title = videoPlayer.clip.name;
+        //             return;
+        //         case "SAD":
+        //             videoPlayer.clip = sadVideos[sadVideoIndex++];
+        //             result.video_title = videoPlayer.clip.name;
+        //             return;
+        //         case "ANGRY":
+        //             videoPlayer.clip = angryVideos[angryVideoIndex++];
+        //             result.video_title = videoPlayer.clip.name;
+        //             return;
+        //         case "AFRAID":
+        //             videoPlayer.clip = afraidVideos[afraidVideoIndex++];
+        //             result.video_title = videoPlayer.clip.name;
+        //             return;
+        //         default: return;
+        //     }
+        // }
     }
 
 
