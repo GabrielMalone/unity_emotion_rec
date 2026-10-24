@@ -93,7 +93,7 @@ public class QuizScript : MonoBehaviour
             // autoselect first button for gamepad
             if (!firstButtonSet)
             {
-                EventSystem.current.SetSelectedGameObject(emotionButton);
+                //EventSystem.current.SetSelectedGameObject(emotionButton);
                 firstButtonSet = true;
             }
 

@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering.Universal;
-using System.Collections.Generic;
 // --------------------------------------------------------------------------------------------
 public class FireflyBehavior : MonoBehaviour
 {
     [Header("Firefly Behavior")]
     public float minScale = 0.5f;
     public float maxScale = 1.5f;
+    private GameObject exit;
 
     [Header("Twinkle Settings")]
     public float minAlpha = 0.2f;
@@ -42,6 +42,8 @@ public class FireflyBehavior : MonoBehaviour
     {
         fireflyAttractors = GameObject.FindGameObjectsWithTag("FireflyAttractor");
 
+        exit = GameObject.FindGameObjectWithTag("exit");
+
         agent = GetComponentInChildren<NavMeshAgent>();
 
         agent.updateRotation = false;
@@ -58,6 +60,7 @@ public class FireflyBehavior : MonoBehaviour
         audioAnalyzer = AudioManager.GetComponent<AudioAnalyzer>();
         prevFrequency = audioAnalyzer.GetDominantFrequency();
         SetRandomSize();
+
     }
     // --------------------------------------------------------------------------------------------
     void Update()
@@ -104,6 +107,7 @@ public class FireflyBehavior : MonoBehaviour
         color.a = Mathf.Lerp(minAlpha, maxAlpha, t);
         spriteRenderer.color = color;
     }
+
     // --------------------------------------------------------------------------------------------
     void FollowNearestAttractor()
     {

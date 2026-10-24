@@ -43,7 +43,7 @@ public class DialougeHandler : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     void OnEnable()
     {
-        EventSystem.current.SetSelectedGameObject(acceptButton);
+        //EventSystem.current.SetSelectedGameObject(acceptButton);
     }
     // --------------------------------------------------------------------------------------------
     // Update is called once per frame

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using GSM = GameStateManagerScript;
 // --------------------------------------------------------------------------------------------
 public class FireflyAttractorBehavior : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class FireflyAttractorBehavior : MonoBehaviour
     public CircleCollider2D environmentArea;
     public Transform firstStatue;
     public NavMeshAgent agent;
+
+    public GameObject exit;
+    private bool levelOver = false;
 
     private Vector3 destination;
     private float timeSinceMove;
@@ -33,10 +37,17 @@ public class FireflyAttractorBehavior : MonoBehaviour
         }
 
         // Something prevented us from reaching it — abandon it
-        else if (Time.time - timeSinceMove > maxTravelTime)
+        else if (Time.time - timeSinceMove > maxTravelTime && !levelOver)
         {
             MoveToRandomLocation();
         }
+
+        if (GSM.Instance.lvl1 &&GSM.Instance.numQuestionsCompleted == GSM.Instance.numStatuesInLvl_1)
+        {
+            levelOver = true;
+            GoToExitOnFinishLevel();
+        }
+
     }
     // --------------------------------------------------------------------------------------------
     void GoToStatue()
@@ -55,4 +66,10 @@ public class FireflyAttractorBehavior : MonoBehaviour
 
         timeSinceMove = Time.time;
     }
+    // --------------------------------------------------------------------------------------------
+    void GoToExitOnFinishLevel()
+    {
+        agent.SetDestination(exit.transform.position);         
+    }
+    // --------------------------------------------------------------------------------------------
 }

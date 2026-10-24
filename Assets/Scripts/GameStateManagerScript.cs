@@ -2,10 +2,32 @@ using UnityEngine;
 using UnityEngine.Video;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor.Rendering;
 
 public class GameStateManagerScript : MonoBehaviour
 {
+    //--------------------------------------------------------------------------------------------
+
+    // TO DO for Wednesday --> 12-4:30
+    // ____________________________________________________________
+    // --> tutorial area
+    // --> don't randomize the emotions they see
+    // --> set up the still images form the NIH images
+    // --> get elliot to set up the audio
+    // --> set up ability to replay audio and video
+    // --> make it obvious that the exit is needed to go through
+    // --> how many statues remain 
+    // --> how long faces should be up 3-5 sec ???
+    // --> loop music!
+    // --> key log every button 
+    //  ____________________________________________________________
+    // --> play video 
+    // --> 5 options (1 being replay) 
+    // --> play again if clicked
+    // --> 4 options 
+    // --> but only one guess
+    // --> smoke and pop / create confetti 
+    // --> departing message for right and wrong (with explicitly stating correct answer)
+    // ____________________________________________________________
     // --------------------------------------------------------------------------------------------
     // SINGLETON (single instance of class / global access)
     // --------------------------------------------------------------------------------------------
@@ -151,7 +173,7 @@ public class GameStateManagerScript : MonoBehaviour
         PickNextEmotion();
         SetEmotionMedia();
     }
-
+    // --------------------------------------------------------------------------------------------
     void Update()
     {
 
@@ -280,5 +302,5 @@ public class GameStateManagerScript : MonoBehaviour
         GL.Clear(true, true, Color.black);
         RenderTexture.active = previous;
     }
-
-}
+    // --------------------------------------------------------------------------------------------
+} 

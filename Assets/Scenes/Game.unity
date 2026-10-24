@@ -6681,6 +6681,7 @@ MonoBehaviour:
   answers:
   - {fileID: 1451664724}
   animator: {fileID: 258199952}
+  acceptButton: {fileID: 1149230326}
 --- !u!95 &258199952
 Animator:
   serializedVersion: 7
@@ -6971,6 +6972,7 @@ Transform:
   - {fileID: 1401419109}
   - {fileID: 1542876287}
   - {fileID: 1453551278}
+  - {fileID: 1366536943}
   m_Father: {fileID: 1582369640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &360768014
@@ -9114,6 +9116,7 @@ MonoBehaviour:
   environmentArea: {fileID: 1453551279}
   firstStatue: {fileID: 2097300441}
   agent: {fileID: 549469229}
+  exit: {fileID: 1366536942}
 --- !u!58 &549469231
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9322,7 +9325,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 2
-  m_AspectRatio: 5
+  m_AspectRatio: 1
   m_DataSource: 0
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
@@ -169973,6 +169976,7 @@ MonoBehaviour:
   environmentArea: {fileID: 1453551279}
   firstStatue: {fileID: 2097300441}
   agent: {fileID: 1268354510}
+  exit: {fileID: 1366536942}
 --- !u!58 &1268354512
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -170843,6 +170847,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &1366536942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1366536943}
+  m_Layer: 0
+  m_Name: exit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1366536943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366536942}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.32, y: -15.85, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 316974718}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1381216019
 GameObject:
   m_ObjectHideFlags: 0
@@ -171172,6 +171207,7 @@ MonoBehaviour:
   environmentArea: {fileID: 1453551279}
   firstStatue: {fileID: 2097300441}
   agent: {fileID: 1401419110}
+  exit: {fileID: 1366536942}
 --- !u!58 &1401419112
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -173400,6 +173436,7 @@ MonoBehaviour:
   environmentArea: {fileID: 1453551279}
   firstStatue: {fileID: 2097300441}
   agent: {fileID: 1542876288}
+  exit: {fileID: 1366536942}
 --- !u!58 &1542876290
 CircleCollider2D:
   m_ObjectHideFlags: 0
