@@ -85,8 +85,17 @@ public class ScreenFader : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     private IEnumerator FadeRoutine(float startAlpha, float targetAlpha)
     {
+
+        Qiuz.SetActive(false); 
+
         float elapsedTime = 0f;
         Color color = fadeImage.color;
+
+        // replay selected
+        if (targetAlpha == 0f)
+        {
+            Qiuz.SetActive(true);
+        }
 
         // remove image media from UI if used
         if (targetAlpha == 0f && stillImage.gameObject.activeSelf)

@@ -81,6 +81,7 @@ public class GameStateManagerScript : MonoBehaviour
         public string audio_title;
         public string still_image_title;
         public int questionNumber;
+        public bool replayUsed = false;
         public List<EmotionGuess> emotionsGuessed = new List<EmotionGuess>();
     }
     // --------------------------------------------------------------------------------------------
@@ -150,6 +151,10 @@ public class GameStateManagerScript : MonoBehaviour
     public VideoPlayer videoPlayer;
     public Image still_image_holder;
     public AudioSource emotionAudioPlayer;
+
+    public VideoClip lastVideoPlayed;
+    public AudioClip lastAudioPlayed;
+    public Image lastImagePlayed;
     // --------------------------------------------------------------------------------------------
     // QUESTION SETTINGS
     // --------------------------------------------------------------------------------------------
@@ -161,6 +166,7 @@ public class GameStateManagerScript : MonoBehaviour
     public bool playerAnsweredCorrectly = false;
     public float timeGameStarted;
     public float timeImagesDisplayed = 3f;
+    public bool replaySelected = false;
     // --------------------------------------------------------------------------------------------
     public string[] incorrectResponses = {
             "Not quite! Try again!",
@@ -237,19 +243,23 @@ public class GameStateManagerScript : MonoBehaviour
             {
                 case "HAPPY": 
                     videoPlayer.clip = happyVideos[happyVideoIndex++]; 
+                    lastVideoPlayed = videoPlayer.clip;
                     result.video_title = videoPlayer.clip.name;
                     return;
                 case "SAD": 
                     videoPlayer.clip = sadVideos[sadVideoIndex++];
                     result.video_title = videoPlayer.clip.name;
+                    lastVideoPlayed = videoPlayer.clip;
                     return;
                 case "ANGRY": 
                     videoPlayer.clip = angryVideos[angryVideoIndex++];
                     result.video_title = videoPlayer.clip.name;
+                    lastVideoPlayed = videoPlayer.clip;
                     return;
                 case "AFRAID": 
                     videoPlayer.clip = afraidVideos[afraidVideoIndex++];
                     result.video_title = videoPlayer.clip.name;
+                    lastVideoPlayed = videoPlayer.clip;
                     return;
                 default: return;
             }
@@ -263,18 +273,22 @@ public class GameStateManagerScript : MonoBehaviour
                 case "HAPPY":
                     emotionAudioPlayer.clip = happyAudios[happyAudioIndex++];
                     result.audio_title = videoPlayer.clip.name;
+                    lastAudioPlayed = emotionAudioPlayer.clip;
                     return;
                 case "SAD":
                     emotionAudioPlayer.clip = sadAudios[sadAudioIndex++];
                     result.audio_title = videoPlayer.clip.name;
+                    lastAudioPlayed = emotionAudioPlayer.clip;
                     return;
                 case "ANGRY":
                     emotionAudioPlayer.clip = angryAudios[angryAudioIndex++];
                     result.audio_title = videoPlayer.clip.name;
+                    lastAudioPlayed = emotionAudioPlayer.clip;
                     return;
                 case "AFRAID":
                     emotionAudioPlayer.clip = afraidAudios[afraidAudioIndex++];
                     result.audio_title = videoPlayer.clip.name;
+                    lastAudioPlayed = emotionAudioPlayer.clip;
                     return;
                 default: return;
             }
@@ -289,18 +303,22 @@ public class GameStateManagerScript : MonoBehaviour
                 case "HAPPY":
                     still_image_holder.sprite = happyImages[happyImageIndex++];
                     result.still_image_title = still_image_holder.sprite.name;
+                    lastImagePlayed.sprite = still_image_holder.sprite;
                     return;
                 case "SAD":
                     still_image_holder.sprite = sadImages[sadImageIndex++];
                     result.still_image_title = still_image_holder.sprite.name;
+                    lastImagePlayed.sprite = still_image_holder.sprite;
                     return;
                 case "ANGRY":
                     still_image_holder.sprite = angryImages[angryImageIndex++];
                     result.still_image_title = still_image_holder.sprite.name;
+                    lastImagePlayed.sprite = still_image_holder.sprite;
                     return;
                 case "AFRAID":
                     still_image_holder.sprite = afraidImages[afraidImageIndex++];
                     result.still_image_title = still_image_holder.sprite.name;
+                    lastImagePlayed.sprite = still_image_holder.sprite;
                     return;
                 default: return;
             }

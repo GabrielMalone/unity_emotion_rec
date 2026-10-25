@@ -37,13 +37,26 @@ public class StatueInteract : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     void Update()
     {
-        StartQuiz();
-        if (GSM.Instance.playerAnsweredCorrectly && 
-            GSM.Instance.lastStatueInteractedWith == gameObject
-        )
+
+        if (GSM.Instance.replaySelected)
+        {
+            screenFader.FadeToBlack();
+            DialogueHolder.SetActive(false);
+            GSM.Instance.replaySelected = false;
+            hasRun = false;
+        }
+
+        if (screenFader.readyForQuiz && !hasRun && GSM.Instance.lastStatueInteractedWith == gameObject)
+        {
+            Debug.Log("Starting Quiz!");
+            StartQuiz();
+        }
+
+        if (GSM.Instance.playerAnsweredCorrectly && GSM.Instance.lastStatueInteractedWith == gameObject)
         {
             CorrectAnswerSequence();
         }
+
     }
     // --------------------------------------------------------------------------------------------
     void InitSequence()
@@ -77,6 +90,7 @@ public class StatueInteract : MonoBehaviour
         UnlockPlayer();
         // reset quiz status
         GSM.Instance.playerAnsweredCorrectly = false;
+        GSM.Instance.replaySelected = false;
         
         GSM.Instance.PickNextEmotion();
         GSM.Instance.SetEmotionMedia();
@@ -95,19 +109,15 @@ public class StatueInteract : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public void StartQuiz()
     {
-        if (screenFader.readyForQuiz && !hasRun && GSM.Instance.lastStatueInteractedWith == gameObject)
-        {
-            Debug.Log("starting quiz!");
-   
-            Quiz.SetActive(true);
-            quizScript.myStatue = GSM.Instance.lastStatueInteractedWith;
-            // so quiz does not endlessless repeat after quiz end
-            // we can check if the statue is gone or not
-            quizMainText.text = 
-                $"{GSM.Instance.playerName}, which emotion do you think they were feeling?";
-            // just do StartQuiz once
-            hasRun = true;
-        }
+        Debug.Log("starting quiz!");
+        Quiz.SetActive(true);
+        quizScript.myStatue = GSM.Instance.lastStatueInteractedWith;
+        // so quiz does not endlessless repeat after quiz end
+        // we can check if the statue is gone or not
+        quizMainText.text = 
+            $"{GSM.Instance.playerName}, which emotion do you think they were feeling?";
+        // just do StartQuiz once
+        hasRun = true;
     }
     // --------------------------------------------------------------------------------------------
     void OnTriggerEnter2D(Collider2D other)

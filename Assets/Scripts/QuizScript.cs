@@ -11,6 +11,7 @@ public class QuizScript : MonoBehaviour
     [Header("Dialogue Setup")]
     public GameObject mainTextObj;
     public float textSpeed; // the length in seconds every letter comes on screen
+
     [Header("Emotion Options")]
     public GameObject[] emotionOptions;
     Dictionary<int, string> buttonOptions = new Dictionary<int, string>();
@@ -18,11 +19,16 @@ public class QuizScript : MonoBehaviour
     public TextMeshProUGUI textBox;
     bool isSpeaking; //is dialouge currently being written on screen
     float charactersSpoken;
+
+    [Header("Replay Option")]
+    public GameObject replayButton;
+
     [Header("Sound FX")]
     public AudioSource audioSource;
     public AudioClip incorrectSFX;
     public AudioClip correctSFX;
     private bool quizStarted = false;
+
     [Header("Associated Statue")]
     public GameObject myStatue;
     // --------------------------------------------------------------------------------------------
@@ -69,7 +75,13 @@ public class QuizScript : MonoBehaviour
         HashSet<string> seen = new HashSet<string>();
         int option = 0;
 
-        bool firstButtonSet = false;
+        // handle reset button
+        if (!GSM.Instance.replaySelected)
+        {
+            replayButton.SetActive(true);
+        }
+
+        // bool firstButtonSet = false;
 
         foreach (GameObject emotionButton in emotionOptions)
         {
@@ -90,23 +102,35 @@ public class QuizScript : MonoBehaviour
                     validCandidateFound = true;
                 }
             }
-            // autoselect first button for gamepad
-            if (!firstButtonSet)
-            {
-                //EventSystem.current.SetSelectedGameObject(emotionButton);
-                firstButtonSet = true;
-            }
-
+            // // autoselect first button for gamepad
+            // if (!firstButtonSet)
+            // {
+            //     EventSystem.current.SetSelectedGameObject(emotionButton);
+            //     firstButtonSet = true;
+            // }
             option ++;
         }
     }
     // --------------------------------------------------------------------------------------------
     public void SubmitAnswer(int optionPicked)
     {
+
+        // if replay button selected
+        if (optionPicked == 4)
+        {
+            Debug.Log("REPLAY SELECTED");
+            GSM.Instance.replaySelected = true;
+            GSM.Instance.result.replayUsed = true;
+            replayButton.SetActive(false);
+            return;
+        }
+
+        // telemetry stuff
         GSM.EmotionGuess emotionGuess = new GSM.EmotionGuess();
         emotionGuess.emotion = buttonOptions[optionPicked];
         emotionGuess.time = Time.time;
         GSM.Instance.result.emotionsGuessed.Add(emotionGuess);
+
         // check gameStateManager for current emotion.
         // compare against buttons in this quiz
         if (buttonOptions[optionPicked] == GSM.Instance.currentEmotion)
@@ -137,6 +161,8 @@ public class QuizScript : MonoBehaviour
             // where quiz does not go away
             GSM.Instance.playerAnsweredCorrectly = true;
         }
+
+
         // what do when wrong
         else
         {
@@ -149,6 +175,7 @@ public class QuizScript : MonoBehaviour
         }
         // save telemetry to disk
         GSM.Instance.SaveResults();
+
     }
 }
     
