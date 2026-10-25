@@ -77,6 +77,10 @@ public class StatueInteract : MonoBehaviour
         UnlockPlayer();
         // reset quiz status
         GSM.Instance.playerAnsweredCorrectly = false;
+        
+        GSM.Instance.PickNextEmotion();
+        GSM.Instance.SetEmotionMedia();
+
         Destroy(gameObject);
     }
     // --------------------------------------------------------------------------------------------
@@ -94,6 +98,7 @@ public class StatueInteract : MonoBehaviour
         if (screenFader.readyForQuiz && !hasRun && GSM.Instance.lastStatueInteractedWith == gameObject)
         {
             Debug.Log("starting quiz!");
+   
             Quiz.SetActive(true);
             quizScript.myStatue = GSM.Instance.lastStatueInteractedWith;
             // so quiz does not endlessless repeat after quiz end

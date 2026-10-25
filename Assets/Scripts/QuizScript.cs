@@ -123,13 +123,10 @@ public class QuizScript : MonoBehaviour
             // when did player finish this quiz
             GSM.Instance.result.timeCompleted = Time.time;
             // increment questions completed
-            GSM.Instance.numQuestionsCompleted++;
+            GSM.Instance.numQuestionsCompleted ++;
       
             quizStarted = false;     
-
             // resets needed for next interaction
-            GSM.Instance.PickNextEmotion();
-            GSM.Instance.SetEmotionMedia();
             GSM.Instance.agreedToHelp = false;
 
             // should save data to list then 
