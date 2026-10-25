@@ -18,6 +18,7 @@ public class ScreenFader : MonoBehaviour
     // like you did w/ the alphabet in other game
     public VideoPlayer videoTest;
     public RawImage videoImage;
+    public Image stillImage;
     public GameObject DialogueHolder;
     public GameObject Qiuz;
 
@@ -52,6 +53,13 @@ public class ScreenFader : MonoBehaviour
         readyForQuiz = true;
     }
     // --------------------------------------------------------------------------------------------
+    public void OnImageFinished()
+    {
+        Debug.Log("Image finished displaying");
+        stillImage.gameObject.SetActive(false);
+        readyForQuiz = true;
+    }
+    // --------------------------------------------------------------------------------------------
     void OnDestroy()
     {
         videoTest.loopPointReached -= OnVideoFinished;
@@ -71,6 +79,12 @@ public class ScreenFader : MonoBehaviour
     {
         float elapsedTime = 0f;
         Color color = fadeImage.color;
+
+        // remove image media from UI if used
+        if (targetAlpha == 0f && stillImage.gameObject.activeSelf)
+        {
+            OnImageFinished();
+        }
 
         while (elapsedTime < fadeDuration)
         {
@@ -108,32 +122,62 @@ public class ScreenFader : MonoBehaviour
 
         if (targetAlpha == 1f)
         {
-            // if faded to black then play movie
+            // if faded to black then play 
+            // media component
             PlayMediaVariation();
-        }        
+        }
+
     }
     // --------------------------------------------------------------------------------------------
     public void PlayMediaVariation()
     {
         // this is where I need to determine 
-        // video audio or text
-        if (GSM.Instance.numQuestionsCompleted % 3 == 0)
+
+        // video
+        if (GSM.Instance.numQuestionsCompleted % 3 == 2)
         {
+            stillImage.gameObject.SetActive(false);
+
             videoImage.gameObject.SetActive(true);
             videoImage.transform.SetAsLastSibling();
             videoTest.Play();
         }
+        // audio
         if (GSM.Instance.numQuestionsCompleted % 3 == 1)
         {
             videoImage.gameObject.SetActive(true);
             videoImage.transform.SetAsLastSibling();
             videoTest.Play();
         }
-        if (GSM.Instance.numQuestionsCompleted % 3 == 2)
+        // still image
+        if (GSM.Instance.numQuestionsCompleted % 3 == 0)
         {
-            videoImage.gameObject.SetActive(true);
-            videoImage.transform.SetAsLastSibling();
-            videoTest.Play();
+            videoImage.gameObject.SetActive(false);
+
+            stillImage.gameObject.SetActive(true);
+            stillImage.transform.SetAsLastSibling();
+
+            // image size settings : fill screen (anchor elements between 0 and 1)
+            RectTransform rect = stillImage.GetComponent<RectTransform>();
+            // bottom left 0,0
+            rect.anchorMin = Vector2.zero;
+            // top right 1,1
+            rect.anchorMax = Vector2.one;
+            // no offset
+            rect.offsetMin = Vector2.zero;
+            rect.offsetMax = Vector2.zero;
+
+            Image img = stillImage.GetComponent<Image>();
+            img.preserveAspect = true;
+
+            StartCoroutine(Timeout());
+
+        }
+        // ----------------------------------------------------------------------------------------
+        IEnumerator Timeout()
+        {
+            yield return new WaitForSeconds(GSM.Instance.timeImagesDisplayed);
+            StartCoroutine(FadeRoutine(1,0));
         }
     }
     // --------------------------------------------------------------------------------------------

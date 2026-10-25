@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using System.IO;
 
@@ -75,7 +76,7 @@ public class GameStateManagerScript : MonoBehaviour
         public string emotionName;
         public bool isVideo;
         public bool isAudio;
-        public bool isText;
+        public bool isStillImage;
         public string video_title;
         public string audio_title;
         public string text_title;
@@ -100,10 +101,10 @@ public class GameStateManagerScript : MonoBehaviour
     public int angryAudioIndex;
     public int afraidAudioIndex;
 
-    public int happyTextIndex;
-    public int sadVTextIndex;
-    public int angryTextIndex;
-    public int afraidTextIndex;
+    public int happyImageIndex;
+    public int sadImageIndex;
+    public int angryImageIndex;
+    public int afraidImageIndex;
 
     public string playerName;
     public GameObject player;
@@ -130,12 +131,24 @@ public class GameStateManagerScript : MonoBehaviour
     [Header("Emotion Settings")]
     public string currentEmotion;
     public string[] emotionOptions;
+
     public VideoClip[] happyVideos;
     public VideoClip[] sadVideos;
     public VideoClip[] angryVideos;
     public VideoClip[] afraidVideos;
-    public AudioClip[] emotionAudios;
+
+    public AudioClip[] happyAudios;
+    public AudioClip[] sadAudios;
+    public AudioClip[] angryAudios;
+    public AudioClip[] afraidAudios;
+
+    public Sprite [] happyImages;
+    public Sprite[] sadImages;
+    public Sprite[] afraidImages;
+    public Sprite[] angryImages;
+
     public VideoPlayer videoPlayer;
+    public Image still_image_holder;
     // --------------------------------------------------------------------------------------------
     // QUESTION SETTINGS
     // --------------------------------------------------------------------------------------------
@@ -146,6 +159,7 @@ public class GameStateManagerScript : MonoBehaviour
     public bool playerControllerDisabled = false;
     public bool playerAnsweredCorrectly = false;
     public float timeGameStarted;
+    public float timeImagesDisplayed = 3f;
     // --------------------------------------------------------------------------------------------
     public string[] incorrectResponses = {
             "Not quite! Try again!",
@@ -217,8 +231,8 @@ public class GameStateManagerScript : MonoBehaviour
         ClearPreviousVideoTexture();
 
         // video audio text
-        if (numQuestionsCompleted % 3 == 0)
-        {
+        if (numQuestionsCompleted % 3 == 2)
+        {   
             result.isVideo = true;
             switch (currentEmotion)
             {
@@ -266,27 +280,27 @@ public class GameStateManagerScript : MonoBehaviour
                 default: return;
             }
         }
-        // text only
-        if (numQuestionsCompleted % 3 == 2)
+        // image only
+        if (numQuestionsCompleted % 3 == 0)
         {
-            result.isText = true;
+            result.isStillImage = true;
             switch (currentEmotion)
             {
                 case "HAPPY":
-                    videoPlayer.clip = happyVideos[happyVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
+                    still_image_holder.sprite = happyImages[happyImageIndex++];
+                    result.video_title = still_image_holder.sprite.name;
                     return;
                 case "SAD":
-                    videoPlayer.clip = sadVideos[sadVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
+                    still_image_holder.sprite = sadImages[sadImageIndex++];
+                    result.video_title = still_image_holder.sprite.name;
                     return;
                 case "ANGRY":
-                    videoPlayer.clip = angryVideos[angryVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
+                    still_image_holder.sprite = angryImages[angryImageIndex++];
+                    result.video_title = still_image_holder.sprite.name;
                     return;
                 case "AFRAID":
-                    videoPlayer.clip = afraidVideos[afraidVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
+                    still_image_holder.sprite = afraidImages[afraidImageIndex++];
+                    result.video_title = still_image_holder.sprite.name;
                     return;
                 default: return;
             }
