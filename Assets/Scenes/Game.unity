@@ -174607,25 +174607,25 @@ MonoBehaviour:
   - {fileID: 32900000, guid: a2ceefb13292746ee88c997edd165258, type: 3}
   - {fileID: 32900000, guid: 50e0dcb2693da46a2a49be12783144cd, type: 3}
   happyAudios:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 4360901d8445541439f1469d2ba35919, type: 3}
+  - {fileID: 8300000, guid: 3e9a7d4c8f72041d1b625a3ab92b4ee0, type: 3}
+  - {fileID: 8300000, guid: a32dd51ef015743439bb2e495184c000, type: 3}
+  - {fileID: 8300000, guid: 7301a57fd15f24d29b9a7356f2c300c6, type: 3}
   sadAudios:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: dd668e472587640358ffe62a3fbbf0a2, type: 3}
+  - {fileID: 8300000, guid: 2d943c43325f946bfab9c91681dd2582, type: 3}
+  - {fileID: 8300000, guid: 3ae4744ec8f4141f69b5c979b9cf5d89, type: 3}
+  - {fileID: 8300000, guid: 41c55da43028446db835300428cdcf60, type: 3}
   angryAudios:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: ac7f046a18fa2497797c5775a1758c5c, type: 3}
+  - {fileID: 8300000, guid: 63ec1823b3e5d4e6a8ff66961f80d180, type: 3}
+  - {fileID: 8300000, guid: 51e1f0ce7514d4ddd86155b646f5357f, type: 3}
+  - {fileID: 8300000, guid: 53a93bcbafa6840a8be3425dec418a78, type: 3}
   afraidAudios:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: bac386604fce64614881cd42ed3fc4bd, type: 3}
+  - {fileID: 8300000, guid: 20e5c22e81a0c40019a7c57768f41472, type: 3}
+  - {fileID: 8300000, guid: 0673bfc9178d7481ba4c26c6ef9dea43, type: 3}
+  - {fileID: 8300000, guid: 3aab31b042997472991516518578827d, type: 3}
   happyImages:
   - {fileID: 5608525314852195654, guid: 2bbe26475b44a495f8b31676747d8c46, type: 3}
   - {fileID: -6820198191437856663, guid: 1b53b0997ae0e4317b262bf87cbe9c79, type: 3}
@@ -174648,6 +174648,7 @@ MonoBehaviour:
   - {fileID: 7565221060875225827, guid: 2a012d09175ca455c9a53584067230d2, type: 3}
   videoPlayer: {fileID: 593215025}
   still_image_holder: {fileID: 1246970550}
+  emotionAudioPlayer: {fileID: 1782535078}
   totalNumQuestions: 24
   numQuestionsCompleted: 0
   agreedToHelp: 0
@@ -174682,7 +174683,7 @@ MonoBehaviour:
     isStillImage: 0
     video_title: 
     audio_title: 
-    text_title: 
+    still_image_title: 
     questionNumber: 0
     emotionsGuessed: []
 --- !u!4 &1577304798
@@ -174719,6 +174720,7 @@ MonoBehaviour:
   fadeDuration: 1.5
   player: {fileID: 1572544063}
   audioSource: {fileID: 1381216020}
+  emotionAudioSource: {fileID: 1782535078}
   GameStateManager: {fileID: 1577304796}
   videoTest: {fileID: 593215025}
   videoImage: {fileID: 27425028}
@@ -176101,7 +176103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1782535077
 RectTransform:
   m_ObjectHideFlags: 0
@@ -176133,7 +176135,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

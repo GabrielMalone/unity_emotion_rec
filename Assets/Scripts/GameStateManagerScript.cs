@@ -149,6 +149,7 @@ public class GameStateManagerScript : MonoBehaviour
 
     public VideoPlayer videoPlayer;
     public Image still_image_holder;
+    public AudioSource emotionAudioPlayer;
     // --------------------------------------------------------------------------------------------
     // QUESTION SETTINGS
     // --------------------------------------------------------------------------------------------
@@ -228,7 +229,7 @@ public class GameStateManagerScript : MonoBehaviour
     public void SetEmotionMedia()
     {
         // video audio text
-        if (numQuestionsCompleted % 3 == 2)
+        if (numQuestionsCompleted % 3 == 0)
         {
             ClearPreviousVideoTexture();
             result.isVideo = true;
@@ -260,26 +261,26 @@ public class GameStateManagerScript : MonoBehaviour
             switch (currentEmotion)
             {
                 case "HAPPY":
-                    videoPlayer.clip = happyVideos[happyVideoIndex++];
+                    emotionAudioPlayer.clip = happyAudios[happyAudioIndex++];
                     result.audio_title = videoPlayer.clip.name;
                     return;
                 case "SAD":
-                    videoPlayer.clip = sadVideos[sadVideoIndex++];
+                    emotionAudioPlayer.clip = sadAudios[sadAudioIndex++];
                     result.audio_title = videoPlayer.clip.name;
                     return;
                 case "ANGRY":
-                    videoPlayer.clip = angryVideos[angryVideoIndex++];
+                    emotionAudioPlayer.clip = angryAudios[angryAudioIndex++];
                     result.audio_title = videoPlayer.clip.name;
                     return;
                 case "AFRAID":
-                    videoPlayer.clip = afraidVideos[afraidVideoIndex++];
+                    emotionAudioPlayer.clip = afraidAudios[afraidAudioIndex++];
                     result.audio_title = videoPlayer.clip.name;
                     return;
                 default: return;
             }
         }
         // image only
-        if (numQuestionsCompleted % 3 == 0)
+        if (numQuestionsCompleted % 3 == 2)
         {
 
             result.isStillImage = true;

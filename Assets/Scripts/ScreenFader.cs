@@ -10,7 +10,9 @@ public class ScreenFader : MonoBehaviour
     [SerializeField] private Image fadeImage;
     [SerializeField] private float fadeDuration = 1f;
     public GameObject player;
+    // bg music source
     public AudioSource audioSource;
+    public AudioSource emotionAudioSource;
     public GameObject GameStateManager;
     // these will have to be dynamically controlled by 
     // the gamestate manager
@@ -26,7 +28,7 @@ public class ScreenFader : MonoBehaviour
     public bool readyForQuiz = false;
     // --------------------------------------------------------------------------------------------
     void Start()
-    {   
+    {
         // make sure everything is visible for video playback
         videoTest.renderMode = VideoRenderMode.RenderTexture;
         videoTest.targetTexture = videoImage.texture as RenderTexture;
@@ -42,7 +44,6 @@ public class ScreenFader : MonoBehaviour
 
         // add method to end event
         videoTest.loopPointReached += OnVideoFinished;
-
     }
     // --------------------------------------------------------------------------------------------
     public void OnVideoFinished(VideoPlayer vp)
@@ -58,6 +59,13 @@ public class ScreenFader : MonoBehaviour
         Debug.Log("Image finished displaying");
         stillImage.gameObject.SetActive(false);
         readyForQuiz = true;
+    }
+    // --------------------------------------------------------------------------------------------
+    public void OnAudioFinished()
+    {
+        Debug.Log("Audio finished displaying");
+        readyForQuiz = true;
+        FadeFromBlack();
     }
     // --------------------------------------------------------------------------------------------
     void OnDestroy()
@@ -89,10 +97,10 @@ public class ScreenFader : MonoBehaviour
         while (elapsedTime < fadeDuration)
         {
             elapsedTime += Time.deltaTime;
-            
+
             color.a = Mathf.Lerp(
-                startAlpha, 
-                targetAlpha, 
+                startAlpha,
+                targetAlpha,
                 elapsedTime / fadeDuration
             );
             fadeImage.color = color;
@@ -100,16 +108,16 @@ public class ScreenFader : MonoBehaviour
             if (targetAlpha == 1f)
             {
                 audioSource.volume = Mathf.Lerp(
-                    1, 
-                    0, 
+                    1,
+                    0,
                     elapsedTime / fadeDuration
                 );
-            } 
+            }
             else
             {
                 audioSource.volume = Mathf.Lerp(
-                    0, 
-                    1, 
+                    0,
+                    1,
                     elapsedTime / fadeDuration
                 );
             }
@@ -134,7 +142,7 @@ public class ScreenFader : MonoBehaviour
         // this is where I need to determine 
 
         // video
-        if (GSM.Instance.numQuestionsCompleted % 3 == 2)
+        if (GSM.Instance.numQuestionsCompleted % 3 == 0)
         {
             stillImage.gameObject.SetActive(false);
 
@@ -145,12 +153,11 @@ public class ScreenFader : MonoBehaviour
         // audio
         if (GSM.Instance.numQuestionsCompleted % 3 == 1)
         {
-            videoImage.gameObject.SetActive(true);
-            videoImage.transform.SetAsLastSibling();
-            videoTest.Play();
+            emotionAudioSource.Play();
+            StartCoroutine(WaitForAudioFinished());
         }
         // still image
-        if (GSM.Instance.numQuestionsCompleted % 3 == 0)
+        if (GSM.Instance.numQuestionsCompleted % 3 == 2)
         {
             videoImage.gameObject.SetActive(false);
 
@@ -170,14 +177,20 @@ public class ScreenFader : MonoBehaviour
             Image img = stillImage.GetComponent<Image>();
             img.preserveAspect = true;
 
-            StartCoroutine(Timeout());
+            StartCoroutine(WaitForImageFinish());
 
         }
         // ----------------------------------------------------------------------------------------
-        IEnumerator Timeout()
+        IEnumerator WaitForImageFinish()
         {
             yield return new WaitForSeconds(GSM.Instance.timeImagesDisplayed);
-            StartCoroutine(FadeRoutine(1,0));
+            StartCoroutine(FadeRoutine(1, 0));
+        }
+        // ----------------------------------------------------------------------------------------
+        IEnumerator WaitForAudioFinished()
+        {
+            yield return new WaitUntil(() => !emotionAudioSource.isPlaying);
+            OnAudioFinished();
         }
     }
     // --------------------------------------------------------------------------------------------
