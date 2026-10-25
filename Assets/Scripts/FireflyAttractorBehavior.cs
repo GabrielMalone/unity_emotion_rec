@@ -42,7 +42,7 @@ public class FireflyAttractorBehavior : MonoBehaviour
             MoveToRandomLocation();
         }
 
-        if (GSM.Instance.lvl1 &&GSM.Instance.numQuestionsCompleted == GSM.Instance.numStatuesInLvl_1)
+        if (GSM.Instance.lvl1 && GSM.Instance.numQuestionsCompleted == GSM.Instance.numStatuesInLvl_1)
         {
             levelOver = true;
             GoToExitOnFinishLevel();

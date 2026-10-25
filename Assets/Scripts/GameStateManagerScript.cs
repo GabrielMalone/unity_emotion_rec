@@ -71,8 +71,8 @@ public class GameStateManagerScript : MonoBehaviour
     {
         public string playerName;
         public float timeGameStarted;
-        public float timeStarted;
-        public float timeCompleted;
+        public float timeQuizStarted;
+        public float timeQuizCompleted;
         public string emotionName;
         public bool isVideo = false;
         public bool isAudio = false;
@@ -82,7 +82,8 @@ public class GameStateManagerScript : MonoBehaviour
         public string still_image_title;
         public int questionNumber;
         public bool replayUsed = false;
-        public List<EmotionGuess> emotionsGuessed = new List<EmotionGuess>();
+        public EmotionGuess emotion_guessed;
+        public bool wasCorrect;
     }
     // --------------------------------------------------------------------------------------------
     // GAME STATE SETTINGS
@@ -165,7 +166,7 @@ public class GameStateManagerScript : MonoBehaviour
     public int numQuestionsCompleted;
     public bool agreedToHelp = false;
     public bool playerControllerDisabled = false;
-    public bool playerAnsweredCorrectly = false;
+    public bool playerAnswered = false;
     public float timeGameStarted;
     public float timeImagesDisplayed = 3f;
     public bool replaySelected = false;

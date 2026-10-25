@@ -55,7 +55,7 @@ public class StatueInteract : MonoBehaviour
             StartQuiz();
         }
 
-        if (GSM.Instance.playerAnsweredCorrectly && GSM.Instance.lastStatueInteractedWith == gameObject)
+        if (GSM.Instance.playerAnswered && GSM.Instance.lastStatueInteractedWith == gameObject)
         {
             CorrectAnswerSequence();
         }
@@ -92,7 +92,7 @@ public class StatueInteract : MonoBehaviour
         // let them go
         UnlockPlayer();
         // reset quiz status
-        GSM.Instance.playerAnsweredCorrectly = false;
+        GSM.Instance.playerAnswered = false;
         GSM.Instance.replaySelected = false;
         
         GSM.Instance.PickNextEmotion();

@@ -51,7 +51,7 @@ public class QuizScript : MonoBehaviour
             quizStarted = true;
             SetEmotionButtons();
             // telemetry - when did quiz start
-            GSM.Instance.result.timeStarted = Time.time;
+            GSM.Instance.result.timeQuizStarted = Time.time;
             // current emotion being tested
             GSM.Instance.result.emotionName = GSM.Instance.currentEmotion;
             // what question is the player on
@@ -111,70 +111,68 @@ public class QuizScript : MonoBehaviour
         }
     }
     // --------------------------------------------------------------------------------------------
+    public void CorrectResponse()
+    {
+        audioSource.PlayOneShot(correctSFX);
+        GSM.Instance.result.wasCorrect = true;
+        
+    }
+    // --------------------------------------------------------------------------------------------
+    public void IncorrectResponse()
+    {
+        // get random wrong resposne
+        textBox.text =
+            GSM.Instance.incorrectResponses
+            [Random.Range(0, GSM.Instance.incorrectResponses.Length)];
+        // play sound
+        audioSource.PlayOneShot(incorrectSFX);
+        GSM.Instance.result.wasCorrect = false;
+    }
+    // --------------------------------------------------------------------------------------------
+    public void ReplaySelected()
+    {
+        Debug.Log("REPLAY SELECTED");
+        GSM.Instance.replaySelected = true;
+        GSM.Instance.result.replayUsed = true;
+        replayButton.SetActive(false);
+    }
+    // --------------------------------------------------------------------------------------------
     public void SubmitAnswer(int optionPicked)
     {
-
         // if replay button selected
         if (optionPicked == 4)
         {
-            Debug.Log("REPLAY SELECTED");
-            GSM.Instance.replaySelected = true;
-            GSM.Instance.result.replayUsed = true;
-            replayButton.SetActive(false);
+            ReplaySelected();
             return;
         }
-
+        quizStarted = false;
+        GSM.Instance.agreedToHelp = false;
+        GSM.Instance.numQuestionsCompleted ++;
         // telemetry stuff
         GSM.EmotionGuess emotionGuess = new GSM.EmotionGuess();
         emotionGuess.emotion = buttonOptions[optionPicked];
         emotionGuess.time = Time.time;
-        GSM.Instance.result.emotionsGuessed.Add(emotionGuess);
-
+        GSM.Instance.result.emotion_guessed = emotionGuess;
+        GSM.Instance.result.playerName = GSM.Instance.playerName;
+        GSM.Instance.result.timeGameStarted = GSM.Instance.timeGameStarted;
+        // when did player finish this quiz
+        GSM.Instance.result.timeQuizCompleted = Time.time;
         // check gameStateManager for current emotion.
         // compare against buttons in this quiz
         if (buttonOptions[optionPicked] == GSM.Instance.currentEmotion)
         {
-            audioSource.PlayOneShot(correctSFX);
-
-            // bug where quiz doesn't show up sometimes after video
-            // so maybe statue is destroyed before this is set?
-            // myStatue.GetComponent<StatueInteract>().hasRun = false;
-
-            // telemetry data
-            GSM.Instance.result.playerName = GSM.Instance.playerName;
-            GSM.Instance.result.timeGameStarted = GSM.Instance.timeGameStarted;
-            // when did player finish this quiz
-            GSM.Instance.result.timeCompleted = Time.time;
-            // increment questions completed
-            GSM.Instance.numQuestionsCompleted ++;
-      
-            quizStarted = false;     
-            // resets needed for next interaction
-            GSM.Instance.agreedToHelp = false;
-
-            // should save data to list then 
-            // create new instance of result here. 
-            GSM.Instance.results.Add(GSM.Instance.result);
-            GSM.Instance.result = new GSM.EmotionResult();
-            // maybe need to place this at end to prevent bug 
-            // where quiz does not go away
-            GSM.Instance.playerAnsweredCorrectly = true;
+            CorrectResponse();
         }
-
-
         // what do when wrong
         else
         {
-            // get random wrong resposne
-            textBox.text = 
-                GSM.Instance.incorrectResponses
-                [Random.Range(0, GSM.Instance.incorrectResponses.Length)];
-            // play sound
-            audioSource.PlayOneShot(incorrectSFX);
+            IncorrectResponse();
         }
         // save telemetry to disk
+        GSM.Instance.results.Add(GSM.Instance.result);
+        GSM.Instance.result = new GSM.EmotionResult();
         GSM.Instance.SaveResults();
-
+        GSM.Instance.playerAnswered = true;
     }
 }
     
