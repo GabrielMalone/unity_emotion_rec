@@ -148,13 +148,10 @@ public class ScreenFader : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public void PlayMediaVariation()
     {
-        // this is where I need to determine 
-
         // video
         if (GSM.Instance.numQuestionsCompleted % 3 == 0)
         {
             stillImage.gameObject.SetActive(false);
-
             videoImage.gameObject.SetActive(true);
             videoImage.transform.SetAsLastSibling();
             videoTest.Play();
@@ -169,7 +166,6 @@ public class ScreenFader : MonoBehaviour
         if (GSM.Instance.numQuestionsCompleted % 3 == 2)
         {
             videoImage.gameObject.SetActive(false);
-
             stillImage.gameObject.SetActive(true);
             stillImage.transform.SetAsLastSibling();
 

@@ -31,6 +31,7 @@ public class QuizScript : MonoBehaviour
 
     [Header("Associated Statue")]
     public GameObject myStatue;
+    private Transform statuePos;
     // --------------------------------------------------------------------------------------------
     void Start()
     {
@@ -49,6 +50,7 @@ public class QuizScript : MonoBehaviour
         if (!quizStarted && myStatue)
         {
             quizStarted = true;
+            statuePos = myStatue.transform;
             SetEmotionButtons();
             // telemetry - when did quiz start
             GSM.Instance.result.timeQuizStarted = Time.time;
@@ -115,7 +117,10 @@ public class QuizScript : MonoBehaviour
     {
         audioSource.PlayOneShot(correctSFX);
         GSM.Instance.result.wasCorrect = true;
-        
+        GSM.Instance.ConfettiA.transform.position = statuePos.position;
+        GSM.Instance.ConfettiB.transform.position = statuePos.transform.position;
+        GSM.Instance.ConfettiA.Play();
+        GSM.Instance.ConfettiB.Play();
     }
     // --------------------------------------------------------------------------------------------
     public void IncorrectResponse()

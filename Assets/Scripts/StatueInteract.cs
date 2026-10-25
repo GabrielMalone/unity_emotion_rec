@@ -31,6 +31,7 @@ public class StatueInteract : MonoBehaviour
     public bool hasRun = false;
     public SpriteRenderer statueSprite;
     private bool interactionStarted = false;
+
     // --------------------------------------------------------------------------------------------
     void Start()
     {

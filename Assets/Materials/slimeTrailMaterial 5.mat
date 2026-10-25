@@ -89,8 +89,8 @@ Material:
     - _ZWrite: 0
     - _offsetView: 0
     m_Colors:
-    - _Color: {r: 0, g: 1024.0006, b: 172.02153, a: 0}
-    - _FresnelColor: {r: 0, g: 77.58686, b: 0.5455012, a: 0}
+    - _Color: {r: 2107.715, g: 2298.8713, b: 1312.0918, a: 0}
+    - _FresnelColor: {r: 103.58458, g: 103.58458, b: 103.58458, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

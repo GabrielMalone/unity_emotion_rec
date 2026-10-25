@@ -170,6 +170,10 @@ public class GameStateManagerScript : MonoBehaviour
     public float timeGameStarted;
     public float timeImagesDisplayed = 3f;
     public bool replaySelected = false;
+
+    [Header("Particle FX")]
+    public ParticleSystem ConfettiA;
+    public ParticleSystem ConfettiB;
     // --------------------------------------------------------------------------------------------
     public string[] incorrectResponses = {
             "Not quite! Try again!",
