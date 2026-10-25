@@ -157,7 +157,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 627808915386258365, guid: be780a121276d466ca061a9b18725640, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8458,7 +8458,9 @@ MonoBehaviour:
   interactionRadius: 3
   GameStateManger: {fileID: 1577304796}
   face: {fileID: 24953511}
+  quizFace: {fileID: 1983711126}
   hasRun: 0
+  statueSprite: {fileID: 0}
 --- !u!61 &482407420
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -164782,7 +164784,9 @@ MonoBehaviour:
   interactionRadius: 3
   GameStateManger: {fileID: 1577304796}
   face: {fileID: 24953511}
+  quizFace: {fileID: 1983711126}
   hasRun: 0
+  statueSprite: {fileID: 0}
 --- !u!61 &1175923252
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174794,7 +174798,6 @@ MonoBehaviour:
   timeGameStarted: 0
   timeImagesDisplayed: 3
   replaySelected: 0
-  lastIndexUsed: 0
   incorrectResponses:
   - Not quite! Try again!
   - That's not it! Give it another try!
@@ -175034,7 +175037,9 @@ MonoBehaviour:
   interactionRadius: 3
   GameStateManger: {fileID: 1577304796}
   face: {fileID: 24953511}
+  quizFace: {fileID: 1983711126}
   hasRun: 0
+  statueSprite: {fileID: 0}
 --- !u!61 &1602290395
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179027,7 +179032,6 @@ MonoBehaviour:
   - {fileID: 1524170852}
   - {fileID: 1529366465}
   - {fileID: 1056137653}
-  face: {fileID: 1983711128}
   textBox: {fileID: 534464812}
   replayButton: {fileID: 2134955970}
   audioSource: {fileID: 1381216020}
@@ -181115,7 +181119,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 627808915386258365, guid: be780a121276d466ca061a9b18725640, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -183941,7 +183945,9 @@ MonoBehaviour:
   interactionRadius: 3
   GameStateManger: {fileID: 1577304796}
   face: {fileID: 24953511}
+  quizFace: {fileID: 1983711126}
   hasRun: 0
+  statueSprite: {fileID: 0}
 --- !u!61 &2097300443
 BoxCollider2D:
   m_ObjectHideFlags: 0

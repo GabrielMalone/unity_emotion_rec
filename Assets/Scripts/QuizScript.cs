@@ -15,7 +15,7 @@ public class QuizScript : MonoBehaviour
     [Header("Emotion Options")]
     public GameObject[] emotionOptions;
     Dictionary<int, string> buttonOptions = new Dictionary<int, string>();
-    public Image face;
+    private Image face;
     public TextMeshProUGUI textBox;
     bool isSpeaking; //is dialouge currently being written on screen
     float charactersSpoken;
@@ -34,8 +34,7 @@ public class QuizScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     void Start()
     {
-        Image statue_face = face.GetComponent<Image>();
-        statue_face.sprite = myStatue.GetComponent<SpriteRenderer>().sprite;
+
     }
     // --------------------------------------------------------------------------------------------
     // Update is called once per frame

@@ -1337,7 +1337,7 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 0.20083185, y: -3.0111363, z: -0.035004742}
+    m_Target: {x: -6.0745277, y: 8.4042425, z: -0.065139666}
     speed: 2
     m_Value: {x: 0.20083185, y: -3.0111363, z: -0.035004742}
   m_RenderMode: 0
@@ -1390,7 +1390,7 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 13.382871
+    m_Target: 7.3800173
     speed: 2
     m_Value: 13.382871
   m_Ortho:
@@ -1504,14 +1504,10 @@ MonoBehaviour:
     m_ExpandedIDs:
     - m_rawData: 0
     - m_rawData: 568105584918790788
-    - m_rawData: 568105584918862682
-    - m_rawData: 568105584918862684
-    - m_rawData: 568105584918862708
-    - m_rawData: 568105584918862732
-    - m_rawData: 568105584918863006
-    - m_rawData: 568105584918863008
-    - m_rawData: 568105584918863010
-    - m_rawData: 568105584918863012
+    - m_rawData: 568105584918862694
+    - m_rawData: 568105584918862696
+    - m_rawData: 568105584918862720
+    - m_rawData: 568105584918862742
     - m_rawData: 568105584918863014
     - m_rawData: 568105584918863016
     - m_rawData: 568105584918863018
@@ -1563,6 +1559,10 @@ MonoBehaviour:
     - m_rawData: 568105584918863110
     - m_rawData: 568105584918863112
     - m_rawData: 568105584918863114
+    - m_rawData: 568105584918863116
+    - m_rawData: 568105584918863118
+    - m_rawData: 568105584918863120
+    - m_rawData: 568105584918863122
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1597,14 +1597,10 @@ MonoBehaviour:
     m_ExpandedIDs:
     - m_rawData: 0
     - m_rawData: 568105584918790788
-    - m_rawData: 568105584918862682
-    - m_rawData: 568105584918862684
-    - m_rawData: 568105584918862708
-    - m_rawData: 568105584918862732
-    - m_rawData: 568105584918863006
-    - m_rawData: 568105584918863008
-    - m_rawData: 568105584918863010
-    - m_rawData: 568105584918863012
+    - m_rawData: 568105584918862694
+    - m_rawData: 568105584918862696
+    - m_rawData: 568105584918862720
+    - m_rawData: 568105584918862742
     - m_rawData: 568105584918863014
     - m_rawData: 568105584918863016
     - m_rawData: 568105584918863018
@@ -1656,6 +1652,10 @@ MonoBehaviour:
     - m_rawData: 568105584918863110
     - m_rawData: 568105584918863112
     - m_rawData: 568105584918863114
+    - m_rawData: 568105584918863116
+    - m_rawData: 568105584918863118
+    - m_rawData: 568105584918863120
+    - m_rawData: 568105584918863122
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

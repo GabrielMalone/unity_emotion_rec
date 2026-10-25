@@ -19,6 +19,7 @@ public class StatueInteract : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject GameStateManger;
     public GameObject face;
+    public GameObject quizFace;
     private ScreenFader screenFader;
     private GameObject Quiz;
     private QuizScript quizScript;
@@ -28,7 +29,8 @@ public class StatueInteract : MonoBehaviour
     private TextMeshProUGUI mainText;
     private bool agreedToWatch = false;
     public bool hasRun = false;
-    private SpriteRenderer statueSprite;
+    public SpriteRenderer statueSprite;
+    private bool interactionStarted = false;
     // --------------------------------------------------------------------------------------------
     void Start()
     {
@@ -38,8 +40,9 @@ public class StatueInteract : MonoBehaviour
     void Update()
     {
 
-        if (GSM.Instance.replaySelected)
+        if (GSM.Instance.replaySelected && GSM.Instance.lastStatueInteractedWith == gameObject)
         {
+            screenFader.readyForQuiz = false;
             screenFader.FadeToBlack();
             DialogueHolder.SetActive(false);
             GSM.Instance.replaySelected = false;
@@ -122,15 +125,23 @@ public class StatueInteract : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !interactionStarted)
         {
+
+            interactionStarted = true;
             GSM.Instance.lastStatueInteractedWith = gameObject;
             playerInRange = true;
+            
             LockPlayer();
             cameraFollow.ZoomIn();
+
             // set my image as the dialogue UI image
             Image statue_face = face.GetComponent<Image>();
             statue_face.sprite = statueSprite.sprite;
+            // set my image as the quiz UI image
+            Image quiz_statue_face = quizFace.GetComponent<Image>();
+            quiz_statue_face.sprite = statueSprite.sprite;
+
             DialogueHolder.SetActive(true);
             IntroSpeech();
             // start dialogue interaction here
