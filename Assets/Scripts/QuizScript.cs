@@ -103,12 +103,14 @@ public class QuizScript : MonoBehaviour
                     validCandidateFound = true;
                 }
             }
+
             // // autoselect first button for gamepad
             // if (!firstButtonSet)
             // {
             //     EventSystem.current.SetSelectedGameObject(emotionButton);
             //     firstButtonSet = true;
             // }
+
             option ++;
         }
     }
@@ -138,7 +140,6 @@ public class QuizScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public void ReplaySelected()
     {
-        Debug.Log("REPLAY SELECTED");
         GSM.Instance.replaySelected = true;
         GSM.Instance.result.replayUsed = true;
         replayButton.SetActive(false);
@@ -175,9 +176,9 @@ public class QuizScript : MonoBehaviour
         {
             IncorrectResponse();
         }
+        // then show the final response box
         // save telemetry to disk
         GSM.Instance.results.Add(GSM.Instance.result);
-        GSM.Instance.result = new GSM.EmotionResult();
         GSM.Instance.SaveResults();
         GSM.Instance.playerAnswered = true;
     }

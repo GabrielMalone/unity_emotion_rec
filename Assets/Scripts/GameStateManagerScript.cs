@@ -180,6 +180,7 @@ public class GameStateManagerScript : MonoBehaviour
     public float timeGameStarted;
     public float timeImagesDisplayed = 3f;
     public bool replaySelected = false;
+    public bool readyToMoveOn = false;
 
     [Header("Particle FX")]
     public ParticleSystem ConfettiA;

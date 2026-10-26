@@ -32,6 +32,8 @@ public class StatueInteract : MonoBehaviour
     public SpriteRenderer statueSprite;
     private bool interactionStarted = false;
 
+    [Header("Outro Settings")]
+    public GameObject outroDialogue;
     // --------------------------------------------------------------------------------------------
     void Start()
     {
@@ -58,7 +60,7 @@ public class StatueInteract : MonoBehaviour
 
         if (GSM.Instance.playerAnswered && GSM.Instance.lastStatueInteractedWith == gameObject)
         {
-            CorrectAnswerSequence();
+            PlayerAnsweredSeuqence();
         }
 
     }
@@ -84,22 +86,37 @@ public class StatueInteract : MonoBehaviour
         statueSprite = GetComponent<SpriteRenderer>();
     }
     // --------------------------------------------------------------------------------------------
-    void CorrectAnswerSequence()
+    void PlayerAnsweredSeuqence()
     {
         // reset screen fader
         screenFader.readyForQuiz = false;
         // destroy statue
         Quiz.SetActive(false);
         // let them go
-        UnlockPlayer();
         // reset quiz status
-        GSM.Instance.playerAnswered = false;
-        GSM.Instance.replaySelected = false;
-        
-        GSM.Instance.PickNextEmotion();
-        GSM.Instance.SetEmotionMedia();
+        StartCoroutine(OutroEvent());
+    }
+    // --------------------------------------------------------------------------------------------
+    IEnumerator OutroEvent()
+    {
+        outroDialogue.SetActive(true);
 
-        Destroy(gameObject);
+        while (!GSM.Instance.readyToMoveOn)
+        {
+            yield return null;
+        }
+        if (GSM.Instance.readyToMoveOn)
+        {
+            GSM.Instance.playerAnswered = false;
+            GSM.Instance.replaySelected = false;
+            GSM.Instance.readyToMoveOn = false;
+            outroDialogue.SetActive(false);
+            UnlockPlayer();
+            GSM.Instance.result = new GSM.EmotionResult();
+            GSM.Instance.PickNextEmotion();
+            GSM.Instance.SetEmotionMedia();
+            Destroy(gameObject);
+        }
     }
     // --------------------------------------------------------------------------------------------
     void IntroSpeech()
@@ -176,10 +193,8 @@ public class StatueInteract : MonoBehaviour
     void LockPlayer()
     {
         GSM.Instance.playerControllerDisabled = true;
-        Debug.Log($"controller disabled? {GSM.Instance.playerControllerDisabled}");
         if (rb!=null && playerInRange)
         {
-            Debug.Log($"LOCKING PLAYER! with og damp of {ogLinearDamp}");
             StartCoroutine(SlowDownSmoothly());
             timeLocked = Time.time;
         }
