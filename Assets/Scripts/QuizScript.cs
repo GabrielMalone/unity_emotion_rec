@@ -132,6 +132,8 @@ public class QuizScript : MonoBehaviour
         // play sound
         audioSource.PlayOneShot(incorrectSFX);
         GSM.Instance.result.wasCorrect = false;
+        GSM.Instance.Smoke.transform.position = statuePos.position;
+        GSM.Instance.Smoke.Play();
     }
     // --------------------------------------------------------------------------------------------
     public void ReplaySelected()

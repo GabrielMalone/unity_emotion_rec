@@ -174,6 +174,7 @@ public class GameStateManagerScript : MonoBehaviour
     [Header("Particle FX")]
     public ParticleSystem ConfettiA;
     public ParticleSystem ConfettiB;
+    public ParticleSystem Smoke;
     // --------------------------------------------------------------------------------------------
     public string[] incorrectResponses = {
             "Not quite! Try again!",
