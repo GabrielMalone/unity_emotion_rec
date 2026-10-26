@@ -57,6 +57,14 @@ public class GameStateManagerScript : MonoBehaviour
     public class ResultsWrapper
     {
         public List<EmotionResult> results;
+        public List<KeyStroke> keyStrokes;
+    }
+
+    [System.Serializable]
+    public class KeyStroke
+    {
+        public string key;
+        public float time;
     }
 
     [System.Serializable]
@@ -90,6 +98,7 @@ public class GameStateManagerScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     [Header("Game State Settings")]
     public List<EmotionResult> results = new List<EmotionResult>();
+    public List<KeyStroke> keyStrokes = new List<KeyStroke>();
 
     public GameObject lastStatueInteractedWith;
 
@@ -127,6 +136,7 @@ public class GameStateManagerScript : MonoBehaviour
     public string[] emotionsTestedInLvl_1;
     public string[] emotionsTestedInLvl_2;
     public string[] emotionsTestedInLvl_3;
+
     // --------------------------------------------------------------------------------------------
     // EMOTION SETTINGS
     // --------------------------------------------------------------------------------------------
@@ -212,7 +222,7 @@ public class GameStateManagerScript : MonoBehaviour
     {
         // results to JSON with pretty print = true
         string json = JsonUtility.ToJson(
-            new ResultsWrapper { results = this.results },
+            new ResultsWrapper { results = this.results, keyStrokes = this.keyStrokes },
             true
         );
 
@@ -234,15 +244,15 @@ public class GameStateManagerScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public void PickNextEmotion()
     {
-        if (lvl1) currentEmotion = emotionsTestedInLvl_1[UnityEngine.Random.Range(0, emotionsTestedInLvl_1.Length)];
-        if (lvl2) currentEmotion = emotionsTestedInLvl_2[UnityEngine.Random.Range(0, emotionsTestedInLvl_2.Length)];
-        if (lvl3) currentEmotion = emotionsTestedInLvl_3[UnityEngine.Random.Range(0, emotionsTestedInLvl_3.Length)];
+        if (lvl1) currentEmotion = emotionsTestedInLvl_1[numQuestionsCompleted % emotionsTestedInLvl_1.Length];
+        if (lvl2) currentEmotion = emotionsTestedInLvl_2[numQuestionsCompleted % emotionsTestedInLvl_2.Length];
+        if (lvl3) currentEmotion = emotionsTestedInLvl_3[numQuestionsCompleted % emotionsTestedInLvl_3.Length];
         Debug.Log($"Current emotion picked: {currentEmotion}");
     }
     // --------------------------------------------------------------------------------------------
     public void SetEmotionMedia()
     {
-        // video audio text
+        // video
         if (numQuestionsCompleted % 3 == 0)
         {
             ClearPreviousVideoTexture();
@@ -280,22 +290,22 @@ public class GameStateManagerScript : MonoBehaviour
             {
                 case "HAPPY":
                     emotionAudioPlayer.clip = happyAudios[happyAudioIndex++];
-                    result.audio_title = videoPlayer.clip.name;
+                    result.audio_title = emotionAudioPlayer.clip.name;
                     // lastAudioPlayed = emotionAudioPlayer.clip;
                     return;
                 case "SAD":
                     emotionAudioPlayer.clip = sadAudios[sadAudioIndex++];
-                    result.audio_title = videoPlayer.clip.name;
+                    result.audio_title = emotionAudioPlayer.clip.name;
                     // lastAudioPlayed = emotionAudioPlayer.clip;
                     return;
                 case "ANGRY":
                     emotionAudioPlayer.clip = angryAudios[angryAudioIndex++];
-                    result.audio_title = videoPlayer.clip.name;
+                    result.audio_title = emotionAudioPlayer.clip.name;
                     // lastAudioPlayed = emotionAudioPlayer.clip;
                     return;
                 case "AFRAID":
                     emotionAudioPlayer.clip = afraidAudios[afraidAudioIndex++];
-                    result.audio_title = videoPlayer.clip.name;
+                    result.audio_title = emotionAudioPlayer.clip.name;
                     // lastAudioPlayed = emotionAudioPlayer.clip;
                     return;
                 default: return;
@@ -344,4 +354,6 @@ public class GameStateManagerScript : MonoBehaviour
         RenderTexture.active = previous;
     }
     // --------------------------------------------------------------------------------------------
-} 
+
+    // --------------------------------------------------------------------------------------------
+}

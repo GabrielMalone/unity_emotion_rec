@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using GSM = GameStateManagerScript;
 
 public class PlayerController : MonoBehaviour
@@ -32,6 +33,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        RecordKeyStrokes();
+
         if (GSM.Instance.playerControllerDisabled) return;
 
         if (Mouse.current.leftButton.isPressed)
@@ -118,4 +122,26 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Right bumper");
     }
     // --------------------------------------------------------------------------------------------
+    void RecordKeyStrokes()
+    {
+        // telemetry data
+        if (Keyboard.current.anyKey.wasPressedThisFrame)
+        {
+            foreach (KeyControl key in Keyboard.current.allKeys)
+            {
+                if (key.wasPressedThisFrame)
+                {
+                    GSM.Instance.keyStrokes.Add(
+                        new GSM.KeyStroke
+                        {
+                            key = key.name,
+                            time = Time.time
+                        }
+                    );
+                }
+            }
+        }
+    }
+    // --------------------------------------------------------------------------------------------
+
 }

@@ -75,8 +75,8 @@ Material:
     - _EnableExternalAlpha: 0
     - _Fresnel: 1
     - _FresnelPower: 1
-    - _Metallic: 0.618
-    - _NoiseScale: 7399
+    - _Metallic: 0.597
+    - _NoiseScale: 3850
     - _NormalStrenght: 1
     - _NormalTiling_X: 18.24
     - _NormalTiling_Y: 9.78
@@ -85,12 +85,12 @@ Material:
     - _QueueOffset: 0
     - _Refraction: 1
     - _Smoothness: 1
-    - _Transparency: 0
+    - _Transparency: 0.99
     - _ZWrite: 0
     - _offsetView: 0
     m_Colors:
-    - _Color: {r: 2107.715, g: 2298.8713, b: 1312.0918, a: 0.19215687}
-    - _FresnelColor: {r: 103.58458, g: 103.58458, b: 103.58458, a: 0.36078432}
+    - _Color: {r: 736.84033, g: 436.59082, b: 2316.3567, a: 0.19215687}
+    - _FresnelColor: {r: 54.79556, g: 1.4344383, b: 33.24891, a: 0.36078432}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
