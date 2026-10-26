@@ -108,8 +108,10 @@
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets/Sprites/EPIC RPG World - Sewers V1.5/Props/thin fog/0-READ ME.txt" />
     <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Roboto-Bold - License.txt" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile-2-Pass.shader" />
+    <None Include="Assets/Sprites/EPIC RPG World - Sewers V1.5/TiledMap Editor/rules.txt" />
     <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Unity - OFL.txt" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" />
     <None Include="Assets/Sprites/BlockEmojis!_byPixelPiledriver/Block Emojis Readme!.txt" />
@@ -129,11 +131,13 @@
     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" />
     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" />
     <None Include="Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt" />
+    <None Include="Assets/Sprites/EPIC RPG World - Sewers V1.5/Tilesets/0-READ ME.txt" />
     <None Include="Assets/Sprites/RPGW_Wetland_v1/_PSD/anim/info.txt" />
     <None Include="Assets/Sprites/Tile Deserts 1.1.1/readme_desert.txt" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets/Sprites/EPIC RPG World - Sewers V1.5/Characters/0-READ ME.txt" />
     <None Include="Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_Sprite.shader" />

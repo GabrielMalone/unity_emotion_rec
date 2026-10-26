@@ -185433,7 +185433,7 @@ MonoBehaviour:
   - ANGRY
   - SAD
   happyVideos:
-  - {fileID: 32900000, guid: 8c2869c1030104e29a4ac2cc1da60fc9, type: 3}
+  - {fileID: 32900000, guid: 8b10b0741e5ed4b16bb4f5d223239833, type: 3}
   - {fileID: 32900000, guid: 04898090a329543698e3dd0a74e0731a, type: 3}
   - {fileID: 32900000, guid: 93909f00a1fb248c89c6a94d566a95ac, type: 3}
   - {fileID: 32900000, guid: 9925e14101fbf48deba095cdbf70a24e, type: 3}
@@ -185473,25 +185473,25 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0673bfc9178d7481ba4c26c6ef9dea43, type: 3}
   - {fileID: 8300000, guid: 3aab31b042997472991516518578827d, type: 3}
   happyImages:
-  - {fileID: 5608525314852195654, guid: 2bbe26475b44a495f8b31676747d8c46, type: 3}
-  - {fileID: -6820198191437856663, guid: 1b53b0997ae0e4317b262bf87cbe9c79, type: 3}
-  - {fileID: -1403473927490208023, guid: 5d24414781bd447b7bde31f8bf12a8e7, type: 3}
-  - {fileID: 5458717620103883546, guid: 7d96c9c9bd0654d38a0195b31d4f7f63, type: 3}
+  - {fileID: -8851224952128097756, guid: bd18b92771feb428a94f69116fa61c11, type: 3}
+  - {fileID: -2135627647530352223, guid: 6b25418b748bd499f96c1f803d4f77b7, type: 3}
+  - {fileID: 7161789150922345753, guid: 91f3be90fbd2245c19b1b4d846f00913, type: 3}
+  - {fileID: -2289418624775217725, guid: 89d628440359c485b943f761d48c31ff, type: 3}
   sadImages:
-  - {fileID: -1665890534984904255, guid: defe07ed53bfa49b4a4b91aff4f7b92c, type: 3}
-  - {fileID: -9177312871363806963, guid: c3c4e7cc269e64bd1a5940b8a9bb0c02, type: 3}
-  - {fileID: -2895077724951800268, guid: ae9a7efc8bfd24e50956ea503bad7702, type: 3}
-  - {fileID: -4463748331008669429, guid: bc9df4e22775c435fb68b433277571a1, type: 3}
+  - {fileID: -3897012733895083056, guid: b4ea99bfd67564388bc7bd4792b43219, type: 3}
+  - {fileID: 5329594926431852586, guid: b3acfb731e5594bde9868b5c1d0510e0, type: 3}
+  - {fileID: 2276542425001490050, guid: 7ebd66d57bb474a9e9e33d491835747c, type: 3}
+  - {fileID: -6521600513049156866, guid: 4a9c82791788e429bac44bd846320eb1, type: 3}
   afraidImages:
-  - {fileID: -3933585149214489079, guid: 72689a93173324496a64ba9e242a7b4f, type: 3}
-  - {fileID: 6282840264795409911, guid: 7e8e8e1451ce84fe2b0542378094be38, type: 3}
-  - {fileID: 1566161001290213764, guid: 87b37cf5a626844e3aa85b9fb24515c7, type: 3}
-  - {fileID: -8545639572632827309, guid: 65112cccba3994a3cbccc4d3bf86032d, type: 3}
+  - {fileID: 8102043692470543553, guid: 61bb67ee3aa6c4c8eb4a3ed8ad410ade, type: 3}
+  - {fileID: -7516849800843446791, guid: d2f50e852c6704dd59062fb2530f3bd0, type: 3}
+  - {fileID: 2374911993508044119, guid: 441af95a955d04b45b4a4332ab10dbf7, type: 3}
+  - {fileID: -5071746904540103008, guid: cb014432c6b67445290972c9e1a7431a, type: 3}
   angryImages:
-  - {fileID: -2971881309142184152, guid: 63764e39aa8454d5c99205df0ed2abcd, type: 3}
-  - {fileID: -3513998702879115263, guid: 61bfb1fdc2b6e4782a0f6de918589e14, type: 3}
-  - {fileID: 7465322825351685968, guid: 591358b5d461747598f81bda57c149df, type: 3}
-  - {fileID: 7565221060875225827, guid: 2a012d09175ca455c9a53584067230d2, type: 3}
+  - {fileID: -8289260392053234927, guid: 441f67d39aa0d47649b1385d2969d461, type: 3}
+  - {fileID: 7941926096999313054, guid: 47d4103eba14b495aa87f5b4438604fd, type: 3}
+  - {fileID: 4335627349145766120, guid: b1965c1a5756c46a59ab5c0493cba92b, type: 3}
+  - {fileID: -1453104363700589865, guid: 0155c7bb86a3747bda58a37525e08156, type: 3}
   videoPlayer: {fileID: 593215025}
   still_image_holder: {fileID: 1246970550}
   emotionAudioPlayer: {fileID: 1782535078}
