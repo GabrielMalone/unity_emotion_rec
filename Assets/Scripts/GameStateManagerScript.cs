@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.Rendering.Universal;
 
 public class GameStateManagerScript : MonoBehaviour
 {
@@ -43,6 +45,8 @@ public class GameStateManagerScript : MonoBehaviour
         }
 
         Instance = this;
+        // persist from scene to scene
+        DontDestroyOnLoad(gameObject);
     }
     // --------------------------------------------------------------------------------------------
     // TELEMETRY STRUCTURES
@@ -186,6 +190,15 @@ public class GameStateManagerScript : MonoBehaviour
     public ParticleSystem ConfettiA;
     public ParticleSystem ConfettiB;
     public ParticleSystem Smoke;
+
+    [Header("Lvl Settings")]
+    public GameObject lvl1Light;
+    public GameObject lvl1GlobalLight;
+    public GameObject fog1;
+    public GameObject fog2;
+    public ParticleSystem dust;
+    public GameObject lvl2Environment;
+    public Transform lvl2spawnPoint;
     // --------------------------------------------------------------------------------------------
     public string[] incorrectResponses = {
             "Not quite! Try again!",
@@ -216,9 +229,10 @@ public class GameStateManagerScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     void Update()
     {
-
+        SetNewScene();
     }
     // --------------------------------------------------------------------------------------------
+ 
     public void SaveResults()
     {
         // results to JSON with pretty print = true
@@ -355,6 +369,22 @@ public class GameStateManagerScript : MonoBehaviour
         RenderTexture.active = previous;
     }
     // --------------------------------------------------------------------------------------------
-
+    public void SetNewScene()
+    {
+        if (lvl1 && numQuestionsCompleted == 1)
+        {
+            lvl1GlobalLight.SetActive(false);
+            lvl1Light.SetActive(false);
+            fog1.SetActive(false);
+            fog2.SetActive(false);
+            dust.Stop();
+            lvl1 = false;
+            lvl2 = true;
+            lvl2Environment.SetActive(true);
+            player.transform.position = lvl2spawnPoint.position;
+            // set sprite layer to above bridges in lvl 2
+            player.GetComponent<SpriteRenderer>().sortingOrder = 4;
+        }
+    }
     // --------------------------------------------------------------------------------------------
 }

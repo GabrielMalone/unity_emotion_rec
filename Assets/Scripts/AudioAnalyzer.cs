@@ -71,7 +71,11 @@ public class AudioAnalyzer : MonoBehaviour
 
     [Header("Smoothing")]
     public float colorSpeed = 0.25f;
-
+    // --------------------------------------------------------------------------------------------
+    void Awake()
+    {
+        //DontDestroyOnLoad(gameObject);
+    }
     // --------------------------------------------------------------------------------------------
     void Start()
     {
