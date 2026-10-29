@@ -88,6 +88,7 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_FrameRateCounter.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshSpawner.cs" />
+    <Compile Include="Assets/Scripts/lightFader.cs" />
     <Compile Include="Assets/Scripts/Shield.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/CameraController.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark03.cs" />
@@ -115,6 +116,7 @@
     <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Unity - OFL.txt" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" />
     <None Include="Assets/Sprites/BlockEmojis!_byPixelPiledriver/Block Emojis Readme!.txt" />
+    <None Include="Assets/Sprites/Free-Bridges-Top-Down-Pixel-Art-Asset-Pack/readme.txt" />
     <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Oswald-Bold - OFL.txt" />
     <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Roboto-Bold - AFL.txt" />
     <None Include="Assets/TextMesh Pro/Examples &amp; Extras/Fonts/Anton OFL.txt" />
@@ -132,6 +134,7 @@
     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" />
     <None Include="Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt" />
     <None Include="Assets/Sprites/EPIC RPG World - Sewers V1.5/Tilesets/0-READ ME.txt" />
+    <None Include="Assets/Sprites/Free-Bridges-Top-Down-Pixel-Art-Asset-Pack/License.txt" />
     <None Include="Assets/Sprites/RPGW_Wetland_v1/_PSD/anim/info.txt" />
     <None Include="Assets/Sprites/Tile Deserts 1.1.1/readme_desert.txt" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" />

@@ -167,6 +167,7 @@ public class QuizScript : MonoBehaviour
         GSM.Instance.result.timeQuizCompleted = Time.time;
         // check gameStateManager for current emotion.
         // compare against buttons in this quiz
+        GSM.Instance.lastStatueInteractedWith.GetComponent<SpriteRenderer>().sprite = null;
         if (buttonOptions[optionPicked] == GSM.Instance.currentEmotion)
         {
             CorrectResponse();
