@@ -158,7 +158,7 @@ public class GameStateManagerScript : MonoBehaviour
     public AudioClip[] angryAudios;
     public AudioClip[] afraidAudios;
 
-    public Sprite [] happyImages;
+    public Sprite[] happyImages;
     public Sprite[] sadImages;
     public Sprite[] afraidImages;
     public Sprite[] angryImages;
@@ -232,7 +232,7 @@ public class GameStateManagerScript : MonoBehaviour
         SetNewScene();
     }
     // --------------------------------------------------------------------------------------------
- 
+
     public void SaveResults()
     {
         // results to JSON with pretty print = true
@@ -274,22 +274,22 @@ public class GameStateManagerScript : MonoBehaviour
             result.isVideo = true;
             switch (currentEmotion)
             {
-                case "HAPPY": 
+                case "HAPPY":
                     videoPlayer.clip = happyVideos[happyVideoIndex++];
                     result.video_title = videoPlayer.clip.name;
                     // lastVideoPlayed = videoPlayer.clip;
                     return;
-                case "SAD": 
+                case "SAD":
                     videoPlayer.clip = sadVideos[sadVideoIndex++];
                     result.video_title = videoPlayer.clip.name;
                     // lastVideoPlayed = videoPlayer.clip;
                     return;
-                case "ANGRY": 
+                case "ANGRY":
                     videoPlayer.clip = angryVideos[angryVideoIndex++];
                     result.video_title = videoPlayer.clip.name;
                     // lastVideoPlayed = videoPlayer.clip;
                     return;
-                case "AFRAID": 
+                case "AFRAID":
                     videoPlayer.clip = afraidVideos[afraidVideoIndex++];
                     result.video_title = videoPlayer.clip.name;
                     // lastVideoPlayed = videoPlayer.clip;
@@ -371,7 +371,7 @@ public class GameStateManagerScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public void SetNewScene()
     {
-        if (lvl1 && numQuestionsCompleted == 1)
+        if (lvl1 && numQuestionsCompleted == numStatuesInLvl_1)
         {
             lvl1GlobalLight.SetActive(false);
             lvl1Light.SetActive(false);
@@ -384,6 +384,7 @@ public class GameStateManagerScript : MonoBehaviour
             player.transform.position = lvl2spawnPoint.position;
             // set sprite layer to above bridges in lvl 2
             player.GetComponent<SpriteRenderer>().sortingOrder = 4;
+            player.GetComponent<Rigidbody2D>().linearDamping = 10;
         }
     }
     // --------------------------------------------------------------------------------------------
