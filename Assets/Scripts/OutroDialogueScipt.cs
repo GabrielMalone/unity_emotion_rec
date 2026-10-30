@@ -20,7 +20,7 @@ public class OutroDialogueScipt : MonoBehaviour
             GSM.Instance.currentEmotion
         )
         {
-            buttonText.text = $"Good job, {GSM.Instance.playerName}! {GSM.Instance.currentEmotion} is Correct! ";
+            buttonText.text = $"{GSM.Instance.currentEmotion} is Correct! ";
         }
 
         if (GSM.Instance.playerAnswered && 
@@ -30,6 +30,8 @@ public class OutroDialogueScipt : MonoBehaviour
         {
             buttonText.text = $" Almost! The correct emotion was {GSM.Instance.currentEmotion} ";
         }
+
+        buttonText.text += "\n\n\nClick Here to Continue";
     }
     // --------------------------------------------------------------------------------------------
     public void OutroHandler()

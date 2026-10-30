@@ -25,7 +25,6 @@ public class StatueInteract : MonoBehaviour
     private QuizScript quizScript;
     private TextMeshProUGUI quizMainText;
     private GameObject DialogueHolder;
-    private DialougeHandler dialougeHandler;
     private TextMeshProUGUI mainText;
     private bool agreedToWatch = false;
     public bool hasRun = false;
@@ -47,7 +46,7 @@ public class StatueInteract : MonoBehaviour
         {
             screenFader.readyForQuiz = false;
             screenFader.FadeToBlack();
-            DialogueHolder.SetActive(false);
+            //DialogueHolder.SetActive(false);
             GSM.Instance.replaySelected = false;
             hasRun = false;
         }
@@ -75,7 +74,7 @@ public class StatueInteract : MonoBehaviour
         screenFader = GameStateManger.GetComponent<ScreenFader>();
         DialogueHolder = screenFader.DialogueHolder;
         mainText = DialogueHolder.GetComponentInChildren<TextMeshProUGUI>(true);
-        dialougeHandler = DialogueHolder.GetComponent<DialougeHandler>();
+
 
         // quiz stuff
         Quiz = screenFader.Qiuz;
@@ -92,6 +91,7 @@ public class StatueInteract : MonoBehaviour
         screenFader.readyForQuiz = false;
         // destroy statue
         Quiz.SetActive(false);
+        DialogueHolder.SetActive(false);
         // let them go
         // reset quiz status
         StartCoroutine(OutroEvent());
@@ -100,7 +100,7 @@ public class StatueInteract : MonoBehaviour
     IEnumerator OutroEvent()
     {
         outroDialogue.SetActive(true);
-
+        
         while (!GSM.Instance.readyToMoveOn)
         {
             yield return null;
@@ -131,6 +131,7 @@ public class StatueInteract : MonoBehaviour
     public void StartQuiz()
     {
         Debug.Log("starting quiz!");
+        
         Quiz.SetActive(true);
         quizScript.myStatue = GSM.Instance.lastStatueInteractedWith;
         // so quiz does not endlessless repeat after quiz end
@@ -161,6 +162,12 @@ public class StatueInteract : MonoBehaviour
             quiz_statue_face.sprite = statueSprite.sprite;
 
             DialogueHolder.SetActive(true);
+
+            screenFader.introTextBox.SetActive(true);
+            screenFader.introTextBoxCornerImage.SetActive(true);
+            screenFader.introSureButton.SetActive(true);
+            screenFader.statueFace.SetActive(true);
+
             IntroSpeech();
             // start dialogue interaction here
             StartCoroutine(WaitForAgreement());
@@ -177,8 +184,13 @@ public class StatueInteract : MonoBehaviour
             }
             yield return null;
         }
+
+        screenFader.introTextBox.SetActive(false);
+        screenFader.introTextBoxCornerImage.SetActive(false);
+        screenFader.introSureButton.SetActive(false);
+
         screenFader.FadeToBlack();
-        DialogueHolder.SetActive(false);
+
     }
     // --------------------------------------------------------------------------------------------
     void OnTriggerExit2D(Collider2D other)

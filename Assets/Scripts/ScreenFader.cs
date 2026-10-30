@@ -8,7 +8,8 @@ using GSM = GameStateManagerScript;
 public class ScreenFader : MonoBehaviour
 {
     [SerializeField] private Image fadeImage;
-    [SerializeField] private float fadeDuration = 1f;
+    [SerializeField] private Image fullScreenFadeImage;
+    [SerializeField] private float fadeDuration = 3f;
     public GameObject player;
     // bg music source
     public AudioSource audioSource;
@@ -21,16 +22,27 @@ public class ScreenFader : MonoBehaviour
     public VideoPlayer videoTest;
     public RawImage videoImage;
     public Image stillImage;
+    public RawImage inGameVideoImage;
+    public Image inGameStillImage;
+    public Transform mediaPosition;
     public GameObject DialogueHolder;
+    public GameObject introTextBox;
+    public GameObject introTextBoxCornerImage;
+    public GameObject introSureButton;
     public GameObject Qiuz;
+    public GameObject statueFace;
 
     private PlayerController playerController;
     public bool readyForQuiz = false;
     // --------------------------------------------------------------------------------------------
     void Start()
     {
+        // changing from full screen to in game
+        videoImage = inGameVideoImage;
+        stillImage = inGameStillImage;
         // make sure everything is visible for video playback
         videoTest.renderMode = VideoRenderMode.RenderTexture;
+        // cast to rendertexture
         videoTest.targetTexture = videoImage.texture as RenderTexture;
         videoImage.gameObject.SetActive(false);
 
@@ -86,7 +98,7 @@ public class ScreenFader : MonoBehaviour
     public IEnumerator SimpleFade(float startAlpha, float targetAlpha)
     {
         float elapsedTime = 0f;
-        Color color = fadeImage.color;
+        Color color = fullScreenFadeImage.color;
 
         while (elapsedTime < fadeDuration)
         {
@@ -97,7 +109,7 @@ public class ScreenFader : MonoBehaviour
                 targetAlpha,
                 elapsedTime / fadeDuration
             );
-            fadeImage.color = color;
+            fullScreenFadeImage.color = color;
             // fade game volume too
             if (targetAlpha == 1f)
             {
@@ -120,8 +132,7 @@ public class ScreenFader : MonoBehaviour
 
         // snap final values into place
         color.a = targetAlpha;
-        fadeImage.color = color;
-
+        fullScreenFadeImage.color = color;
     }
     // --------------------------------------------------------------------------------------------
     private IEnumerator FadeRoutine(float startAlpha, float targetAlpha)
@@ -202,23 +213,10 @@ public class ScreenFader : MonoBehaviour
         // still image
         if (GSM.Instance.nextMediaVariation == 1)
         {
+            statueFace.SetActive(false);
             videoImage.gameObject.SetActive(false);
             stillImage.gameObject.SetActive(true);
             stillImage.transform.SetAsLastSibling();
-
-            // image size settings : fill screen (anchor elements between 0 and 1)
-            RectTransform rect = stillImage.GetComponent<RectTransform>();
-            // bottom left 0,0
-            rect.anchorMin = Vector2.zero;
-            // top right 1,1
-            rect.anchorMax = Vector2.one;
-            // no offset
-            rect.offsetMin = Vector2.zero;
-            rect.offsetMax = Vector2.zero;
-
-            Image img = stillImage.GetComponent<Image>();
-            img.preserveAspect = true;
-
             StartCoroutine(WaitForImageFinish());
 
         }

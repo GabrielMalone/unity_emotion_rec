@@ -20,6 +20,7 @@ public class PlayerStartScript : MonoBehaviour
     public GameObject player;
     public GameObject statues;
     public GameObject sunglight;
+    public GameObject statuesIndicator;
     // --------------------------------------------------------------------------------------------
     void Start()
     {
@@ -52,6 +53,7 @@ public class PlayerStartScript : MonoBehaviour
         // why does this cause a bug !?
         statues.SetActive(true);
         sunglight.SetActive(true);
+        statuesIndicator.SetActive(true);
     }
     // --------------------------------------------------------------------------------------------
     IEnumerator FadeOut()

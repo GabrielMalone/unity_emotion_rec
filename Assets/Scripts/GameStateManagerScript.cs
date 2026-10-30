@@ -249,36 +249,29 @@ public class GameStateManagerScript : MonoBehaviour
             }
             if (lvl1 && rnd_emotion == "AFRAID" && afraidSeen >= lvl1_afraidEmotionsLimit)
             {
-                // if seen too many times go back and pick another random emotion
                 Debug.Log($"too many {rnd_emotion}");
                 continue;
             }
             if (lvl2 && rnd_emotion == "HAPPY" && happySeen >= lvl2_happyEmotionsLimit)
             {
-                // if seen too many times go back and pick another random emotion
                 Debug.Log($"too many {rnd_emotion}");
                 continue;
             }
             if (lvl2 && rnd_emotion == "AFRAID" && afraidSeen >= lvl2_afraidEmotionsLimit)
             {
-                // if seen too many times go back and pick another random emotion
                 Debug.Log($"too many {rnd_emotion}");
                 continue;
             }
             if (lvl2 && rnd_emotion == "SAD" && sadSeen >= lvl2_sadEmotionsLimit)
             {
-                // if seen too many times go back and pick another random emotion
                 Debug.Log($"too many {rnd_emotion}");
                 continue;
             }
             if (lvl2 && rnd_emotion == "ANGRY" && angrySeen >= lvl2_angryEmotionsLimit)
             {
-                // if seen too many times go back and pick another random emotion
                 Debug.Log($"too many {rnd_emotion}");
                 continue;
             }
-            // this not necessary in level one, but if it changes in the future
-            // can keep this here
             if (!TooManyConsecutiveEmotions(rnd_emotion))
             {
                 currentEmotion = rnd_emotion;

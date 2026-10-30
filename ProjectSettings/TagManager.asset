@@ -11,6 +11,8 @@ TagManager:
   - Statue
   - Firefly
   - exit
+  - dialogueBox
+  - dialogueCornerImage
   layers:
   - Default
   - TransparentFX
