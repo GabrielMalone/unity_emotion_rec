@@ -113,8 +113,6 @@ public class StatueInteract : MonoBehaviour
             outroDialogue.SetActive(false);
             UnlockPlayer();
             GSM.Instance.result = new GSM.EmotionResult();
-            GSM.Instance.SetNextRandomEmotion();
-            GSM.Instance.SetMedia();
             Destroy(gameObject);
         }
     }
@@ -146,6 +144,8 @@ public class StatueInteract : MonoBehaviour
     {
         if (other.CompareTag("Player") && !interactionStarted)
         {
+            GSM.Instance.SetNextRandomEmotion();
+            GSM.Instance.SetMedia();
 
             interactionStarted = true;
             GSM.Instance.lastStatueInteractedWith = gameObject;

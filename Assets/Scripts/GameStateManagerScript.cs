@@ -140,6 +140,7 @@ public class GameStateManagerScript : MonoBehaviour
     public Sprite[] afraidImages;
     public Sprite[] angryImages;
 
+
     public VideoPlayer videoPlayer;
     public Image still_image_holder;
     public AudioSource emotionAudioPlayer;
@@ -194,13 +195,37 @@ public class GameStateManagerScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     void Start()
     {
-        SetNextRandomEmotion();
-        SetMedia();
+        RandomizeMedia();
     }
     // --------------------------------------------------------------------------------------------
     void Update()
     {
 
+    }
+    // --------------------------------------------------------------------------------------------
+    void RandomizeMedia()
+    {
+        for (int i = happyVideos.Length - 1; i > 0; i--)
+        {
+            // exclusive on max so dont need -1. i + 1 to bring back to normal
+            int j = Random.Range(0, i + 1);
+            // tuple assignment --> right side evaulutes first, 
+            // so we get the swapped values there and then they are assigned to the variables on the left
+            (happyVideos[i], happyVideos[j]) = (happyVideos[j], happyVideos[i]);
+            (sadVideos[i], sadVideos[j]) = (sadVideos[j], sadVideos[i]);
+            (angryVideos[i], angryVideos[j]) = (angryVideos[j], angryVideos[i]);
+            (afraidVideos[i], afraidVideos[j]) = (afraidVideos[j], afraidVideos[i]);
+
+            (happyAudios[i], happyAudios[j]) = (happyAudios[j], happyAudios[i]);
+            (sadAudios[i], sadAudios[j]) = (sadAudios[j], sadAudios[i]);
+            (angryAudios[i], angryAudios[j]) = (angryAudios[j], angryAudios[i]);
+            (afraidAudios[i], afraidAudios[j]) = (afraidAudios[j], afraidAudios[i]);
+
+            (happyImages[i], happyImages[j]) = (happyImages[j], happyImages[i]);
+            (angryImages[i], angryImages[j]) = (angryImages[j], angryImages[i]);
+            (afraidImages[i], afraidImages[j]) = (afraidImages[j], afraidImages[i]);
+            (angryImages[i], angryImages[j]) = (angryImages[j], angryImages[i]);
+        }
     }
     // --------------------------------------------------------------------------------------------
     public void SaveResults()
@@ -235,8 +260,7 @@ public class GameStateManagerScript : MonoBehaviour
         if (lvl1 && numQuestionsCompleted == numStatuesInLvl_1) return;
         if (lvl2 && numQuestionsCompleted == numStatuesInLvl_2) return;
 
-        int attempts = 0;
-        while (attempts ++ < 10_000)
+        while (true)
         {
             // pick random emotion for this level
             string rnd_emotion = PickRandomEmotion();
@@ -297,10 +321,9 @@ public class GameStateManagerScript : MonoBehaviour
                 }
             }
         }
-        // will need to make sure media doesn't go out of bounds for this one though
-        currentEmotion = PickRandomEmotion();
-        Debug.Log($"rnd emotion with constraints faled picking {currentEmotion}");
-        
+        // // will need to make sure media doesn't go out of bounds for this one though
+        // currentEmotion = PickRandomEmotion();
+        // Debug.Log($"rnd emotion with constraints faled picking {currentEmotion}");  
     }
     // --------------------------------------------------------------------------------------------
     public bool TooManyConsecutiveEmotions(string rnd_emotion)
@@ -349,6 +372,11 @@ public class GameStateManagerScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public void SetMedia()
     {
+
+
+        Debug.Log($"happySeen: {happySeen} | angrySeen: {angrySeen} | sadSeen: {sadSeen} | scaredSeen : {afraidSeen}");
+
+
         switch (currentEmotion)
         {
             case "HAPPY":
@@ -486,6 +514,7 @@ public class GameStateManagerScript : MonoBehaviour
         player.GetComponent<Rigidbody2D>().linearDamping = 10;
         yield return new WaitForSeconds(1.5f);
         StartCoroutine(sf.SimpleFade(1, 0));
+
         playerControllerDisabled = false;
     }
     // --------------------------------------------------------------------------------------------
