@@ -235,118 +235,79 @@ public class GameStateManagerScript : MonoBehaviour
         if (lvl1 && numQuestionsCompleted == numStatuesInLvl_1) return;
         if (lvl2 && numQuestionsCompleted == numStatuesInLvl_2) return;
 
-        if (lvl1)
+        int attempts = 0;
+        while (attempts ++ < 10_000)
         {
-            while (true)
+            // pick random emotion for this level
+            string rnd_emotion = PickRandomEmotion();
+            Debug.Log($"attempting {rnd_emotion}");
+            if (lvl1 && rnd_emotion == "HAPPY" && happySeen >= lvl1_happyEmotionsLimit)
             {
-                Debug.Log("stuck in this loop?");
-                // pick random emotion for this level
-                string rnd_emotion = PickRandomEmotion();
-                Debug.Log($"attempting {rnd_emotion}");
-                if (rnd_emotion == "HAPPY" && happySeen >= lvl1_happyEmotionsLimit)
+                // if seen too many times go back and pick another random emotion
+                Debug.Log($"too many {rnd_emotion}");
+                continue;
+            }
+            if (lvl1 && rnd_emotion == "AFRAID" && afraidSeen >= lvl1_afraidEmotionsLimit)
+            {
+                // if seen too many times go back and pick another random emotion
+                Debug.Log($"too many {rnd_emotion}");
+                continue;
+            }
+            if (lvl2 && rnd_emotion == "HAPPY" && happySeen >= lvl2_happyEmotionsLimit)
+            {
+                // if seen too many times go back and pick another random emotion
+                Debug.Log($"too many {rnd_emotion}");
+                continue;
+            }
+            if (lvl2 && rnd_emotion == "AFRAID" && afraidSeen >= lvl2_afraidEmotionsLimit)
+            {
+                // if seen too many times go back and pick another random emotion
+                Debug.Log($"too many {rnd_emotion}");
+                continue;
+            }
+            if (lvl2 && rnd_emotion == "SAD" && sadSeen >= lvl2_sadEmotionsLimit)
+            {
+                // if seen too many times go back and pick another random emotion
+                Debug.Log($"too many {rnd_emotion}");
+                continue;
+            }
+            if (lvl2 && rnd_emotion == "ANGRY" && angrySeen >= lvl2_angryEmotionsLimit)
+            {
+                // if seen too many times go back and pick another random emotion
+                Debug.Log($"too many {rnd_emotion}");
+                continue;
+            }
+            // this not necessary in level one, but if it changes in the future
+            // can keep this here
+            if (!TooManyConsecutiveEmotions(rnd_emotion))
+            {
+                currentEmotion = rnd_emotion;
+                Debug.Log($"Setting new rnd emotion: {currentEmotion}");
+                seenEmotions.Add(currentEmotion);
+                // add emotion to appropriate seen list
+                switch (currentEmotion)
                 {
-                    // if seen too many times go back and pick another random emotion
-                    Debug.Log($"too many {rnd_emotion}");
-                    continue;
-                }
-                if (rnd_emotion == "AFRAID" && afraidSeen >= lvl1_afraidEmotionsLimit)
-                {
-                    Debug.Log($"too many {rnd_emotion}");
-                    continue;
-                }
-                // this check not necessary in level one, 
-                // but if it changes in the future
-                // can keep this here
-                if (!TooManyConsecutiveEmotions(rnd_emotion))
-                {
-                    currentEmotion = rnd_emotion;
-                    Debug.Log($"Setting new rnd emotion: {currentEmotion}");
-                    seenEmotions.Add(currentEmotion);
-                    // add emotion to appropriate seen list
-                    switch (currentEmotion)
-                    {
-                        case "HAPPY":
-                            happySeen++;
-                            return;
-                        case "SAD":
-                            sadSeen++;
-                            return;
-                        case "ANGRY":
-                            angrySeen++;
-                            return;
-                        case "AFRAID":
-                            afraidSeen++;
-                            return;
-                        default:
-                            return;
-                    }
+                    case "HAPPY":
+                        happySeen++;
+                        return;
+                    case "SAD":
+                        sadSeen++;
+                        return;
+                    case "ANGRY":
+                        angrySeen++;
+                        return;
+                    case "AFRAID":
+                        afraidSeen++;
+                        return;
+                    default:
+                        return;
                 }
             }
         }
-        else if (lvl2)
-        {
-            int attempts = 0;
-            while (attempts ++ < 10_000)
-            {
-                Debug.Log("Orstuck in this loop?");
-                // pick random emotion for this level
-                string rnd_emotion = PickRandomEmotion();
-                Debug.Log($"attempting {rnd_emotion}");
-                if (rnd_emotion == "HAPPY" && happySeen >= lvl2_happyEmotionsLimit)
-                {
-                    // if seen too many times go back and pick another random emotion
-                    Debug.Log($"too many {rnd_emotion}");
-                    continue;
-                }
-                if (rnd_emotion == "AFRAID" && afraidSeen >= lvl2_afraidEmotionsLimit)
-                {
-                    // if seen too many times go back and pick another random emotion
-                    Debug.Log($"too many {rnd_emotion}");
-                    continue;
-                }
-                if (rnd_emotion == "SAD" && sadSeen >= lvl2_sadEmotionsLimit)
-                {
-                    // if seen too many times go back and pick another random emotion
-                    Debug.Log($"too many {rnd_emotion}");
-                    continue;
-                }
-                if (rnd_emotion == "ANGRY" && angrySeen >= lvl2_angryEmotionsLimit)
-                {
-                    // if seen too many times go back and pick another random emotion
-                    Debug.Log($"too many {rnd_emotion}");
-                    continue;
-                }
-                // this not necessary in level one, but if it changes in the future
-                // can keep this here
-                if (!TooManyConsecutiveEmotions(rnd_emotion))
-                {
-                    currentEmotion = rnd_emotion;
-                    Debug.Log($"Setting new rnd emotion: {currentEmotion}");
-                    seenEmotions.Add(currentEmotion);
-                    // add emotion to appropriate seen list
-                    switch (currentEmotion)
-                    {
-                        case "HAPPY":
-                            happySeen++;
-                            return;
-                        case "SAD":
-                            sadSeen++;
-                            return;
-                        case "ANGRY":
-                            angrySeen++;
-                            return;
-                        case "AFRAID":
-                            afraidSeen++;
-                            return;
-                        default:
-                            return;
-                    }
-                }
-            }
-            // will need to make sure media doesn't go out of bounds for this one though
-            currentEmotion = PickRandomEmotion();
-            Debug.Log($"rnd emotion with constraints faled picking {currentEmotion}");
-        }
+        // will need to make sure media doesn't go out of bounds for this one though
+        currentEmotion = PickRandomEmotion();
+        Debug.Log($"rnd emotion with constraints faled picking {currentEmotion}");
+        
     }
     // --------------------------------------------------------------------------------------------
     public bool TooManyConsecutiveEmotions(string rnd_emotion)
@@ -517,8 +478,6 @@ public class GameStateManagerScript : MonoBehaviour
             Destroy(fireFly);
         }
 
-        
-
         foreach (GameObject attractor in fireflyattractors)
         {
             NavMeshAgent agent = attractor.GetComponent<NavMeshAgent>();
@@ -537,7 +496,4 @@ public class GameStateManagerScript : MonoBehaviour
         playerControllerDisabled = false;
     }
     // --------------------------------------------------------------------------------------------
-
-    // --------------------------------------------------------------------------------------------
-
 }
