@@ -1,36 +1,12 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.IO;
-using UnityEngine.Rendering.Universal;
+using UnityEditor;
 
 public class GameStateManagerScript : MonoBehaviour
 {
-    //--------------------------------------------------------------------------------------------
-
-    // TO DO for Wednesday --> 12-4:30
-    // ____________________________________________________________
-    // --> tutorial area
-    // --> don't randomize the emotions they see
-    // --> set up the still images form the NIH images
-    // --> get elliot to set up the audio
-    // --> set up ability to replay audio and video
-    // --> make it obvious that the exit is needed to go through
-    // --> how many statues remain 
-    // --> how long faces should be up 3-5 sec ???
-    // --> loop music!
-    // --> key log every button 
-    //  ____________________________________________________________
-    // --> play video 
-    // --> 5 options (1 being replay) 
-    // --> play again if clicked
-    // --> 4 options 
-    // --> but only one guess
-    // --> smoke and pop / create confetti 
-    // --> departing message for right and wrong (with explicitly stating correct answer)
-    // ____________________________________________________________
     // --------------------------------------------------------------------------------------------
     // SINGLETON (single instance of class / global access)
     // --------------------------------------------------------------------------------------------
@@ -134,7 +110,7 @@ public class GameStateManagerScript : MonoBehaviour
     public bool lvl3 = false;
 
     public int numStatuesInLvl_1 = 4;
-    public int numStatuesInLvl_2 = 8;
+    public int numStatuesInLvl_2 = 20;
     public int numStatuesInLvl_3 = 12;
 
     public string[] emotionsTestedInLvl_1;
@@ -167,11 +143,6 @@ public class GameStateManagerScript : MonoBehaviour
     public Image still_image_holder;
     public AudioSource emotionAudioPlayer;
 
-    // guess I didn't need these !?
-    // public VideoClip lastVideoPlayed;
-    // public AudioClip lastAudioPlayed;
-    // public Image lastImagePlayed;
-
     // --------------------------------------------------------------------------------------------
     // QUESTION SETTINGS
     // --------------------------------------------------------------------------------------------
@@ -186,6 +157,21 @@ public class GameStateManagerScript : MonoBehaviour
     public bool replaySelected = false;
     public bool readyToMoveOn = false;
 
+    [Header("Randomization of Emotions Settings")]
+    public List<string> seenEmotions = new List<string>();
+    public int happySeen = 0;
+    public int sadSeen = 0;
+    public int angrySeen = 0;
+    public int afraidSeen = 0;
+    public int lvl1_happyEmotionsLimit;
+    public int lvl1_afraidEmotionsLimit;
+    public int lvl2_happyEmotionsLimit;
+    public int lvl2_afraidEmotionsLimit;
+    public int lvl2_angryEmotionsLimit;
+    public int lvl2_sadEmotionsLimit;
+    public int nextMediaVariation = 0;
+
+
     [Header("Particle FX")]
     public ParticleSystem ConfettiA;
     public ParticleSystem ConfettiB;
@@ -199,32 +185,15 @@ public class GameStateManagerScript : MonoBehaviour
     public ParticleSystem dust;
     public GameObject lvl2Environment;
     public Transform lvl2spawnPoint;
-    // --------------------------------------------------------------------------------------------
-    public string[] incorrectResponses = {
-            "Not quite! Try again!",
-            "That's not it! Give it another try!",
-            "Not this time! Keep trying!",
-            "That's incorrect, but you've got this!",
-            "Not quite right! Take another look!",
-            "Oops, that's not the one!",
-            "Good try, but that's not correct!",
-            "Not quite! What else could it be?",
-            "That's not the right emotion! Try again!",
-            "Not this one! Have another guess!",
-            "That's not quite right! Keep going!",
-            "Nice effort, but not quite!",
-            "Not the right answer! Try again!",
-            "That's not it! Take your time!",
-            "Incorrect, but don't give up!"
-        };
+
     // --------------------------------------------------------------------------------------------
     [Header("Telemetry Per Quiz")]
     public EmotionResult result = new EmotionResult();
     // --------------------------------------------------------------------------------------------
     void Start()
     {
-        PickNextEmotion();
-        SetEmotionMedia();
+        SetNextRandomEmotion();
+        SetMedia();
     }
     // --------------------------------------------------------------------------------------------
     void Update()
@@ -232,7 +201,6 @@ public class GameStateManagerScript : MonoBehaviour
         SetNewScene();
     }
     // --------------------------------------------------------------------------------------------
-
     public void SaveResults()
     {
         // results to JSON with pretty print = true
@@ -257,107 +225,339 @@ public class GameStateManagerScript : MonoBehaviour
         Debug.Log("Results saved to: " + filePath);
     }
     // --------------------------------------------------------------------------------------------
-    public void PickNextEmotion()
-    {
-        if (lvl1) currentEmotion = emotionsTestedInLvl_1[numQuestionsCompleted % emotionsTestedInLvl_1.Length];
-        if (lvl2) currentEmotion = emotionsTestedInLvl_2[numQuestionsCompleted % emotionsTestedInLvl_2.Length];
-        if (lvl3) currentEmotion = emotionsTestedInLvl_3[numQuestionsCompleted % emotionsTestedInLvl_3.Length];
-        Debug.Log($"Current emotion picked: {currentEmotion}");
+    // Randomization of emotions tracking structures
+    // --------------------------------------------------------------------------------------------
+    public void SetNextRandomEmotion()
+    {   
+        if (lvl1)
+        {
+            while (true)
+            {
+                // pick random emotion for this level
+                string rnd_emotion = PickRandomEmotion();
+                Debug.Log($"attempting {rnd_emotion}");
+                if (rnd_emotion == "HAPPY" && happySeen >= lvl1_happyEmotionsLimit)
+                {
+                    // if seen too many times go back and pick another random emotion
+                    Debug.Log($"too many {rnd_emotion}");
+                    continue;
+                }
+                if (rnd_emotion == "AFRAID" && afraidSeen >= lvl1_afraidEmotionsLimit)
+                {
+                    Debug.Log($"too many {rnd_emotion}");
+                    continue;
+                }
+                // this check not necessary in level one, 
+                // but if it changes in the future
+                // can keep this here
+                if (!TooManyConsecutiveEmotions(rnd_emotion))
+                {
+                    currentEmotion = rnd_emotion;
+                    Debug.Log($"Setting new rnd emotion: {currentEmotion}");
+                    seenEmotions.Add(currentEmotion);
+                    // add emotion to appropriate seen list
+                    switch (currentEmotion)
+                    {
+                        case "HAPPY":
+                            happySeen ++ ;
+                            return;
+                        case "SAD":
+                            sadSeen ++ ;
+                            return;
+                        case "ANGRY":
+                            angrySeen ++ ;
+                            return;
+                        case "AFRAID":
+                            afraidSeen ++ ;
+                            return;
+                        default:
+                            return;
+                    }
+                }
+            }
+        }
+        else if (lvl2)
+        {
+            while (true)
+            {
+                // pick random emotion for this level
+                string rnd_emotion = PickRandomEmotion();
+                Debug.Log($"attempting {rnd_emotion}");
+                if (rnd_emotion == "HAPPY" &&  happySeen >= lvl2_happyEmotionsLimit)
+                {
+                    // if seen too many times go back and pick another random emotion
+                    Debug.Log($"too many {rnd_emotion}");
+                    continue;
+                }
+                if (rnd_emotion == "AFRAID" && afraidSeen >= lvl2_afraidEmotionsLimit)
+                {
+                    // if seen too many times go back and pick another random emotion
+                    Debug.Log($"too many {rnd_emotion}");
+                    continue;
+                }
+                if (rnd_emotion == "SAD" &&  sadSeen >= lvl2_sadEmotionsLimit)
+                {
+                    // if seen too many times go back and pick another random emotion
+                    Debug.Log($"too many {rnd_emotion}");
+                    continue;
+                }
+                if (rnd_emotion == "ANGRY" && angrySeen >= lvl2_angryEmotionsLimit)
+                {
+                    // if seen too many times go back and pick another random emotion
+                    Debug.Log($"too many {rnd_emotion}");
+                    continue;
+                }
+                // this not necessary in level one, but if it changes in the future
+                // can keep this here
+                if (!TooManyConsecutiveEmotions(rnd_emotion))
+                {
+                    currentEmotion = rnd_emotion;
+                    Debug.Log($"Setting new rnd emotion: {currentEmotion}");
+                    seenEmotions.Add(currentEmotion);
+                    // add emotion to appropriate seen list
+                    switch (currentEmotion)
+                    {
+                        case "HAPPY":
+                            happySeen++;
+                            return;
+                        case "SAD":
+                            sadSeen++;
+                            return;
+                        case "ANGRY":
+                            angrySeen++;
+                            return;
+                        case "AFRAID":
+                            afraidSeen++;
+                            return;
+                        default:
+                            return;
+                    }
+                }
+            }
+        }
     }
     // --------------------------------------------------------------------------------------------
-    public void SetEmotionMedia()
+    public bool TooManyConsecutiveEmotions(string rnd_emotion)
     {
-        // video
-        if (numQuestionsCompleted % 3 == 0)
-        {
-            ClearPreviousVideoTexture();
-            result.isVideo = true;
-            switch (currentEmotion)
-            {
-                case "HAPPY":
-                    videoPlayer.clip = happyVideos[happyVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
-                    // lastVideoPlayed = videoPlayer.clip;
-                    return;
-                case "SAD":
-                    videoPlayer.clip = sadVideos[sadVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
-                    // lastVideoPlayed = videoPlayer.clip;
-                    return;
-                case "ANGRY":
-                    videoPlayer.clip = angryVideos[angryVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
-                    // lastVideoPlayed = videoPlayer.clip;
-                    return;
-                case "AFRAID":
-                    videoPlayer.clip = afraidVideos[afraidVideoIndex++];
-                    result.video_title = videoPlayer.clip.name;
-                    // lastVideoPlayed = videoPlayer.clip;
-                    return;
-                default: return;
-            }
-        }
-        // audio only
-        if (numQuestionsCompleted % 3 == 1)
-        {
-            result.isAudio = true;
-            switch (currentEmotion)
-            {
-                case "HAPPY":
-                    emotionAudioPlayer.clip = happyAudios[happyAudioIndex++];
-                    result.audio_title = emotionAudioPlayer.clip.name;
-                    // lastAudioPlayed = emotionAudioPlayer.clip;
-                    return;
-                case "SAD":
-                    emotionAudioPlayer.clip = sadAudios[sadAudioIndex++];
-                    result.audio_title = emotionAudioPlayer.clip.name;
-                    // lastAudioPlayed = emotionAudioPlayer.clip;
-                    return;
-                case "ANGRY":
-                    emotionAudioPlayer.clip = angryAudios[angryAudioIndex++];
-                    result.audio_title = emotionAudioPlayer.clip.name;
-                    // lastAudioPlayed = emotionAudioPlayer.clip;
-                    return;
-                case "AFRAID":
-                    emotionAudioPlayer.clip = afraidAudios[afraidAudioIndex++];
-                    result.audio_title = emotionAudioPlayer.clip.name;
-                    // lastAudioPlayed = emotionAudioPlayer.clip;
-                    return;
-                default: return;
-            }
-        }
-        // image only
-        if (numQuestionsCompleted % 3 == 2)
-        {
 
-            result.isStillImage = true;
+        if (seenEmotions.Count < 2) return false;
 
-            switch (currentEmotion)
-            {
-                case "HAPPY":
-                    still_image_holder.sprite = happyImages[happyImageIndex++];
-                    result.still_image_title = still_image_holder.sprite.name;
-                    // lastImagePlayed.sprite = still_image_holder.sprite;
-                    return;
-                case "SAD":
-                    still_image_holder.sprite = sadImages[sadImageIndex++];
-                    result.still_image_title = still_image_holder.sprite.name;
-                    // lastImagePlayed.sprite = still_image_holder.sprite;
-                    return;
-                case "ANGRY":
-                    still_image_holder.sprite = angryImages[angryImageIndex++];
-                    result.still_image_title = still_image_holder.sprite.name;
-                    // lastImagePlayed.sprite = still_image_holder.sprite;
-                    return;
-                case "AFRAID":
-                    still_image_holder.sprite = afraidImages[afraidImageIndex++];
-                    result.still_image_title = still_image_holder.sprite.name;
-                    // lastImagePlayed.sprite = still_image_holder.sprite;
-                    return;
-                default: return;
-            }
+        string prev2 = seenEmotions[^2];
+        string prev1 = seenEmotions[^1];
+
+        Debug.Log($"last two emotions: {prev2} | {prev1}");
+
+        switch (rnd_emotion)
+        {
+            case "HAPPY" : 
+                if (happySeen < 2) 
+                    return false;
+                return prev2 == prev1 && prev1 == rnd_emotion;
+            case "SAD":
+                if (sadSeen < 2) 
+                    return false;
+                 return prev2 == prev1 && prev1 == rnd_emotion;
+            case "ANGRY":
+                if (angrySeen < 2) 
+                    return false;
+                return prev2 == prev1 && prev1 == rnd_emotion;
+            case "AFRAID":
+                if (afraidSeen < 2) 
+                    return false;
+                return prev2 == prev1 && prev1 == rnd_emotion;
+
+            default : 
+                Debug.Log("something went wrong in TooManyConsecutiveEmotions");
+                return true;
         }
     }
+    // --------------------------------------------------------------------------------------------
+    public string PickRandomEmotion()
+    {
+        if (lvl1)
+            return emotionsTestedInLvl_1[Random.Range(0, emotionsTestedInLvl_1.Length)];
+        if (lvl2)
+            return emotionsTestedInLvl_2[Random.Range(0, emotionsTestedInLvl_2.Length)];
+        return "";
+    }
+    // --------------------------------------------------------------------------------------------
+    // non randomized version
+    // public void PickNextEmotion()
+    // {
+    //     if (lvl1) currentEmotion = emotionsTestedInLvl_1[numQuestionsCompleted % emotionsTestedInLvl_1.Length];
+    //     if (lvl2) currentEmotion = emotionsTestedInLvl_2[numQuestionsCompleted % emotionsTestedInLvl_2.Length];
+    //     Debug.Log($"Current emotion picked: {currentEmotion}");
+    // }
+    // --------------------------------------------------------------------------------------------
+    public void SetMedia()
+    {
+        switch (currentEmotion)
+        {
+            case "HAPPY":
+                if (happySeen % 3 == 1)
+                {
+                    videoPlayer.clip = happyVideos[happyVideoIndex++];
+                    result.video_title = videoPlayer.clip.name;
+                    nextMediaVariation = 0;
+                }
+                else if (happySeen % 3 == 2)
+                {
+                    still_image_holder.sprite = happyImages[happyImageIndex++];
+                    result.still_image_title = still_image_holder.sprite.name;
+                    nextMediaVariation = 1;
+                }
+                else if (happySeen % 3 == 0)
+                {
+                    emotionAudioPlayer.clip = happyAudios[happyAudioIndex++];
+                    result.audio_title = emotionAudioPlayer.clip.name;
+                    nextMediaVariation = 2;
+                }
+                return;
+            case "SAD":
+                if (sadSeen % 3 == 1)
+                {
+                    videoPlayer.clip = sadVideos[sadVideoIndex++];
+                    result.video_title = videoPlayer.clip.name;
+                    nextMediaVariation = 0;
+                }
+                else if (sadSeen % 3 == 2)
+                {
+                    still_image_holder.sprite = sadImages[sadImageIndex++];
+                    result.still_image_title = still_image_holder.sprite.name;
+                    nextMediaVariation = 1;
+                }
+                else if (sadSeen % 3 == 0)
+                {
+                    emotionAudioPlayer.clip = sadAudios[sadAudioIndex++];
+                    result.audio_title = emotionAudioPlayer.clip.name;
+                    nextMediaVariation = 2;
+                }
+                return;
+            case "ANGRY":
+                if (angrySeen % 3 == 1)
+                {
+                    videoPlayer.clip = angryVideos[angryVideoIndex++];
+                    result.video_title = videoPlayer.clip.name;
+                    nextMediaVariation = 0;
+                }
+                else if (angrySeen % 3 == 2)
+                {
+                    still_image_holder.sprite = angryImages[angryImageIndex++];
+                    result.still_image_title = still_image_holder.sprite.name;
+                    nextMediaVariation = 1;
+                }
+                else if (angrySeen % 3 == 0)
+                {
+                    emotionAudioPlayer.clip = angryAudios[angryAudioIndex++];
+                    result.audio_title = emotionAudioPlayer.clip.name;
+                    nextMediaVariation = 2;
+                }
+                return;
+            case "AFRAID":
+                if (afraidSeen % 3 == 1)
+                {
+                    videoPlayer.clip = afraidVideos[afraidVideoIndex++];
+                    result.video_title = videoPlayer.clip.name;
+                    nextMediaVariation = 0;
+                }
+                else if (afraidSeen % 3 == 2)
+                {
+                    still_image_holder.sprite = afraidImages[afraidImageIndex++];
+                    result.still_image_title = still_image_holder.sprite.name;
+                    nextMediaVariation = 1;
+                }
+                else if (afraidSeen % 3 == 0)
+                {
+                    emotionAudioPlayer.clip = afraidAudios[afraidAudioIndex++];
+                    result.audio_title = emotionAudioPlayer.clip.name;
+                    nextMediaVariation = 2;
+                }
+                return;
+            default: return;
+        }
+    }
+    // --------------------------------------------------------------------------------------------
+    // public void SetEmotionMedia()
+    // {
+    //     // video
+    //     if (numQuestionsCompleted % 3 == 0)
+    //     {
+    //         ClearPreviousVideoTexture();
+    //         result.isVideo = true;
+    //         switch (currentEmotion)
+    //         {
+    //             case "HAPPY":
+    //                 videoPlayer.clip = happyVideos[happyVideoIndex++];
+    //                 result.video_title = videoPlayer.clip.name;
+    //                 return;
+    //             case "SAD":
+    //                 videoPlayer.clip = sadVideos[sadVideoIndex++];
+    //                 result.video_title = videoPlayer.clip.name;
+    //                 return;
+    //             case "ANGRY":
+    //                 videoPlayer.clip = angryVideos[angryVideoIndex++];
+    //                 result.video_title = videoPlayer.clip.name;
+    //                 return;
+    //             case "AFRAID":
+    //                 videoPlayer.clip = afraidVideos[afraidVideoIndex++];
+    //                 result.video_title = videoPlayer.clip.name;
+    //                 return;
+    //             default: return;
+    //         }
+    //     }
+    //     // audio only
+    //     if (numQuestionsCompleted % 3 == 2)
+    //     {
+    //         result.isAudio = true;
+    //         switch (currentEmotion)
+    //         {
+    //             case "HAPPY":
+    //                 emotionAudioPlayer.clip = happyAudios[happyAudioIndex++];
+    //                 result.audio_title = emotionAudioPlayer.clip.name;
+    //                 return;
+    //             case "SAD":
+    //                 emotionAudioPlayer.clip = sadAudios[sadAudioIndex++];
+    //                 result.audio_title = emotionAudioPlayer.clip.name;
+    //                 return;
+    //             case "ANGRY":
+    //                 emotionAudioPlayer.clip = angryAudios[angryAudioIndex++];
+    //                 result.audio_title = emotionAudioPlayer.clip.name;
+    //                 return;
+    //             case "AFRAID":
+    //                 emotionAudioPlayer.clip = afraidAudios[afraidAudioIndex++];
+    //                 result.audio_title = emotionAudioPlayer.clip.name;
+    //                 return;
+    //             default: return;
+    //         }
+    //     }
+    //     // image only
+    //     if (numQuestionsCompleted % 3 == 1)
+    //     {
+
+    //         result.isStillImage = true;
+
+    //         switch (currentEmotion)
+    //         {
+    //             case "HAPPY":
+    //                 still_image_holder.sprite = happyImages[happyImageIndex++];
+    //                 result.still_image_title = still_image_holder.sprite.name;
+    //                 return;
+    //             case "SAD":
+    //                 still_image_holder.sprite = sadImages[sadImageIndex++];
+    //                 result.still_image_title = still_image_holder.sprite.name;
+    //                 return;
+    //             case "ANGRY":
+    //                 still_image_holder.sprite = angryImages[angryImageIndex++];
+    //                 result.still_image_title = still_image_holder.sprite.name;
+    //                 return;
+    //             case "AFRAID":
+    //                 still_image_holder.sprite = afraidImages[afraidImageIndex++];
+    //                 result.still_image_title = still_image_holder.sprite.name;
+    //                 return;
+    //             default: return;
+    //         }
+    //     }
+    // }
     // --------------------------------------------------------------------------------------------
     public void ClearPreviousVideoTexture()
     {

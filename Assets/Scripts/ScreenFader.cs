@@ -148,22 +148,17 @@ public class ScreenFader : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public void PlayMediaVariation()
     {
+        Debug.Log($"next media variation: {GSM.Instance.nextMediaVariation}");
         // video
-        if (GSM.Instance.numQuestionsCompleted % 3 == 0)
+        if (GSM.Instance.nextMediaVariation == 0)
         {
             stillImage.gameObject.SetActive(false);
             videoImage.gameObject.SetActive(true);
             videoImage.transform.SetAsLastSibling();
             videoTest.Play();
         }
-        // audio
-        if (GSM.Instance.numQuestionsCompleted % 3 == 1)
-        {
-            emotionAudioSource.Play();
-            StartCoroutine(WaitForAudioFinished());
-        }
         // still image
-        if (GSM.Instance.numQuestionsCompleted % 3 == 2)
+        if (GSM.Instance.nextMediaVariation == 1)
         {
             videoImage.gameObject.SetActive(false);
             stillImage.gameObject.SetActive(true);
@@ -185,6 +180,13 @@ public class ScreenFader : MonoBehaviour
             StartCoroutine(WaitForImageFinish());
 
         }
+        // audio
+        if (GSM.Instance.nextMediaVariation == 2)
+        {
+            emotionAudioSource.Play();
+            StartCoroutine(WaitForAudioFinished());
+        }
+
         // ----------------------------------------------------------------------------------------
         IEnumerator WaitForImageFinish()
         {

@@ -113,8 +113,8 @@ public class StatueInteract : MonoBehaviour
             outroDialogue.SetActive(false);
             UnlockPlayer();
             GSM.Instance.result = new GSM.EmotionResult();
-            GSM.Instance.PickNextEmotion();
-            GSM.Instance.SetEmotionMedia();
+            GSM.Instance.SetNextRandomEmotion();
+            GSM.Instance.SetMedia();
             Destroy(gameObject);
         }
     }

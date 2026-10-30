@@ -128,9 +128,7 @@ public class QuizScript : MonoBehaviour
     public void IncorrectResponse()
     {
         // get random wrong resposne
-        textBox.text =
-            GSM.Instance.incorrectResponses
-            [Random.Range(0, GSM.Instance.incorrectResponses.Length)];
+
         // play sound
         audioSource.PlayOneShot(incorrectSFX);
         GSM.Instance.result.wasCorrect = false;
