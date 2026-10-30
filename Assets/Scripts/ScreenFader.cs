@@ -83,6 +83,47 @@ public class ScreenFader : MonoBehaviour
         StartCoroutine(FadeRoutine(1f, 0f));
     }
     // --------------------------------------------------------------------------------------------
+    public IEnumerator SimpleFade(float startAlpha, float targetAlpha)
+    {
+        float elapsedTime = 0f;
+        Color color = fadeImage.color;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+
+            color.a = Mathf.Lerp(
+                startAlpha,
+                targetAlpha,
+                elapsedTime / fadeDuration
+            );
+            fadeImage.color = color;
+            // fade game volume too
+            if (targetAlpha == 1f)
+            {
+                audioSource.volume = Mathf.Lerp(
+                    1,
+                    0,
+                    elapsedTime / fadeDuration
+                );
+            }
+            else
+            {
+                audioSource.volume = Mathf.Lerp(
+                    0,
+                    1,
+                    elapsedTime / fadeDuration
+                );
+            }
+            yield return null;
+        }
+
+        // snap final values into place
+        color.a = targetAlpha;
+        fadeImage.color = color;
+
+    }
+    // --------------------------------------------------------------------------------------------
     private IEnumerator FadeRoutine(float startAlpha, float targetAlpha)
     {
 

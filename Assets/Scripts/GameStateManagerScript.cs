@@ -3,7 +3,7 @@ using UnityEngine.Video;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
+using System.Collections;
 
 public class GameStateManagerScript : MonoBehaviour
 {
@@ -198,7 +198,7 @@ public class GameStateManagerScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     void Update()
     {
-        SetNewScene();
+
     }
     // --------------------------------------------------------------------------------------------
     public void SaveResults()
@@ -381,14 +381,6 @@ public class GameStateManagerScript : MonoBehaviour
         return "";
     }
     // --------------------------------------------------------------------------------------------
-    // non randomized version
-    // public void PickNextEmotion()
-    // {
-    //     if (lvl1) currentEmotion = emotionsTestedInLvl_1[numQuestionsCompleted % emotionsTestedInLvl_1.Length];
-    //     if (lvl2) currentEmotion = emotionsTestedInLvl_2[numQuestionsCompleted % emotionsTestedInLvl_2.Length];
-    //     Debug.Log($"Current emotion picked: {currentEmotion}");
-    // }
-    // --------------------------------------------------------------------------------------------
     public void SetMedia()
     {
         switch (currentEmotion)
@@ -477,88 +469,6 @@ public class GameStateManagerScript : MonoBehaviour
         }
     }
     // --------------------------------------------------------------------------------------------
-    // public void SetEmotionMedia()
-    // {
-    //     // video
-    //     if (numQuestionsCompleted % 3 == 0)
-    //     {
-    //         ClearPreviousVideoTexture();
-    //         result.isVideo = true;
-    //         switch (currentEmotion)
-    //         {
-    //             case "HAPPY":
-    //                 videoPlayer.clip = happyVideos[happyVideoIndex++];
-    //                 result.video_title = videoPlayer.clip.name;
-    //                 return;
-    //             case "SAD":
-    //                 videoPlayer.clip = sadVideos[sadVideoIndex++];
-    //                 result.video_title = videoPlayer.clip.name;
-    //                 return;
-    //             case "ANGRY":
-    //                 videoPlayer.clip = angryVideos[angryVideoIndex++];
-    //                 result.video_title = videoPlayer.clip.name;
-    //                 return;
-    //             case "AFRAID":
-    //                 videoPlayer.clip = afraidVideos[afraidVideoIndex++];
-    //                 result.video_title = videoPlayer.clip.name;
-    //                 return;
-    //             default: return;
-    //         }
-    //     }
-    //     // audio only
-    //     if (numQuestionsCompleted % 3 == 2)
-    //     {
-    //         result.isAudio = true;
-    //         switch (currentEmotion)
-    //         {
-    //             case "HAPPY":
-    //                 emotionAudioPlayer.clip = happyAudios[happyAudioIndex++];
-    //                 result.audio_title = emotionAudioPlayer.clip.name;
-    //                 return;
-    //             case "SAD":
-    //                 emotionAudioPlayer.clip = sadAudios[sadAudioIndex++];
-    //                 result.audio_title = emotionAudioPlayer.clip.name;
-    //                 return;
-    //             case "ANGRY":
-    //                 emotionAudioPlayer.clip = angryAudios[angryAudioIndex++];
-    //                 result.audio_title = emotionAudioPlayer.clip.name;
-    //                 return;
-    //             case "AFRAID":
-    //                 emotionAudioPlayer.clip = afraidAudios[afraidAudioIndex++];
-    //                 result.audio_title = emotionAudioPlayer.clip.name;
-    //                 return;
-    //             default: return;
-    //         }
-    //     }
-    //     // image only
-    //     if (numQuestionsCompleted % 3 == 1)
-    //     {
-
-    //         result.isStillImage = true;
-
-    //         switch (currentEmotion)
-    //         {
-    //             case "HAPPY":
-    //                 still_image_holder.sprite = happyImages[happyImageIndex++];
-    //                 result.still_image_title = still_image_holder.sprite.name;
-    //                 return;
-    //             case "SAD":
-    //                 still_image_holder.sprite = sadImages[sadImageIndex++];
-    //                 result.still_image_title = still_image_holder.sprite.name;
-    //                 return;
-    //             case "ANGRY":
-    //                 still_image_holder.sprite = angryImages[angryImageIndex++];
-    //                 result.still_image_title = still_image_holder.sprite.name;
-    //                 return;
-    //             case "AFRAID":
-    //                 still_image_holder.sprite = afraidImages[afraidImageIndex++];
-    //                 result.still_image_title = still_image_holder.sprite.name;
-    //                 return;
-    //             default: return;
-    //         }
-    //     }
-    // }
-    // --------------------------------------------------------------------------------------------
     public void ClearPreviousVideoTexture()
     {
         videoPlayer.Stop();
@@ -569,23 +479,28 @@ public class GameStateManagerScript : MonoBehaviour
         RenderTexture.active = previous;
     }
     // --------------------------------------------------------------------------------------------
-    public void SetNewScene()
+    public IEnumerator SetNewScene()
     {
-        if (lvl1 && numQuestionsCompleted == numStatuesInLvl_1)
-        {
-            lvl1GlobalLight.SetActive(false);
-            lvl1Light.SetActive(false);
-            fog1.SetActive(false);
-            fog2.SetActive(false);
-            dust.Stop();
-            lvl1 = false;
-            lvl2 = true;
-            lvl2Environment.SetActive(true);
-            player.transform.position = lvl2spawnPoint.position;
-            // set sprite layer to above bridges in lvl 2
-            player.GetComponent<SpriteRenderer>().sortingOrder = 4;
-            player.GetComponent<Rigidbody2D>().linearDamping = 10;
-        }
+        ScreenFader sf = gameObject.GetComponent<ScreenFader>();
+        StartCoroutine(sf.SimpleFade(0,1));
+        yield return new WaitForSeconds(1.5f);
+        lvl1GlobalLight.SetActive(false);
+        lvl1Light.SetActive(false);
+        fog1.SetActive(false);
+        fog2.SetActive(false);
+        dust.Stop();
+        lvl1 = false;
+        lvl2 = true;
+        lvl2Environment.SetActive(true);
+        player.transform.position = lvl2spawnPoint.position;
+        // set sprite layer to above bridges in lvl 2
+        player.GetComponent<SpriteRenderer>().sortingOrder = 4;
+        player.GetComponent<Rigidbody2D>().linearDamping = 10;
+        yield return new WaitForSeconds(1.5f);
+        StartCoroutine(sf.SimpleFade(1, 0));
     }
     // --------------------------------------------------------------------------------------------
+
+    // --------------------------------------------------------------------------------------------
+
 }
