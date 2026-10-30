@@ -25,6 +25,7 @@ public class ScreenFader : MonoBehaviour
     public RawImage inGameVideoImage;
     public Image inGameStillImage;
     public Transform mediaPosition;
+    public GameObject ListenImage;
     public GameObject DialogueHolder;
     public GameObject introTextBox;
     public GameObject introTextBoxCornerImage;
@@ -204,6 +205,7 @@ public class ScreenFader : MonoBehaviour
         // video
         if (GSM.Instance.nextMediaVariation == 0)
         {
+            ListenImage.SetActive(false);
             GSM.Instance.ClearPreviousVideoTexture();
             stillImage.gameObject.SetActive(false);
             videoImage.gameObject.SetActive(true);
@@ -213,6 +215,8 @@ public class ScreenFader : MonoBehaviour
         // still image
         if (GSM.Instance.nextMediaVariation == 1)
         {
+            
+            ListenImage.SetActive(false);
             statueFace.SetActive(false);
             videoImage.gameObject.SetActive(false);
             stillImage.gameObject.SetActive(true);
@@ -223,8 +227,10 @@ public class ScreenFader : MonoBehaviour
         // audio
         if (GSM.Instance.nextMediaVariation == 2)
         {
+            statueFace.SetActive(false);
             emotionAudioSource.Play();
             StartCoroutine(WaitForAudioFinished());
+            ListenImage.SetActive(true);
         }
 
         // ----------------------------------------------------------------------------------------

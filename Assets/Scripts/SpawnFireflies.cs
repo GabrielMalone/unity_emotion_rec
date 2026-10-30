@@ -8,7 +8,7 @@ public class SpawnFireflies : MonoBehaviour
     public GameObject Firefly;
     public int maxNumFireflies = 100;
     public GameObject [] fireflies;
-    private bool spawnedInLvl2 = false;
+   
     // --------------------------------------------------------------------------------------------
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,11 +19,7 @@ public class SpawnFireflies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GSM.Instance.lvl2 && !spawnedInLvl2)
-        {
-            spawnedInLvl2 = true;
-            Spawn();
-        }
+
     }
     // --------------------------------------------------------------------------------------------
     Vector3 GetRandomSpawnPoint()
@@ -33,7 +29,7 @@ public class SpawnFireflies : MonoBehaviour
         return spawnArea.transform.TransformPoint(randomPoint);
     }
     // --------------------------------------------------------------------------------------------
-    void Spawn()
+    public void Spawn()
     {
         for (int i = 0 ; i < fireflies.Length ; i ++)
         {

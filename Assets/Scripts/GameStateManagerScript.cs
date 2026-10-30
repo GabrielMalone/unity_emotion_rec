@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Collections;
 using UnityEngine.AI;
+using Unity.VisualScripting;
 
 public class GameStateManagerScript : MonoBehaviour
 {
@@ -187,8 +188,7 @@ public class GameStateManagerScript : MonoBehaviour
     public ParticleSystem dust;
     public GameObject lvl2Environment;
     public Transform lvl2spawnPoint;
-    public GameObject startArea;
-
+    public GameObject spawnFireFlies;
     // --------------------------------------------------------------------------------------------
     [Header("Telemetry Per Quiz")]
     public EmotionResult result = new EmotionResult();
@@ -200,7 +200,11 @@ public class GameStateManagerScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     void Update()
     {
-
+        if (lvl1 && numQuestionsCompleted == numStatuesInLvl_1 && readyToMoveOn)
+        {
+            lvl2 = true;
+            StartCoroutine(SetNewScene());
+        }
     }
     // --------------------------------------------------------------------------------------------
     void RandomizeMedia()
@@ -501,12 +505,16 @@ public class GameStateManagerScript : MonoBehaviour
 
         foreach (GameObject attractor in fireflyattractors)
         {
+            Debug.Log("firefly attractors?", attractor);
             NavMeshAgent agent = attractor.GetComponent<NavMeshAgent>();
             // cant use transform position change on agents I guess
             agent.Warp(lvl2spawnPoint.position);
             attractor.GetComponent<FireflyAttractorBehavior>().environmentArea =
                 lvl2spawnPoint.GetComponent<CircleCollider2D>();
         }
+
+
+        spawnFireFlies.GetComponent<SpawnFireflies>().Spawn();
 
         player.transform.position = lvl2spawnPoint.position;
         // set sprite layer to above bridges in lvl 2

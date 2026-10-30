@@ -166,8 +166,9 @@ public class StatueInteract : MonoBehaviour
             screenFader.introTextBox.SetActive(true);
             screenFader.introTextBoxCornerImage.SetActive(true);
             screenFader.introSureButton.SetActive(true);
+            screenFader.ListenImage.SetActive(false);
             screenFader.statueFace.SetActive(true);
-
+        
             IntroSpeech();
             // start dialogue interaction here
             StartCoroutine(WaitForAgreement());
