@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.IO;
 using System.Collections;
+using UnityEngine.AI;
 
 public class GameStateManagerScript : MonoBehaviour
 {
@@ -185,6 +186,7 @@ public class GameStateManagerScript : MonoBehaviour
     public ParticleSystem dust;
     public GameObject lvl2Environment;
     public Transform lvl2spawnPoint;
+    public GameObject startArea;
 
     // --------------------------------------------------------------------------------------------
     [Header("Telemetry Per Quiz")]
@@ -228,11 +230,16 @@ public class GameStateManagerScript : MonoBehaviour
     // Randomization of emotions tracking structures
     // --------------------------------------------------------------------------------------------
     public void SetNextRandomEmotion()
-    {   
+    {
+
+        if (lvl1 && numQuestionsCompleted == numStatuesInLvl_1) return;
+        if (lvl2 && numQuestionsCompleted == numStatuesInLvl_2) return;
+
         if (lvl1)
         {
             while (true)
             {
+                Debug.Log("stuck in this loop?");
                 // pick random emotion for this level
                 string rnd_emotion = PickRandomEmotion();
                 Debug.Log($"attempting {rnd_emotion}");
@@ -259,16 +266,16 @@ public class GameStateManagerScript : MonoBehaviour
                     switch (currentEmotion)
                     {
                         case "HAPPY":
-                            happySeen ++ ;
+                            happySeen++;
                             return;
                         case "SAD":
-                            sadSeen ++ ;
+                            sadSeen++;
                             return;
                         case "ANGRY":
-                            angrySeen ++ ;
+                            angrySeen++;
                             return;
                         case "AFRAID":
-                            afraidSeen ++ ;
+                            afraidSeen++;
                             return;
                         default:
                             return;
@@ -278,12 +285,14 @@ public class GameStateManagerScript : MonoBehaviour
         }
         else if (lvl2)
         {
-            while (true)
+            int attempts = 0;
+            while (attempts ++ < 10_000)
             {
+                Debug.Log("Orstuck in this loop?");
                 // pick random emotion for this level
                 string rnd_emotion = PickRandomEmotion();
                 Debug.Log($"attempting {rnd_emotion}");
-                if (rnd_emotion == "HAPPY" &&  happySeen >= lvl2_happyEmotionsLimit)
+                if (rnd_emotion == "HAPPY" && happySeen >= lvl2_happyEmotionsLimit)
                 {
                     // if seen too many times go back and pick another random emotion
                     Debug.Log($"too many {rnd_emotion}");
@@ -295,7 +304,7 @@ public class GameStateManagerScript : MonoBehaviour
                     Debug.Log($"too many {rnd_emotion}");
                     continue;
                 }
-                if (rnd_emotion == "SAD" &&  sadSeen >= lvl2_sadEmotionsLimit)
+                if (rnd_emotion == "SAD" && sadSeen >= lvl2_sadEmotionsLimit)
                 {
                     // if seen too many times go back and pick another random emotion
                     Debug.Log($"too many {rnd_emotion}");
@@ -334,6 +343,9 @@ public class GameStateManagerScript : MonoBehaviour
                     }
                 }
             }
+            // will need to make sure media doesn't go out of bounds for this one though
+            currentEmotion = PickRandomEmotion();
+            Debug.Log($"rnd emotion with constraints faled picking {currentEmotion}");
         }
     }
     // --------------------------------------------------------------------------------------------
@@ -349,24 +361,24 @@ public class GameStateManagerScript : MonoBehaviour
 
         switch (rnd_emotion)
         {
-            case "HAPPY" : 
-                if (happySeen < 2) 
+            case "HAPPY":
+                if (happySeen < 2)
                     return false;
                 return prev2 == prev1 && prev1 == rnd_emotion;
             case "SAD":
-                if (sadSeen < 2) 
+                if (sadSeen < 2)
                     return false;
-                 return prev2 == prev1 && prev1 == rnd_emotion;
+                return prev2 == prev1 && prev1 == rnd_emotion;
             case "ANGRY":
-                if (angrySeen < 2) 
+                if (angrySeen < 2)
                     return false;
                 return prev2 == prev1 && prev1 == rnd_emotion;
             case "AFRAID":
-                if (afraidSeen < 2) 
+                if (afraidSeen < 2)
                     return false;
                 return prev2 == prev1 && prev1 == rnd_emotion;
 
-            default : 
+            default:
                 Debug.Log("something went wrong in TooManyConsecutiveEmotions");
                 return true;
         }
@@ -482,8 +494,10 @@ public class GameStateManagerScript : MonoBehaviour
     public IEnumerator SetNewScene()
     {
         ScreenFader sf = gameObject.GetComponent<ScreenFader>();
-        StartCoroutine(sf.SimpleFade(0,1));
+        StartCoroutine(sf.SimpleFade(0, 1));
+        playerControllerDisabled = true;
         yield return new WaitForSeconds(1.5f);
+
         lvl1GlobalLight.SetActive(false);
         lvl1Light.SetActive(false);
         fog1.SetActive(false);
@@ -492,12 +506,35 @@ public class GameStateManagerScript : MonoBehaviour
         lvl1 = false;
         lvl2 = true;
         lvl2Environment.SetActive(true);
+
+        // move the firelfly attractors and the fireflies
+
+        GameObject[] fireflyattractors = GameObject.FindGameObjectsWithTag("FireflyAttractor");
+        GameObject[] fireflies = GameObject.FindGameObjectsWithTag("Firefly");
+
+        foreach (GameObject fireFly in fireflies)
+        {
+            Destroy(fireFly);
+        }
+
+        
+
+        foreach (GameObject attractor in fireflyattractors)
+        {
+            NavMeshAgent agent = attractor.GetComponent<NavMeshAgent>();
+            // cant use transform position change on agents I guess
+            agent.Warp(lvl2spawnPoint.position);
+            attractor.GetComponent<FireflyAttractorBehavior>().environmentArea =
+                lvl2spawnPoint.GetComponent<CircleCollider2D>();
+        }
+
         player.transform.position = lvl2spawnPoint.position;
         // set sprite layer to above bridges in lvl 2
         player.GetComponent<SpriteRenderer>().sortingOrder = 4;
         player.GetComponent<Rigidbody2D>().linearDamping = 10;
         yield return new WaitForSeconds(1.5f);
         StartCoroutine(sf.SimpleFade(1, 0));
+        playerControllerDisabled = false;
     }
     // --------------------------------------------------------------------------------------------
 

@@ -15,10 +15,11 @@ public class LevelExit : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("Trying to Exit!");
         if (other.name != "Player")
             return;
         Debug.Log("Trying to Exit!");
-        if (GSM.Instance.numQuestionsCompleted == 1)
+        if (GSM.Instance.numQuestionsCompleted == GSM.Instance.numStatuesInLvl_1)
         {
             StartCoroutine(GSM.Instance.SetNewScene());
         }

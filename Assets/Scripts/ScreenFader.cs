@@ -127,7 +127,7 @@ public class ScreenFader : MonoBehaviour
     private IEnumerator FadeRoutine(float startAlpha, float targetAlpha)
     {
 
-        Qiuz.SetActive(false); 
+        Qiuz.SetActive(false);
 
         float elapsedTime = 0f;
         Color color = fadeImage.color;
@@ -193,6 +193,7 @@ public class ScreenFader : MonoBehaviour
         // video
         if (GSM.Instance.nextMediaVariation == 0)
         {
+            GSM.Instance.ClearPreviousVideoTexture();
             stillImage.gameObject.SetActive(false);
             videoImage.gameObject.SetActive(true);
             videoImage.transform.SetAsLastSibling();
