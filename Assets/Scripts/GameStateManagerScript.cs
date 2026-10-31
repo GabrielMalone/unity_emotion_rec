@@ -217,7 +217,7 @@ public class GameStateManagerScript : MonoBehaviour
             int j = Random.Range(0, i + 1);
             // tuple assignment --> right side evaulutes first, 
             // so we get the swapped values there and then they are assigned to the variables on the left
-           // (happyVideos[i], happyVideos[j]) = (happyVideos[j], happyVideos[i]);
+            (happyVideos[i], happyVideos[j]) = (happyVideos[j], happyVideos[i]);
             (sadVideos[i], sadVideos[j]) = (sadVideos[j], sadVideos[i]);
             (angryVideos[i], angryVideos[j]) = (angryVideos[j], angryVideos[i]);
             (afraidVideos[i], afraidVideos[j]) = (afraidVideos[j], afraidVideos[i]);
