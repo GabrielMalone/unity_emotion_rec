@@ -109,11 +109,9 @@ public class GameStateManagerScript : MonoBehaviour
     [Header("Level Settings")]
     public bool lvl1 = false;
     public bool lvl2 = false;
-    public bool lvl3 = false;
 
     public int numStatuesInLvl_1 = 4;
     public int numStatuesInLvl_2 = 20;
-    public int numStatuesInLvl_3 = 12;
 
     public string[] emotionsTestedInLvl_1;
     public string[] emotionsTestedInLvl_2;
@@ -263,7 +261,7 @@ public class GameStateManagerScript : MonoBehaviour
     {
 
         if (lvl1 && numQuestionsCompleted == numStatuesInLvl_1) return;
-        if (lvl2 && numQuestionsCompleted == numStatuesInLvl_2) return;
+        if (lvl2 && numQuestionsCompleted == numStatuesInLvl_2 + numStatuesInLvl_1) return;
 
         while (true)
         {
