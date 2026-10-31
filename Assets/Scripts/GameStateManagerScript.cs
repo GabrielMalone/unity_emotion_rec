@@ -203,6 +203,7 @@ public class GameStateManagerScript : MonoBehaviour
         if (lvl1 && numQuestionsCompleted == numStatuesInLvl_1 && readyToMoveOn)
         {
             lvl2 = true;
+            playerControllerDisabled = true;
             StartCoroutine(SetNewScene());
         }
     }
@@ -215,7 +216,7 @@ public class GameStateManagerScript : MonoBehaviour
             int j = Random.Range(0, i + 1);
             // tuple assignment --> right side evaulutes first, 
             // so we get the swapped values there and then they are assigned to the variables on the left
-            (happyVideos[i], happyVideos[j]) = (happyVideos[j], happyVideos[i]);
+           // (happyVideos[i], happyVideos[j]) = (happyVideos[j], happyVideos[i]);
             (sadVideos[i], sadVideos[j]) = (sadVideos[j], sadVideos[i]);
             (angryVideos[i], angryVideos[j]) = (angryVideos[j], angryVideos[i]);
             (afraidVideos[i], afraidVideos[j]) = (afraidVideos[j], afraidVideos[i]);
@@ -479,9 +480,9 @@ public class GameStateManagerScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public IEnumerator SetNewScene()
     {
+        playerControllerDisabled = true;
         ScreenFader sf = gameObject.GetComponent<ScreenFader>();
         StartCoroutine(sf.SimpleFade(0, 1));
-        playerControllerDisabled = true;
         yield return new WaitForSeconds(1.5f);
 
         lvl1GlobalLight.SetActive(false);

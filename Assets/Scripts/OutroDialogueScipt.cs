@@ -28,7 +28,7 @@ public class OutroDialogueScipt : MonoBehaviour
             != GSM.Instance.currentEmotion
         )
         {
-            buttonText.text = $" Almost! The correct emotion was {GSM.Instance.currentEmotion} ";
+            buttonText.text = $" Almost! They were {GSM.Instance.currentEmotion} ";
         }
 
         buttonText.text += "\n\n\nClick Here to Continue";
