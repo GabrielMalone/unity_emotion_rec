@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Collections;
 using UnityEngine.AI;
-using Unity.VisualScripting;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class GameStateManagerScript : MonoBehaviour
 {
@@ -23,8 +24,6 @@ public class GameStateManagerScript : MonoBehaviour
         }
 
         Instance = this;
-        // persist from scene to scene
-        DontDestroyOnLoad(gameObject);
     }
     // --------------------------------------------------------------------------------------------
     // TELEMETRY STRUCTURES
@@ -181,12 +180,20 @@ public class GameStateManagerScript : MonoBehaviour
     [Header("Lvl Settings")]
     public GameObject lvl1Light;
     public GameObject lvl1GlobalLight;
+    public Volume globalVolume;
+
+    private Bloom bloom;
     public GameObject fog1;
     public GameObject fog2;
     public ParticleSystem dust;
     public GameObject lvl2Environment;
+    public Transform lvl1SpawnPoint;
     public Transform lvl2spawnPoint;
     public GameObject spawnFireFlies;
+    public GameObject StatuesIndicator;
+
+    [Header("End Game Settings")]
+    public GameObject EndGameScreen;
     // --------------------------------------------------------------------------------------------
     [Header("Telemetry Per Quiz")]
     public EmotionResult result = new EmotionResult();
@@ -194,6 +201,8 @@ public class GameStateManagerScript : MonoBehaviour
     void Start()
     {
         RandomizeMedia();
+        if (globalVolume.profile.TryGet(out bloom))
+            Debug.Log("bloom retrieved successfully");
     }
     // --------------------------------------------------------------------------------------------
     void Update()
@@ -203,6 +212,11 @@ public class GameStateManagerScript : MonoBehaviour
             lvl2 = true;
             playerControllerDisabled = true;
             StartCoroutine(SetNewScene());
+        }
+        if (numQuestionsCompleted == numStatuesInLvl_1 + numStatuesInLvl_2)
+        {
+            StartCoroutine(gameObject.GetComponent<ScreenFader>().SimpleFade(0,1));
+            EndGameScreen.SetActive(true);
         }
     }
     // --------------------------------------------------------------------------------------------
@@ -483,6 +497,8 @@ public class GameStateManagerScript : MonoBehaviour
         StartCoroutine(sf.SimpleFade(0, 1));
         yield return new WaitForSeconds(1.5f);
 
+
+        bloom.tint.value = Color.yellow;
         lvl1GlobalLight.SetActive(false);
         lvl1Light.SetActive(false);
         fog1.SetActive(false);

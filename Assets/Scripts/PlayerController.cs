@@ -38,16 +38,11 @@ public class PlayerController : MonoBehaviour
 
         if (GSM.Instance.playerControllerDisabled) return;
 
-        if (Mouse.current.leftButton.isPressed)
+        if (Keyboard.current.leftShiftKey.isPressed && Keyboard.current.pKey.isPressed)
         {
-            // Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
-            // Debug.Log("Mouse Pos: " + mousePos);
-            // // mouse position - player object position
-            // Vector2 direction = mousePos - transform.position;
-            // // set the player game object facing that direction
-            // transform.up = direction.normalized;
+            Debug.Log("resetting player position");
+            ResetPlayerPosition();
         }
-
 
         // Forward
         if (Keyboard.current.wKey.isPressed)
@@ -85,6 +80,18 @@ public class PlayerController : MonoBehaviour
         {
             // normalized takes away speed and gives only direction. 
             rb.linearVelocity = rb.linearVelocity.normalized * maxPlayerSpeed;
+        }
+    }
+    // --------------------------------------------------------------------------------------------
+    public void ResetPlayerPosition()
+    {
+        if (GSM.Instance.lvl1)
+        {
+            transform.position = GSM.Instance.lvl1SpawnPoint.position;
+        }
+        if (GSM.Instance.lvl2)
+        {
+            transform.position = GSM.Instance.lvl2spawnPoint.position;
         }
     }
     // --------------------------------------------------------------------------------------------

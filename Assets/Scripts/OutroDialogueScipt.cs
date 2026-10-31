@@ -6,7 +6,6 @@ public class OutroDialogueScipt : MonoBehaviour
 {
 
     public TextMeshProUGUI buttonText;
-    private bool textSet = false;
     // --------------------------------------------------------------------------------------------
     public void Start()
     {
@@ -30,8 +29,6 @@ public class OutroDialogueScipt : MonoBehaviour
         {
             buttonText.text = $" Almost! They were {GSM.Instance.currentEmotion} ";
         }
-
-        buttonText.text += "\n\n\nClick Here to Continue";
     }
     // --------------------------------------------------------------------------------------------
     public void OutroHandler()

@@ -54,12 +54,14 @@ public class StatueInteract : MonoBehaviour
         if (screenFader.readyForQuiz && !hasRun && GSM.Instance.lastStatueInteractedWith == gameObject)
         {
             Debug.Log("Starting Quiz!");
+            GSM.Instance.StatuesIndicator.SetActive(false);
             StartQuiz();
         }
 
         if (GSM.Instance.playerAnswered && GSM.Instance.lastStatueInteractedWith == gameObject)
         {
             PlayerAnsweredSeuqence();
+            GSM.Instance.StatuesIndicator.SetActive(true);
         }
 
     }
