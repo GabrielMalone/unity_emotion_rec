@@ -196,16 +196,17 @@ public class GameStateManagerScript : MonoBehaviour
     void Start()
     {
         RandomizeMedia();
+        StartCoroutine(SetNewScene());
     }
     // --------------------------------------------------------------------------------------------
     void Update()
     {
-        if (lvl1 && numQuestionsCompleted == numStatuesInLvl_1 && readyToMoveOn)
-        {
-            lvl2 = true;
-            playerControllerDisabled = true;
-            StartCoroutine(SetNewScene());
-        }
+        // if (lvl1 && numQuestionsCompleted == numStatuesInLvl_1 && readyToMoveOn)
+        // {
+        //     lvl2 = true;
+        //     playerControllerDisabled = true;
+        //     StartCoroutine(SetNewScene());
+        // }
     }
     // --------------------------------------------------------------------------------------------
     void RandomizeMedia()
