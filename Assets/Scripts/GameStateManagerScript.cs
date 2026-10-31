@@ -196,17 +196,16 @@ public class GameStateManagerScript : MonoBehaviour
     void Start()
     {
         RandomizeMedia();
-        StartCoroutine(SetNewScene());
     }
     // --------------------------------------------------------------------------------------------
     void Update()
     {
-        // if (lvl1 && numQuestionsCompleted == numStatuesInLvl_1 && readyToMoveOn)
-        // {
-        //     lvl2 = true;
-        //     playerControllerDisabled = true;
-        //     StartCoroutine(SetNewScene());
-        // }
+        if (lvl1 && numQuestionsCompleted == numStatuesInLvl_1 && readyToMoveOn)
+        {
+            lvl2 = true;
+            playerControllerDisabled = true;
+            StartCoroutine(SetNewScene());
+        }
     }
     // --------------------------------------------------------------------------------------------
     void RandomizeMedia()
@@ -521,7 +520,7 @@ public class GameStateManagerScript : MonoBehaviour
         player.transform.position = lvl2spawnPoint.position;
         // set sprite layer to above bridges in lvl 2
         player.GetComponent<SpriteRenderer>().sortingOrder = 4;
-        player.GetComponent<Rigidbody2D>().linearDamping = 10;
+        // player.GetComponent<Rigidbody2D>().linearDamping = 10;
         yield return new WaitForSeconds(1.5f);
         StartCoroutine(sf.SimpleFade(1, 0));
 
