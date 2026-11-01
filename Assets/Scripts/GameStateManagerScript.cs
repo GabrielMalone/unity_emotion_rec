@@ -203,6 +203,7 @@ public class GameStateManagerScript : MonoBehaviour
         RandomizeMedia();
         if (globalVolume.profile.TryGet(out bloom))
             Debug.Log("bloom retrieved successfully");
+        //StartCoroutine(SetNewScene());
     }
     // --------------------------------------------------------------------------------------------
     void Update()
@@ -497,8 +498,8 @@ public class GameStateManagerScript : MonoBehaviour
         StartCoroutine(sf.SimpleFade(0, 1));
         yield return new WaitForSeconds(1.5f);
 
-
-        bloom.tint.value = Color.yellow;
+        if(bloom !=null)
+            bloom.tint.value = Color.yellow;
         lvl1GlobalLight.SetActive(false);
         lvl1Light.SetActive(false);
         fog1.SetActive(false);

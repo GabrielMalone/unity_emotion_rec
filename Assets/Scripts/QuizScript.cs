@@ -138,6 +138,7 @@ public class QuizScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public void ReplaySelected()
     {
+        
         GSM.Instance.replaySelected = true;
         GSM.Instance.result.replayUsed = true;
         replayButton.SetActive(false);
@@ -180,6 +181,7 @@ public class QuizScript : MonoBehaviour
         GSM.Instance.results.Add(GSM.Instance.result);
         GSM.Instance.SaveResults();
         GSM.Instance.playerAnswered = true;
+     
     }
 }
     

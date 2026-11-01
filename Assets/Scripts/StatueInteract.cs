@@ -45,6 +45,7 @@ public class StatueInteract : MonoBehaviour
         if (GSM.Instance.replaySelected && GSM.Instance.lastStatueInteractedWith == gameObject)
         {
             screenFader.readyForQuiz = false;
+            screenFader.DialogueHolder.SetActive(true);
             screenFader.FadeToBlack();
             //DialogueHolder.SetActive(false);
             GSM.Instance.replaySelected = false;
@@ -55,6 +56,7 @@ public class StatueInteract : MonoBehaviour
         {
             Debug.Log("Starting Quiz!");
             GSM.Instance.StatuesIndicator.SetActive(false);
+            DialogueHolder.SetActive(false);
             StartQuiz();
         }
 
