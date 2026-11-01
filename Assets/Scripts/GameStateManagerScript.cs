@@ -7,7 +7,6 @@ using System.Collections;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using System.Xml.Serialization;
 
 public class GameStateManagerScript : MonoBehaviour
 {
@@ -551,7 +550,6 @@ public class GameStateManagerScript : MonoBehaviour
 
         foreach (GameObject attractor in fireflyattractors)
         {
-            Debug.Log("firefly attractors?", attractor);
             NavMeshAgent agent = attractor.GetComponent<NavMeshAgent>();
             // cant use transform position change on agents I guess
             agent.Warp(lvl2spawnPoint.position);
