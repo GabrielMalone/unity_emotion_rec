@@ -63,9 +63,6 @@ public class GameStateManagerScript : MonoBehaviour
         public float timeQuizStarted;
         public float timeQuizCompleted;
         public string emotionName;
-        public bool isVideo = false;
-        public bool isAudio = false;
-        public bool isStillImage = false;
         public string video_title;
         public string audio_title;
         public string still_image_title;
@@ -192,6 +189,8 @@ public class GameStateManagerScript : MonoBehaviour
     public GameObject spawnFireFlies;
     public GameObject StatuesIndicator;
 
+    private bool endGameTriggered = false;
+
     [Header("End Game Settings")]
     public GameObject EndGameScreen;
     // --------------------------------------------------------------------------------------------
@@ -203,19 +202,22 @@ public class GameStateManagerScript : MonoBehaviour
         RandomizeMedia();
         if (globalVolume.profile.TryGet(out bloom))
             Debug.Log("bloom retrieved successfully");
-        //StartCoroutine(SetNewScene());
+       // StartCoroutine(SetNewScene());
+
+    
     }
     // --------------------------------------------------------------------------------------------
     void Update()
     {
         if (lvl1 && numQuestionsCompleted == numStatuesInLvl_1 && readyToMoveOn)
         {
-            lvl2 = true;
+            lvl1 = false;
             playerControllerDisabled = true;
             StartCoroutine(SetNewScene());
         }
-        if (numQuestionsCompleted == numStatuesInLvl_1 + numStatuesInLvl_2)
+        if (numQuestionsCompleted == numStatuesInLvl_1 + numStatuesInLvl_2 && readyToMoveOn && !endGameTriggered)
         {
+            endGameTriggered = true;
             StartCoroutine(gameObject.GetComponent<ScreenFader>().SimpleFade(0,1));
             EndGameScreen.SetActive(true);
         }
@@ -272,76 +274,69 @@ public class GameStateManagerScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     // Randomization of emotions tracking structures
     // --------------------------------------------------------------------------------------------
-    public void SetNextRandomEmotion()
+    public void SetNextRandomEmotion(bool relaxed = false)
     {
 
-        if (lvl1 && numQuestionsCompleted == numStatuesInLvl_1) return;
-        if (lvl2 && numQuestionsCompleted == numStatuesInLvl_2 + numStatuesInLvl_1) return;
+        if (relaxed)
+        {
+            Debug.LogError("impossible situation , relaxing search");
+        }
+       
+        if (lvl1 && numQuestionsCompleted >= numStatuesInLvl_1) return;
+        if (lvl2 && numQuestionsCompleted >= numStatuesInLvl_2 + numStatuesInLvl_1) return;
 
-        while (true)
+        int count = 0;
+
+        while (count ++ < 10000)
         {
             // pick random emotion for this level
             string rnd_emotion = PickRandomEmotion();
-            Debug.Log($"attempting {rnd_emotion}");
             if (lvl1 && rnd_emotion == "HAPPY" && happySeen >= lvl1_happyEmotionsLimit)
-            {
-                // if seen too many times go back and pick another random emotion
-                Debug.Log($"too many {rnd_emotion}");
                 continue;
-            }
             if (lvl1 && rnd_emotion == "AFRAID" && afraidSeen >= lvl1_afraidEmotionsLimit)
-            {
-                Debug.Log($"too many {rnd_emotion}");
                 continue;
-            }
             if (lvl2 && rnd_emotion == "HAPPY" && happySeen >= lvl2_happyEmotionsLimit)
-            {
-                Debug.Log($"too many {rnd_emotion}");
                 continue;
-            }
             if (lvl2 && rnd_emotion == "AFRAID" && afraidSeen >= lvl2_afraidEmotionsLimit)
-            {
-                Debug.Log($"too many {rnd_emotion}");
                 continue;
-            }
             if (lvl2 && rnd_emotion == "SAD" && sadSeen >= lvl2_sadEmotionsLimit)
-            {
-                Debug.Log($"too many {rnd_emotion}");
                 continue;
-            }
             if (lvl2 && rnd_emotion == "ANGRY" && angrySeen >= lvl2_angryEmotionsLimit)
-            {
-                Debug.Log($"too many {rnd_emotion}");
                 continue;
-            }
-            if (!TooManyConsecutiveEmotions(rnd_emotion))
+            if (!relaxed && TooManyConsecutiveEmotions(rnd_emotion))
+                continue;
+            
+            currentEmotion = rnd_emotion;
+            Debug.Log($"Setting new rnd emotion: {currentEmotion}");
+            seenEmotions.Add(currentEmotion);
+            // add emotion to appropriate seen list
+            switch (currentEmotion)
             {
-                currentEmotion = rnd_emotion;
-                Debug.Log($"Setting new rnd emotion: {currentEmotion}");
-                seenEmotions.Add(currentEmotion);
-                // add emotion to appropriate seen list
-                switch (currentEmotion)
-                {
-                    case "HAPPY":
-                        happySeen++;
-                        return;
-                    case "SAD":
-                        sadSeen++;
-                        return;
-                    case "ANGRY":
-                        angrySeen++;
-                        return;
-                    case "AFRAID":
-                        afraidSeen++;
-                        return;
-                    default:
-                        return;
-                }
+                case "HAPPY":
+                    happySeen++;
+                    return;
+                case "SAD":
+                    sadSeen++;
+                    return;
+                case "ANGRY":
+                    angrySeen++;
+                    return;
+                case "AFRAID":
+                    afraidSeen++;
+                    return;
+                default:
+                    return;
             }
+       
         }
-        // // will need to make sure media doesn't go out of bounds for this one though
-        // currentEmotion = PickRandomEmotion();
-        // Debug.Log($"rnd emotion with constraints faled picking {currentEmotion}");  
+        if (relaxed)
+        {
+            Debug.LogError("impossible situation encountered, giving up emotion search");
+            return;
+        }
+
+        // impossible end sceneario encountered (have to repeat same emotion > 2 times)
+        SetNextRandomEmotion(true);
     }
     // --------------------------------------------------------------------------------------------
     public bool TooManyConsecutiveEmotions(string rnd_emotion)
@@ -374,7 +369,7 @@ public class GameStateManagerScript : MonoBehaviour
                 return prev2 == prev1 && prev1 == rnd_emotion;
 
             default:
-                Debug.Log("something went wrong in TooManyConsecutiveEmotions");
+                Debug.LogError("something went wrong in TooManyConsecutiveEmotions");
                 return true;
         }
     }
@@ -493,6 +488,7 @@ public class GameStateManagerScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     public IEnumerator SetNewScene()
     {
+        lvl2 = true;
         playerControllerDisabled = true;
         ScreenFader sf = gameObject.GetComponent<ScreenFader>();
         StartCoroutine(sf.SimpleFade(0, 1));
@@ -505,8 +501,6 @@ public class GameStateManagerScript : MonoBehaviour
         fog1.SetActive(false);
         fog2.SetActive(false);
         dust.Stop();
-        lvl1 = false;
-        lvl2 = true;
         lvl2Environment.SetActive(true);
 
         // move the firelfly attractors and the fireflies

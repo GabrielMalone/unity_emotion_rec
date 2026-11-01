@@ -37,10 +37,24 @@ public class PlayerController : MonoBehaviour
         RecordKeyStrokes();
 
         if (GSM.Instance.playerControllerDisabled) return;
-
-        if (Keyboard.current.leftShiftKey.isPressed && Keyboard.current.pKey.isPressed)
+        // some algo testing
+        if (Keyboard.current.leftShiftKey.isPressed && Keyboard.current.pKey.wasPressedThisFrame)
         {
-            Debug.Log("resetting player position");
+            GSM.Instance.lvl1 = false;
+            GSM.Instance.numQuestionsCompleted = 0;
+            GSM.Instance.happySeen = 0;
+            GSM.Instance.sadSeen = 0;
+            GSM.Instance.afraidSeen = 0;
+            GSM.Instance.angrySeen = 0;
+            for (int i = 0; i < 1000; i++)
+            {
+                GSM.Instance.SetNextRandomEmotion();
+                GSM.Instance.numQuestionsCompleted ++ ;
+            }
+        }
+
+        if (Keyboard.current.leftShiftKey.isPressed && Keyboard.current.rKey.wasPressedThisFrame)
+        {
             ResetPlayerPosition();
         }
 
