@@ -161,7 +161,6 @@ public class QuizScript : MonoBehaviour
         emotionGuess.time = Time.time;
         GSM.Instance.result.emotion_guessed = emotionGuess;
         GSM.Instance.result.playerName = GSM.Instance.playerName;
-        GSM.Instance.result.timeGameStarted = GSM.Instance.timeGameStarted;
         // when did player finish this quiz
         GSM.Instance.result.timeQuizCompleted = Time.time;
         // check gameStateManager for current emotion.

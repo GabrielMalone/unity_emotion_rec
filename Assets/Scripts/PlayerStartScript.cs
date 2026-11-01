@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -91,5 +92,6 @@ public class PlayerStartScript : MonoBehaviour
         GSM.Instance.playerControllerDisabled = false;
         gameObject.SetActive(false);
         GSM.Instance.timeGameStarted = Time.time;
+        GSM.Instance.gameStarted = true;
     }
 }

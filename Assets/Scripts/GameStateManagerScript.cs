@@ -7,6 +7,7 @@ using System.Collections;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using System.Xml.Serialization;
 
 public class GameStateManagerScript : MonoBehaviour
 {
@@ -77,6 +78,8 @@ public class GameStateManagerScript : MonoBehaviour
     [Header("Game State Settings")]
     public List<EmotionResult> results = new List<EmotionResult>();
     public List<KeyStroke> keyStrokes = new List<KeyStroke>();
+
+    public bool gameStarted = false;
 
     public GameObject lastStatueInteractedWith;
 
@@ -191,8 +194,13 @@ public class GameStateManagerScript : MonoBehaviour
 
     private bool endGameTriggered = false;
 
+
     [Header("End Game Settings")]
     public GameObject EndGameScreen;
+    public GameObject Quiz;
+    public GameObject Intro;
+    public GameObject Outro;
+    public float playerTimeLimit = 960f;
     // --------------------------------------------------------------------------------------------
     [Header("Telemetry Per Quiz")]
     public EmotionResult result = new EmotionResult();
@@ -209,17 +217,45 @@ public class GameStateManagerScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     void Update()
     {
+        PlayerFinishedLvl1Check();
+        PlayerFinishedGameCheck();
+        TimeLimit();
+    }
+    // --------------------------------------------------------------------------------------------
+    public void PlayerFinishedLvl1Check()
+    {
         if (lvl1 && numQuestionsCompleted == numStatuesInLvl_1 && readyToMoveOn)
         {
             lvl1 = false;
             playerControllerDisabled = true;
             StartCoroutine(SetNewScene());
         }
+    }
+    // --------------------------------------------------------------------------------------------
+    public void PlayerFinishedGameCheck()
+    {
         if (numQuestionsCompleted == numStatuesInLvl_1 + numStatuesInLvl_2 && readyToMoveOn && !endGameTriggered)
         {
             endGameTriggered = true;
-            StartCoroutine(gameObject.GetComponent<ScreenFader>().SimpleFade(0,1));
+            StartCoroutine(gameObject.GetComponent<ScreenFader>().SimpleFade(0, 1));
             EndGameScreen.SetActive(true);
+            StatuesIndicator.SetActive(false);
+        }
+    }
+    // --------------------------------------------------------------------------------------------
+    public void TimeLimit()
+    {
+        Debug.Log("Time limit reached for this player");
+        if (gameStarted && Time.time - timeGameStarted > playerTimeLimit)
+        {
+            StartCoroutine(gameObject.GetComponent<ScreenFader>().SimpleFade(0, 1));
+            EndGameScreen.SetActive(true);
+            StatuesIndicator.SetActive(false);
+            Quiz.SetActive(false);
+            Intro.SetActive(false);
+            Outro.SetActive(false);
+            emotionAudioPlayer.Stop();
+            videoPlayer.Stop();
         }
     }
     // --------------------------------------------------------------------------------------------
