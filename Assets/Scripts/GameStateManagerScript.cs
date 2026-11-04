@@ -247,6 +247,7 @@ public class GameStateManagerScript : MonoBehaviour
         Debug.Log("Time limit reached for this player");
         if (gameStarted && Time.time - timeGameStarted > playerTimeLimit)
         {
+            gameStarted = false;
             StartCoroutine(gameObject.GetComponent<ScreenFader>().SimpleFade(0, 1));
             EndGameScreen.SetActive(true);
             StatuesIndicator.SetActive(false);

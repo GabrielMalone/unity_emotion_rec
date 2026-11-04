@@ -170,7 +170,7 @@ public class ScreenFader : MonoBehaviour
             if (targetAlpha == 1f)
             {
                 audioSource.volume = Mathf.Lerp(
-                    1,
+                    0.2f,
                     0,
                     elapsedTime / fadeDuration
                 );
@@ -179,7 +179,7 @@ public class ScreenFader : MonoBehaviour
             {
                 audioSource.volume = Mathf.Lerp(
                     0,
-                    1,
+                    0.2f,
                     elapsedTime / fadeDuration
                 );
             }

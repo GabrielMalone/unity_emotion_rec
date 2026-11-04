@@ -59,26 +59,26 @@ public class PlayerController : MonoBehaviour
         }
 
         // Forward
-        if (Keyboard.current.wKey.isPressed)
+        if (Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed)
         {
             rb.AddForce(transform.up * thrustForce);
         }
 
         // Strafe left
-        if (Keyboard.current.aKey.isPressed)
+        if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
         {
             rb.AddForce(-transform.right * thrustForce);
             spriteRenderer.flipX = false;
         }
 
         // Backward
-        if (Keyboard.current.sKey.isPressed)
+        if (Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed)
         {
             rb.AddForce(-transform.up * thrustForce);
         }
 
         // Strafe right
-        if (Keyboard.current.dKey.isPressed)
+        if (Keyboard.current.dKey.isPressed ||Keyboard.current.rightArrowKey.isPressed)
         {
             rb.AddForce(transform.right * thrustForce);
             spriteRenderer.flipX = true;

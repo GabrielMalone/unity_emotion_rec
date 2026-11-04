@@ -84,14 +84,14 @@ public class PlayerStartScript : MonoBehaviour
 
             audioSource.volume = Mathf.Lerp(
                 0,
-                1,
+                0.2f,
                 (Time.time-startTime) / fadeTime
             );
             yield return null;
         }
         GSM.Instance.playerControllerDisabled = false;
         gameObject.SetActive(false);
-        GSM.Instance.timeGameStarted = Time.time;
+        GSM.Instance.timeGameStarted = 0;
         GSM.Instance.gameStarted = true;
     }
 }

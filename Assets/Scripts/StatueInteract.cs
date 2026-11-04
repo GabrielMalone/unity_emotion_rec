@@ -127,7 +127,7 @@ public class StatueInteract : MonoBehaviour
         // gamestatemanager deciding
         // which statue is talking 
         mainText.text = 
-            $"hello {GSM.Instance.playerName}! Can you help me figure out what my friend is feeling?";
+            $"Hello {GSM.Instance.playerName}! Can you help me figure out what my friend is feeling?";
     }
     // --------------------------------------------------------------------------------------------
     public void StartQuiz()

@@ -11,7 +11,7 @@ public class EndGameScript : MonoBehaviour
     // --------------------------------------------------------------------------------------------
     void Start()
     {
-        exitTextBox.text = $"Thank you for your help, {GSM.Instance.playerName}!";
+        exitTextBox.text = $"Great job, {GSM.Instance.playerName}!";
     }
 
     // Update is called once per frame
