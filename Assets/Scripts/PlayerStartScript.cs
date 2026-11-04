@@ -91,7 +91,7 @@ public class PlayerStartScript : MonoBehaviour
         }
         GSM.Instance.playerControllerDisabled = false;
         gameObject.SetActive(false);
-        GSM.Instance.timeGameStarted = 0;
+        GSM.Instance.timeGameStarted = Time.time;
         GSM.Instance.gameStarted = true;
     }
 }
